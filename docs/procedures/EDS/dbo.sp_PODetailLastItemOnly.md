@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_PODetailLastItemOnly`
 
-_Generated on 2026-05-04T13:04:24.163Z_
+_Generated on 2026-05-04T13:07:57.505Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

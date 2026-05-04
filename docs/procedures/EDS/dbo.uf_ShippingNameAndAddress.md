@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_ShippingNameAndAddress`
 
-_Generated on 2026-05-04T13:04:24.328Z_
+_Generated on 2026-05-04T13:07:57.721Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

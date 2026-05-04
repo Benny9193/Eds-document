@@ -1,6 +1,6 @@
 # Function: inline table-valued: `dbo.uf_BidAnalysisDetailRSId`
 
-_Generated on 2026-05-04T13:04:24.222Z_
+_Generated on 2026-05-04T13:07:57.571Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_SetPricing_SearchDataDB`
 
-_Generated on 2026-05-04T13:04:24.389Z_
+_Generated on 2026-05-04T13:07:57.808Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

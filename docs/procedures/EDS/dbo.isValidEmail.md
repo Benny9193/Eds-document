@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.isValidEmail`
 
-_Generated on 2026-05-04T13:04:24.052Z_
+_Generated on 2026-05-04T13:07:57.331Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

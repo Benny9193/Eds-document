@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_ExportMSRPBid`
 
-_Generated on 2026-05-04T13:04:24.258Z_
+_Generated on 2026-05-04T13:07:57.621Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

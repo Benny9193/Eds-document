@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_GetTrackingA`
 
-_Generated on 2026-05-04T13:04:24.266Z_
+_Generated on 2026-05-04T13:07:57.630Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

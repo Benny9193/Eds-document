@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_FormatDateDisplay`
 
-_Generated on 2026-05-04T13:04:24.265Z_
+_Generated on 2026-05-04T13:07:57.629Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

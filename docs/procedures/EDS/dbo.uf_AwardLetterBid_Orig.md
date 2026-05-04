@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_AwardLetterBid_Orig`
 
-_Generated on 2026-05-04T13:04:24.216Z_
+_Generated on 2026-05-04T13:07:57.565Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

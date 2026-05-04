@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_CatalogRefsItem`
 
-_Generated on 2026-05-04T13:04:24.234Z_
+_Generated on 2026-05-04T13:07:57.590Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

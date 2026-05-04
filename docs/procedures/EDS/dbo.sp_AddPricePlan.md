@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_AddPricePlan`
 
-_Generated on 2026-05-04T13:04:24.057Z_
+_Generated on 2026-05-04T13:07:57.336Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

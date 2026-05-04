@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.ufn_GetHazardsDescription`
 
-_Generated on 2026-05-04T13:04:24.343Z_
+_Generated on 2026-05-04T13:07:57.741Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

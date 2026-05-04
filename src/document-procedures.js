@@ -8,7 +8,16 @@ const PROCS_DIR = path.join(ROOT, 'docs', 'procedures');
 
 // Databases to document. Adding more is a one-liner; each is validated against
 // sys.databases before being bracketed into cross-DB queries.
-const DBS = ['EDS'];
+const DBS = [
+  'EDS',
+  'Catalogs',
+  'ContentCentral',
+  'Documents',
+  'VendorBids',
+  'IDIQ_Platform',
+  'ProcurementAnalytics',
+  'NJ_RTK',
+];
 
 // ---------- helpers (mirrored from src/introspect.js) ----------
 function safeSegment(s) {

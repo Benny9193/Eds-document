@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_CheckVendorComplianceForPOs`
 
-_Generated on 2026-05-04T13:04:24.354Z_
+_Generated on 2026-05-04T13:07:57.758Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_droppropertiesbyid`
 
-_Generated on 2026-05-04T13:04:24.040Z_
+_Generated on 2026-05-04T13:07:57.307Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

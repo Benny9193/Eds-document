@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_Status`
 
-_Generated on 2026-05-04T13:04:24.330Z_
+_Generated on 2026-05-04T13:07:57.722Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

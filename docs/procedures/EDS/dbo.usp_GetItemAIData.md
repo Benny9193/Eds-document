@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_GetItemAIData`
 
-_Generated on 2026-05-04T13:04:24.362Z_
+_Generated on 2026-05-04T13:07:57.772Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_ContactListHtml`
 
-_Generated on 2026-05-04T13:04:24.237Z_
+_Generated on 2026-05-04T13:07:57.594Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

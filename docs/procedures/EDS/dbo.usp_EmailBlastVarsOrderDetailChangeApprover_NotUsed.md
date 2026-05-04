@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_EmailBlastVarsOrderDetailChangeApprover_NotUsed`
 
-_Generated on 2026-05-04T13:04:24.357Z_
+_Generated on 2026-05-04T13:07:57.764Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_FA_ApprovalUserTree`
 
-_Generated on 2026-05-04T13:04:24.259Z_
+_Generated on 2026-05-04T13:07:57.623Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

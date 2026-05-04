@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_SetSortSeq1`
 
-_Generated on 2026-05-04T13:04:24.326Z_
+_Generated on 2026-05-04T13:07:57.718Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

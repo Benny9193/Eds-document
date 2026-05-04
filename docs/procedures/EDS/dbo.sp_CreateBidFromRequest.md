@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CreateBidFromRequest`
 
-_Generated on 2026-05-04T13:04:24.101Z_
+_Generated on 2026-05-04T13:07:57.408Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_OrderEZVendors`
 
-_Generated on 2026-05-04T13:04:24.375Z_
+_Generated on 2026-05-04T13:07:57.793Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 
