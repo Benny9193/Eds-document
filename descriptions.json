@@ -205,6 +205,64 @@
   "EDS.dbo.RTK_LegacySchoolFile": "Legacy NJ-RTK school-file mapping (~6.8K rows). Maps the old (`LegacyDistrictCode`, `LegacySchoolCode`, `NJEIN`) identifiers + `ExposedEmployees` count to current `DistrictId` / `RTK_SitesId`. Read-mostly; preserved so historical RTK exports can be reproduced.",
   "EDS.dbo.TMVendors": "Per-year trades vendor list (~16K rows). One row per (`TMYear`, `TradeId`, `CountyId`, `VendorId`) with denormalized `VendorName` and `Sequence`. Defines who is eligible to bid on a given trade in a given county for a given year.",
   "EDS.dbo.CalendarDates": "Named-calendar date set (~2.3K rows). Each `CalendarId` can hold up to four meaningful dates (`Date1`–`Date4`) with a description — used for budget cycles, bid windows, and other scheduling lookups.",
+  "EDS.dbo.Calendars": "Master calendar definitions (~300 rows). One row per (`BudgetYear`, `ScheduleId`, `CalendarTypeId`) with `Description` and HTML / plain-text `HeaderText` / `FooterText` for printable calendar output. Date set per calendar lives in `CalendarDates`.",
+
+  "EDS.dbo.Counties": "U.S. counties lookup (~78 rows). Tiny reference — `(State, Name)` per `CountyId` with a `StateId` link. Referenced by `BidTradeCounties`, trades-bid scoping, and address rollups.",
+  "EDS.dbo.Trades": "Trades hierarchy (~107 rows). Self-referencing tree (`ParentId`) of trade categories used for the trades-bid track, with `Description`, `Comments`, `PackageNumber`, and `pwRequired` (prevailing wage). Parent of `BidTrades` (per-bid trade rows) and `TM_UOM` etc.",
+  "EDS.dbo.TM_UOM": "Trades-bid UoM lookup (~77 rows). Description-only reference (e.g. 'Hour', 'Each', 'Square Foot') used by the trades / T&M bid forms. Distinct from the catalog `Units` table.",
+  "EDS.dbo.BidTrades": "Per-bid trade definition (~1.6K rows). One row per (`BidHeaderId`, `TradeId`) with `Title` and full `Specifications` text — the trade-specific scope inside a bid solicitation. Parent of `BidQuestions` (CASCADE FK).",
+
+  "EDS.dbo.PPCatalogs": "Junction `PricePlans` × `Category` × `Catalog` (~1.7K rows). Determines which catalogs are visible under a price plan for a category, with the `DiscountRate` and the linking `AwardId`. The price-plan side of catalog visibility (vs `BidsCatalogList` / `AwardsCatalogList` which are bid-side).",
+  "EDS.dbo.PPCategory": "Junction `PricePlans` × `Category` (~1.5K rows) with `AllowAddenda` flag. Controls whether buyers on a given price plan can add catalog addenda for that category.",
+
+  "EDS.dbo.BidPackageDocument": "Junction `BidPackage` ↔ `BidDocument` (~1.5K rows). Defines which documents are bundled into a reusable bid package (template), with `DisplaySequence`. `BidPackage` then attaches in bulk to `BidHeaders`.",
+  "EDS.dbo.BidDocumentTypes": "Bid document type lookup (~298 rows). Per `BidType` and optional `State`, defines the document categories used in bid packets (`Name`, `Description`, `Sequence`, `Grouping`) along with flags for vendor-specific, vendor-unique, expiration tracking, district visibility, and one-of-many display.",
+  "EDS.dbo.BidderCheckList": "Master list of bidder-checklist items (~140 rows). Per-checklist item: `CheckListText`, optional rich-text help, document-name / type, and flags for `OptionalDocument`, `OnFileEligible`, `UploadEligible`, `ExpirationDateReqd`, `DocNumberReqd`, `DocNumberLabel`. `BidHeaderCheckList` is the per-bid junction.",
+  "EDS.dbo.BidderCheckListPkgHeader": "Bidder-checklist packages (~56 rows). Tiny header table — named, active-flagged groupings of checklist items. Detail rows in `BidderCheckListPkgDetail`.",
+  "EDS.dbo.BidderCheckListPkgDetail": "Junction `BidderCheckListPkgHeader` × `BidderCheckList` (~1.2K rows) with `DisplaySequence`. Defines which checklist items live in which package; packages are the reusable building block bound onto a `BidHeader`.",
+  "EDS.dbo.BidReawards": "Re-award events (~615 rows). One row per (`BidHeaderId`, `ReawardDate`) with `EffectiveFrom` / `EffectiveUntil` and `Comments` — captures when a bid's awards were partially or fully redone (e.g. winning vendor dropped out) and the validity window of the new state.",
+
+  "EDS.dbo.VendorQueryTandM": "T&M (Trades / Time-and-Materials) variant of `VendorQuery` (~1.9K rows). Same shape as `VendorQuery` but scoped to the trades-bid track. Header for clarification messages sent to trades vendors about their bid response.",
+  "EDS.dbo.VendorQueryTandMStatus": "Status timeline for a `VendorQueryTandM` (~1.9K rows). Per-transition row with `StatusDate` / `FollowUpDate`. CASCADE FK to `VendorQueryTandM`.",
+  "EDS.dbo.VendorQueryTandMDetail": "Per-line T&M vendor queries (~1.2K rows). Mirrors `VendorQueryDetail` for the trades track, with extra `TandMQueryType`, `TandMQueryCounties`, and `ResolvedFlag`.",
+  "EDS.dbo.VendorQueryMSRP": "MSRP variant of `VendorQuery` (~140 rows). Clarification-message header scoped to MSRP-bid responses. Same structure as `VendorQuery`.",
+
+  "EDS.dbo.RTK_Sites": "NJ Right-To-Know facility / site master (~823 rows). Per (`DistrictId`, `NJEIN`) site with `FacilityName`, mailing address, facility-location lines, `CoMunCode`, `ChemicalInventoryStatus`, exposed-employees count, and emergency-contact info. Linked from `ShipLocations.RTK_SitesId` and `RTK_LegacySchoolFile.RTK_SitesId`. Reporting target for the annual NJ RTK survey.",
+  "EDS.dbo.RTK_Inventories": "Annual chemical-inventory record per RTK site (~658 rows). One row per (`RTK_SiteId`, `RTK_InventoryYear`) with `RTK_InventoryDate`, `RTK_InventoryBy` submitter, and free-text `RTK_InventoryNotes`. Drives the date-stamped 'inventory taken' attestation on the RTK report.",
+  "EDS.dbo.RTK_LegacyDistrictCodesMap": "Legacy district-code translation table (~78 rows). Maps the historical (`Legacy_DistrictCode`, `SQL_DistrictCode`) two-character codes onto the modern surrogate `DistrictId`. Read-mostly; lets historical RTK / batch files reference districts by their old codes.",
+
+  "EDS.dbo.TMSurvey": "Trades-vendor survey header (~862 rows). One row per district survey submission with `Submitter`, `Title`, `Email`, `Started` / `Finished` timestamps, and `CountyId`. Per-vendor scores live in `TMSurveyResults`; new-vendor / new-trade write-ins live in `TMSurveyNewVendors` / `TMSurveyNewTrades`.",
+  "EDS.dbo.TMSurveyNewVendors": "Free-text 'new vendor to consider' entries on a `TMSurvey` (~202 rows). Captures vendor name, address, and contact info from districts suggesting vendors not yet in the trades pool.",
+  "EDS.dbo.TMSurveyNewTrades": "Free-text 'new trade to consider' entries on a `TMSurvey` (~89 rows). Captures suggested trade name and description from districts requesting new trade categories.",
+
+  "EDS.dbo.ShippingRequests": "Shipping-quote requests sent to vendors (~728 rows). One row per (`RequisitionId`, `VendorId`) ask, with `EmailAddresses`, `Comments`, `RequestSent` / `RequestCompleted` timestamps, `RequestStatus`, `loadingDock` flag, and a `ShippingRequestUniqueId` GUID for vendor-side reply linking. Cost replies populate `ShippingCosts`.",
+  "EDS.dbo.ShippingCosts": "Per-line shipping cost lookup (~1.1K rows). One row per (`DetailId`, `RequisitionId`) with `Quantity`, `Cost`, `UpdatedBy`, and an optional link to the originating `ShippingRequestId`. Surfaced on POs that need explicit shipping line items.",
+
+  "EDS.dbo.ImportProcesses": "Import-job process run history (~754 rows). Per (`ImportId`, `ProcessDate`) — one row each time the process step ran for a given `Imports` job. `ImportMessages.ProcessId` references this row.",
+  "EDS.dbo.Imports": "Catalog / data-import job header (~301 rows). One row per import attempt — `ImportType`, `ImportDate`, `Records`, `ErrorCount`, target `CategoryId`, `PricePlanId`, and up to six `CatalogId1`–`CatalogId6` slots being loaded simultaneously. Companion to `Batches` (which is requisition-side).",
+  "EDS.dbo.UserImports": "User-import staging table (~328 rows). Excel-derived columns with literal spaces in their names (`User #`, `Approver User #`, `Approval Level (Teacher/Principal/BA)`, `Account Code`, `Amount`). Working set for batch creation of district users; promoted into `Users`, `UserAccounts`, and approval trees.",
+
+  "EDS.dbo.MSRPExcelExport": "Staging table for exporting MSRP responses to Excel (~563 rows). All columns typed as varchar so the export can preserve raw text. Mirror of `MSRPExcelImport` for the outbound direction.",
+
+  "EDS.dbo.SDS_Rpt_Bridge": "Working bridge for SDS reports (~100 rows). Per (`SessionId`, `ItemId`) → `SDSDoc` mapping populated mid-run when generating an SDS-by-requisition report so the report can join consistent results without re-running the SDS resolver.",
+  "EDS.dbo.DMSSDSDocuments": "DMS pointer for legacy MSDS documents (~602 rows). Per `MSDSId` row holding the DMS `DocId`, `PagesCaptured`, and `DocName`. Older / parallel storage to `SDSDocs` (which is the current binary store) — the two diverge by ingestion vintage.",
+
+  "EDS.dbo.Notifications": "Per-recipient notification send log (~720 rows). One row per (`UserId`, `Email`, `EmailBlastId`) send with `DateSent`, `NotificationType`, and the rendered `EmailHTMLTable` payload. Receipts / delivery audit for blasts and other notifications.",
+
+  "EDS.dbo.BatchDetailInserts": "Audit of line-inserts produced by batch loads (~1.2K rows). One row per (`RequisitionId`, `BatchDetailId`, `ItemId`, `qty`, `SourceId`) showing what each `BatchDetail` row produced when expanded into requisition lines. Sequential-GUID PK.",
+
+  "EDS.dbo.POLayouts": "PO print layout master (~636 rows). Defines named templates with `FormLength` / `FormWidth`, `ContinuousFeed` flag, copy count, and `FormType`. Field placement under each layout lives in `POLayoutDetail`.",
+  "EDS.dbo.POLayoutFields": "PO-layout field catalog (~56 rows). Defines each field that can be placed on a PO (`POLayoutField` name, type, `POLayoutSource` SQL fragment to resolve the value, and `DetailField` flag for line-item-vs-header). Referenced by `POLayoutDetail.POLayoutFieldId`.",
+
+  "EDS.dbo.AccountingUserFields": "Per-district accounting-format field definitions (~80 rows). For an `AccountingFormatId`, defines the position, name, and required-flag of each user-supplied field that makes up a district's account string (e.g. fund/function/object/location segments).",
+
+  "EDS.dbo.DistrictNotes": "District-level free-text notes (~77 rows). Lightweight per-district memo with `NoteTitle`, single-char `NoteType`, `Note` body, and `DateOfNote`. Operational comments visible to admin staff.",
+  "EDS.dbo.SecurityRoleKeys": "Junction `SecurityRole` ↔ `SecurityKey` (~65 rows). Defines which security keys (permission flags) belong to each role. `SecurityRoleUsers` then maps users to roles.",
+
+  "EDS.dbo.Carolina Living Items": "Carolina Living vendor-specific items snapshot (~2K rows). Vendor-specific working table; preserved as a frozen item set referenced by their feed, similar in spirit to other vendor-named snapshots in `Catalogs.dbo`.",
+  "EDS.dbo.SulphiteUsers": "Users authorized to act on Sulphite-specific workflow (~1.2K rows). Vendor-scoped allowlist tying `UserId` to the Sulphite ingest / matching path that uses `SulphiteDetail` / `SulphiteImport`.",
+
+  "EDS.EDSIQWebUser.TableOfContents": "Per-OrderBook table-of-contents entries (~6.7K rows). One row per heading on a printed OrderBook with `Title`, `PageNbr`, and `OrderBookId`. Used by the IQ web reporting layer to render TOC pages.",
 
   "EDS.VMS.vw_Login": "Vendor-portal login lookup view. Used by the vendor-management UI to authenticate and resolve a vendor's accessible bids.",
   "EDS.VMS.vw_BidsByVendor": "Vendor-portal view listing bids visible to each vendor — the per-vendor cut of `BidHeaders` joined with award status. Drives the vendor's bid-list screen.",
