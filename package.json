@@ -13,7 +13,14 @@
     "guide": "node src/generate-guide.js",
     "descriptions:sql": "node src/generate-ms-description-sql.js",
     "descriptions:check": "node src/validate-descriptions.js",
-    "docs:columns": "node src/column-inventory.js"
+    "descriptions:gaps": "node src/description-gaps.js",
+    "docs:columns": "node src/column-inventory.js",
+    "docs:lookup": "node src/lookup-data.js",
+    "docs:dependencies": "node src/document-fk-graph.js",
+    "docs:orphans": "node src/document-orphans.js",
+    "docs:changes": "node src/document-changes.js",
+    "docs:search": "node src/document-search-index.js",
+    "docs:erd": "node src/document-erd.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

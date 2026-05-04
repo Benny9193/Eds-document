@@ -1,6 +1,6 @@
 # Business rules
 
-_Generated on 2026-05-04T15:06:10.468Z_
+_Generated on 2026-05-04T15:27:13.010Z_
 
 **Server:** `eds-sqlserver.eastus2.cloudapp.azure.com`
 
@@ -12,14 +12,14 @@ Hand-curated narrative documentation is in [`docs/business-logic/`](../business-
 
 | Database | Triggers | Checks | Computed | Defaults (non-trivial) | Filtered idx | Unique (non-PK) | Indexed views | Schema-bound views |
 |----------|---------:|-------:|---------:|-----------------------:|-------------:|----------------:|--------------:|-------------------:|
-| `EDS` | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ |
-| `Catalogs` | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ |
-| `ContentCentral` | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ |
-| `Documents` | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ |
-| `VendorBids` | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ |
-| `IDIQ_Platform` | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ |
-| `ProcurementAnalytics` | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ |
-| `NJ_RTK` | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ | _error_ |
+| [`EDS`](EDS/README.md) | 52 | 1 | 1 | 30 | 4 | 31 | 0 | 0 |
+| [`Catalogs`](Catalogs/README.md) | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| [`ContentCentral`](ContentCentral/README.md) | 0 | 3 | 0 | 112 | 0 | 43 | 1 | 1 |
+| [`Documents`](Documents/README.md) | 1 | 0 | 0 | 30 | 1 | 1 | 0 | 1 |
+| [`VendorBids`](VendorBids/README.md) | 2 | 0 | 0 | 3 | 0 | 2 | 0 | 0 |
+| [`IDIQ_Platform`](IDIQ_Platform/README.md) | 0 | 0 | 0 | 0 | 0 | 64 | 0 | 0 |
+| [`ProcurementAnalytics`](ProcurementAnalytics/README.md) | 0 | 4 | 1 | 0 | 0 | 12 | 0 | 0 |
+| [`NJ_RTK`](NJ_RTK/README.md) | 0 | 0 | 0 | 8 | 0 | 0 | 0 | 0 |
 
 ## Source queries
 

@@ -10,6 +10,8 @@ This repo connects to an Azure SQL Server (the EDS database server) and generate
 
 - `npm run schema` — connect to the server, enumerate every online user database (`sys.databases` where `database_id > 4`), introspect each, and regenerate `SCHEMA.md` plus `docs/tables/<db>/...`. **Wipes and recreates `docs/tables/` on every run.**
 - `npm run business-rules` — auto-extract the enforcement layer (triggers, check constraints, computed columns, non-trivial defaults, filtered indexes, alternate-key uniqueness, indexed/schema-bound views) into `docs/business-rules/<db>/README.md`. **Wipes and recreates `docs/business-rules/`.** Distinct from the hand-curated narrative in `docs/business-logic/`, which is never touched by any generator.
+- `npm run descriptions:gaps` — coverage gap analysis: which tables and columns across all databases are missing entries in `descriptions.json`. Sorted by row count (largest impact first). Outputs `docs/description-gaps.md`. Use as a work queue when adding descriptions.
+- `npm run docs:lookup` — for every base table with ≤ 500 rows, renders the actual data rows into `docs/lookup-data/<db>/<schema>.<table>.md`. **Wipes and recreates `docs/lookup-data/` on every run.** Pass `-- --limit N` to override the row threshold. Useful for status codes, category lookups, and other reference tables.
 - `npm run test:connection` — sanity-check connectivity (`src/test-connection.js`).
 - `npm start` — minimal "who am I / what db" probe (`src/index.js`).
 
@@ -44,3 +46,4 @@ Filenames go through `safeSegment()` (replaces non-`[A-Za-z0-9._-]` with `_`); l
 - When adding a new metadata dimension, extend `inspectDatabase()` to return it on the `info` object, then thread it through `renderTablePage` / `renderViewPage` / `renderDbIndex` rather than re-querying inside renderers.
 - `npm run schema` is destructive to `docs/tables/`. Don't hand-edit files there; they will be overwritten.
 - `npm run business-rules` is destructive to `docs/business-rules/`. The hand-curated `docs/business-logic/` is *not* touched by any generator — keep that distinction.
+- `npm run docs:lookup` is destructive to `docs/lookup-data/`. Don't hand-edit files there; they will be overwritten.
