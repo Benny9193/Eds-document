@@ -5,7 +5,13 @@
       "Bash(node *)",
       "mcp__azure-devops__repo_list_repos_by_project",
       "mcp__azure-devops__repo_list_directory",
-      "mcp__azure-devops__repo_get_file_content"
+      "mcp__azure-devops__repo_get_file_content",
+      "mcp__azure-devops__repo_get_repo_by_name_or_id",
+      "mcp__azure-devops__repo_list_branches_by_repo",
+      "mcp__azure-devops__repo_list_pull_requests_by_repo_or_project",
+      "mcp__azure-devops__repo_search_commits",
+      "mcp__azure-devops__pipelines_get_build_definitions",
+      "mcp__azure-devops__core_list_projects"
     ]
   },
   "enabledMcpjsonServers": [
