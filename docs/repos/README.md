@@ -6,13 +6,15 @@ Generated from the Azure DevOps MCP server. Activity dates come from `core_list_
 
 ## Active (updated in 2025–2026)
 
-| Project | Repo | Last Updated | Size | Description |
-|---|---|---|---|---|
-| [District Manager](https://dev.azure.com/EDSIQ/District%20Manager) | [District Manager](https://dev.azure.com/EDSIQ/District%20Manager/_git/District%20Manager) | 2026-01-07 | 78 MB | District Manager |
-| [Email Blast](https://dev.azure.com/EDSIQ/Email%20Blast) | [Email Blast](https://dev.azure.com/EDSIQ/Email%20Blast/_git/Email%20Blast) | 2025-10-06 | empty | Email Blast Clarion program |
-| [Bid Manager](https://dev.azure.com/EDSIQ/Bid%20Manager) | [Bid Manager](https://dev.azure.com/EDSIQ/Bid%20Manager/_git/Bid%20Manager) | 2025-05-21 | 4.7 MB | Bid Manager program written in Clarion |
-| [Vendor Order Tracking](https://dev.azure.com/EDSIQ/Vendor%20Order%20Tracking) | [Vendor Order Tracking](https://dev.azure.com/EDSIQ/Vendor%20Order%20Tracking/_git/Vendor%20Order%20Tracking) | 2025-04-10 | empty | Vendor Order Tracking system |
-| [PO](https://dev.azure.com/EDSIQ/PO) | [PO](https://dev.azure.com/EDSIQ/PO/_git/PO) | 2025-02-19 | 16.6 MB | PO Management and PO Print |
+Each row links to a per-repo deep-dive doc generated from the ADO MCP server.
+
+| Project | Repo | Doc | Last Updated | Size | Description |
+|---|---|---|---|---|---|
+| [District Manager](https://dev.azure.com/EDSIQ/District%20Manager) | [District Manager](https://dev.azure.com/EDSIQ/District%20Manager/_git/District%20Manager) | [📄](./District%20Manager/District%20Manager.md) | 2026-01-07 | 78 MB | Node.js/React replacement for legacy ASP DistrictManager |
+| [Email Blast](https://dev.azure.com/EDSIQ/Email%20Blast) | [Email Blast](https://dev.azure.com/EDSIQ/Email%20Blast/_git/Email%20Blast) | [📄](./Email%20Blast/Email%20Blast.md) | 2025-10-06 | reports 0 (19 files committed) | Clarion email-blast program |
+| [Bid Manager](https://dev.azure.com/EDSIQ/Bid%20Manager) | [Bid Manager](https://dev.azure.com/EDSIQ/Bid%20Manager/_git/Bid%20Manager) | [📄](./Bid%20Manager/Bid%20Manager.md) | 2025-05-21 | 4.7 MB | Clarion bid-management program (source archive) |
+| [Vendor Order Tracking](https://dev.azure.com/EDSIQ/Vendor%20Order%20Tracking) | [Vendor Order Tracking](https://dev.azure.com/EDSIQ/Vendor%20Order%20Tracking/_git/Vendor%20Order%20Tracking) | [📄](./Vendor%20Order%20Tracking/Vendor%20Order%20Tracking.md) | 2025-04-10 | empty (no commits) | Empty repo — project shell only |
+| [PO](https://dev.azure.com/EDSIQ/PO) | [PO](https://dev.azure.com/EDSIQ/PO/_git/PO) | [📄](./PO/PO.md) | 2025-02-19 | 16.6 MB | Node API + React webapp on AKS for PO management/print |
 
 ## Recently active (2024)
 
