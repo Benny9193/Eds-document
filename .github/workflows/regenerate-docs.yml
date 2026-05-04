@@ -1,0 +1,84 @@
+name: Regenerate schema docs
+
+# Regenerates SCHEMA.md, EDS_GUIDE.md, per-table pages under docs/tables/, and
+# apply-descriptions.sql by introspecting the live SQL Server. Runs the
+# DB-backed `descriptions:check` first as a hard gate — if any descriptions.json
+# key references a missing object/column, the job fails and nothing is
+# regenerated.
+#
+# Triggers:
+#   * workflow_dispatch — manual run from the Actions tab.
+#   * schedule — weekly on Mondays at 06:00 UTC, picks up schema drift.
+#
+# Requires:
+#   * Repo secret `EDS_DB_PASSWORD` set to the SQL Server password.
+#   * SQL Server firewall allowing GitHub-hosted runner IPs OR a self-hosted
+#     runner with network access to eds-sqlserver.eastus2.cloudapp.azure.com.
+#     Without one of these the job will time out at the connection step.
+#
+# This workflow does NOT execute apply-descriptions.sql against the live
+# database. Applying the SQL remains a manual step (run sqlcmd locally or via
+# a separate, intentionally-gated workflow) so production metadata writes
+# always have an explicit human approval.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Write .env
+        env:
+          EDS_DB_PASSWORD: ${{ secrets.EDS_DB_PASSWORD }}
+        run: |
+          if [ -z "$EDS_DB_PASSWORD" ]; then
+            echo "::error::EDS_DB_PASSWORD repo secret is not set."
+            exit 1
+          fi
+          cat > .env <<EOF
+          DB_SERVER=eds-sqlserver.eastus2.cloudapp.azure.com
+          DB_DATABASE=master
+          DB_USER=EDSAdmin
+          DB_PASSWORD=$EDS_DB_PASSWORD
+          DB_PORT=1433
+          DB_ENCRYPT=true
+          DB_TRUST_SERVER_CERTIFICATE=true
+          EOF
+
+      - name: Validate descriptions.json against live DB
+        run: npm run descriptions:check
+
+      - name: Regenerate schema docs and SQL
+        run: |
+          npm run schema
+          npm run guide
+          npm run descriptions:sql
+
+      - name: Commit and push if changed
+        run: |
+          rm -f .env apply-descriptions.log apply-output.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-regenerate schema docs ($(date -u +%Y-%m-%d))"
+            git push
+          fi

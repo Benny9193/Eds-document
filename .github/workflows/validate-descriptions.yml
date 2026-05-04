@@ -1,0 +1,65 @@
+name: Validate descriptions.json
+
+# Lightweight offline validator that runs on every PR touching descriptions.json
+# or any of the generators. Enforces JSON validity and key shape (3 or 4 dotted
+# segments, non-empty string value) without needing DB access. Intended as a
+# fast pre-merge gate.
+#
+# The full DB-backed validator (`npm run descriptions:check`) and the
+# regeneration jobs run separately in `regenerate-docs.yml` because they need
+# secrets and SQL Server connectivity.
+
+on:
+  pull_request:
+    paths:
+      - 'descriptions.json'
+      - 'src/generate-ms-description-sql.js'
+      - 'src/validate-descriptions.js'
+      - 'src/introspect.js'
+      - 'src/generate-guide.js'
+  push:
+    branches: [main]
+    paths:
+      - 'descriptions.json'
+
+jobs:
+  shape-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate descriptions.json shape (offline, no DB)
+        run: |
+          node -e '
+            const fs = require("fs");
+            const raw = fs.readFileSync("descriptions.json", "utf8");
+            const j = JSON.parse(raw);  // throws on bad JSON
+            const errors = [];
+            let total = 0, table = 0, column = 0;
+            for (const [k, v] of Object.entries(j)) {
+              if (k.startsWith("_")) continue;
+              total++;
+              if (typeof v !== "string" || !v.trim()) {
+                errors.push(`${k}: value is not a non-empty string`);
+                continue;
+              }
+              const parts = k.split(".");
+              if (parts.length !== 3 && parts.length !== 4) {
+                errors.push(`${k}: key has ${parts.length} segments; expected 3 or 4`);
+                continue;
+              }
+              if (parts.some((p) => !p)) {
+                errors.push(`${k}: empty segment in key`);
+                continue;
+              }
+              if (parts.length === 3) table++;
+              else column++;
+            }
+            console.log(`Validated ${total} entries (${table} object, ${column} column).`);
+            if (errors.length) {
+              console.error(`\n${errors.length} shape error(s):`);
+              for (const e of errors) console.error(`  ✗ ${e}`);
+              process.exit(1);
+            }
+            console.log("All entries have valid shape. ✓");
+          '
