@@ -611,7 +611,84 @@ function writeDatabaseDocs(dbName, info, descriptions) {
       : renderTablePage(dbName, t, info, knownTables, descriptions);
     fs.writeFileSync(tableFile(dbName, t.TABLE_SCHEMA, t.TABLE_NAME), md);
   }
-  fs.writeFileSync(path.join(dir, 'README.md'), renderDbIndex(dbName, info, descriptions));
+  const domainIndexes = writeDomainIndexes(dbName, info, descriptions);
+  fs.writeFileSync(path.join(dir, 'README.md'), renderDbIndex(dbName, info, descriptions, domainIndexes));
+}
+
+function renderCrossDbSection(out, dbsInfo) {
+  const edges = [];
+  for (const { db, info, error } of dbsInfo) {
+    if (error || !info || !info.crossDbDeps) continue;
+    for (const d of info.crossDbDeps) {
+      edges.push({
+        srcDb: db,
+        srcSchema: d.view_schema,
+        srcName: d.view_name,
+        tgtDb: d.ref_db,
+        tgtSchema: d.ref_schema || 'dbo',
+        tgtName: d.ref_name,
+      });
+    }
+  }
+  if (edges.length === 0) return;
+
+  const introspectedDbs = new Set(
+    dbsInfo.filter((d) => !d.error && d.info).map((d) => d.db)
+  );
+
+  out.push('## Cross-Database Dependencies');
+  out.push('');
+  out.push(
+    'Views that reference objects in another database via 3-part names. ' +
+      'Both databases must live on the same instance for these views to resolve. ' +
+      `Total edges: **${edges.length}**.`
+  );
+  out.push('');
+
+  const pairs = new Map();
+  for (const e of edges) {
+    const key = `${e.srcDb}${e.tgtDb}`;
+    if (!pairs.has(key)) pairs.set(key, []);
+    pairs.get(key).push(e);
+  }
+
+  const sortedKeys = [...pairs.keys()].sort();
+  for (const key of sortedKeys) {
+    const [src, tgt] = key.split('');
+    const list = pairs.get(key);
+    const distinctSources = new Set(list.map((e) => `${e.srcSchema}.${e.srcName}`));
+    out.push(`### \`${src}\` → \`${tgt}\``);
+    out.push('');
+    out.push(
+      `${list.length} edge${list.length === 1 ? '' : 's'} from ${distinctSources.size} source view${
+        distinctSources.size === 1 ? '' : 's'
+      }${introspectedDbs.has(tgt) ? '' : ' _(target DB not introspected — links may not resolve)_'}.`
+    );
+    out.push('');
+
+    const bySrc = new Map();
+    for (const e of list) {
+      const sk = `${e.srcSchema}.${e.srcName}`;
+      if (!bySrc.has(sk)) bySrc.set(sk, []);
+      bySrc.get(sk).push(`${e.tgtSchema}.${e.tgtName}`);
+    }
+    out.push(`| Source view in \`${src}\` | Targets in \`${tgt}\` |`);
+    out.push('|---|---|');
+    const sortedSrc = [...bySrc.keys()].sort();
+    for (const sk of sortedSrc) {
+      const [sSchema, sName] = sk.split('.');
+      const srcLink = `docs/tables/${safeSegment(src)}/${safeSegment(sSchema)}.${safeSegment(sName)}.md`;
+      const tgts = [...new Set(bySrc.get(sk))].sort();
+      const tgtLinks = tgts.map((t) => {
+        if (!introspectedDbs.has(tgt)) return `\`${t}\``;
+        const [tSchema, tName] = t.split('.');
+        const link = `docs/tables/${safeSegment(tgt)}/${safeSegment(tSchema)}.${safeSegment(tName)}.md`;
+        return `[\`${t}\`](${link})`;
+      });
+      out.push(`| [\`${sk}\`](${srcLink}) | ${tgtLinks.join(', ')} |`);
+    }
+    out.push('');
+  }
 }
 
 function renderRootSchema(dbsInfo) {
@@ -629,6 +706,8 @@ function renderRootSchema(dbsInfo) {
     out.push('> Set `DB_DATABASE` to a user database in `.env` and re-run.');
     return out.join('\n');
   }
+
+  renderCrossDbSection(out, dbsInfo);
 
   out.push('## Databases');
   out.push('');
