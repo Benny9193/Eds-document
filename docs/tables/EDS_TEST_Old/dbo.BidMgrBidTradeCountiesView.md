@@ -23,6 +23,8 @@ Updatable: `NO`
 |--------|------|
 | [`dbo.BidTradeCounties`](dbo.BidTradeCounties.md) | unresolved |
 | [`dbo.Counties`](dbo.Counties.md) | unresolved |
+| [`EDS.dbo.BidTradeCounties`](../EDS/dbo.BidTradeCounties.md) | cross-database |
+| [`EDS.dbo.Counties`](../EDS/dbo.Counties.md) | cross-database |
 
 ## Used by
 

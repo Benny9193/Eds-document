@@ -27,6 +27,9 @@ Updatable: `NO`
 | `dbo.BidderCheckList` | unresolved |
 | `dbo.vw_DMSVendorBidDocuments` | unresolved |
 | `dbo.vw_DMSVendorDocuments` | unresolved |
+| [`eds.dbo.BidderCheckList`](../eds/dbo.BidderCheckList.md) | cross-database |
+| [`EDS.dbo.vw_DMSVendorBidDocuments`](../EDS/dbo.vw_DMSVendorBidDocuments.md) | cross-database |
+| [`EDS.dbo.vw_DMSVendorDocuments`](../EDS/dbo.vw_DMSVendorDocuments.md) | cross-database |
 
 ## Used by
 

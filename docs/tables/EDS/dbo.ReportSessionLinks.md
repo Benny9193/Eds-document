@@ -1,7 +1,7 @@
 # Table: `dbo.ReportSessionLinks`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 52719356
+**Approx rows:** 52720882
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

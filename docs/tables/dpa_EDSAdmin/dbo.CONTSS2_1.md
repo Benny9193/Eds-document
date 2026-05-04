@@ -1,7 +1,7 @@
 # Table: `dbo.CONTSS2_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 3424
+**Approx rows:** 4190
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

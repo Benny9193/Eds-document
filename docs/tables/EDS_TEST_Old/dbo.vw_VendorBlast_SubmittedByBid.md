@@ -22,6 +22,8 @@ Updatable: `NO`
 | `Vendors` | USER_TABLE |
 | `dbo.registrations` | unresolved |
 | `dbo.vendorbids` | unresolved |
+| [`VendorBids.dbo.registrations`](../VendorBids/dbo.registrations.md) | cross-database |
+| [`VendorBids.dbo.vendorbids`](../VendorBids/dbo.vendorbids.md) | cross-database |
 
 ## Used by
 

@@ -32,6 +32,7 @@ Updatable: `NO`
 | `DistrictCategories` | USER_TABLE |
 | `DistrictNotifications` | USER_TABLE |
 | `dbo.RegExpMatch` | unresolved |
+| [`master.dbo.RegExpMatch`](../master/dbo.RegExpMatch.md) | cross-database |
 
 ## Used by
 

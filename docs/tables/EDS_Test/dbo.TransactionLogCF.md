@@ -1,7 +1,7 @@
 # Table: `dbo.TransactionLogCF`
 
 **Database:** `EDS_Test` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 129053
+**Approx rows:** 129157
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

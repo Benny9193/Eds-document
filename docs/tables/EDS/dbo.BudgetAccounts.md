@@ -1,7 +1,7 @@
 # Table: `dbo.BudgetAccounts`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 1419612
+**Approx rows:** 1419613
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

@@ -24,6 +24,11 @@ Updatable: `NO`
 | `dbo.DocumentTypes` | unresolved |
 | `dbo.FieldData` | unresolved |
 | `dbo.Fields` | unresolved |
+| [`Documents.dbo.DocumentFiles`](../Documents/dbo.DocumentFiles.md) | cross-database |
+| [`Documents.dbo.Documents`](../Documents/dbo.Documents.md) | cross-database |
+| [`Documents.dbo.DocumentTypes`](../Documents/dbo.DocumentTypes.md) | cross-database |
+| [`Documents.dbo.FieldData`](../Documents/dbo.FieldData.md) | cross-database |
+| [`Documents.dbo.Fields`](../Documents/dbo.Fields.md) | cross-database |
 
 ## Used by
 

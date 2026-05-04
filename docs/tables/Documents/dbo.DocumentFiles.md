@@ -1,7 +1,7 @@
 # Table: `dbo.DocumentFiles`
 
 **Database:** `Documents` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 602136
+**Approx rows:** 602148
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

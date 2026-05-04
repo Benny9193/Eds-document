@@ -33,6 +33,7 @@ Updatable: `NO`
 | Object | Type |
 |--------|------|
 | [`dbo.DocumentUploads`](dbo.DocumentUploads.md) | unresolved |
+| [`VendorBids.dbo.DocumentUploads`](../VendorBids/dbo.DocumentUploads.md) | cross-database |
 
 ## Used by
 

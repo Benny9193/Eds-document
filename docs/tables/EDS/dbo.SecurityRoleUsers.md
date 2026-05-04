@@ -1,7 +1,7 @@
 # Table: `dbo.SecurityRoleUsers`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 364858
+**Approx rows:** 364867
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

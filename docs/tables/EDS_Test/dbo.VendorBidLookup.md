@@ -25,6 +25,9 @@ Updatable: `NO`
 | `dbo.bidcalendar` | unresolved |
 | `dbo.registrations` | unresolved |
 | `dbo.vendorBids` | unresolved |
+| [`VendorBids.dbo.bidcalendar`](../VendorBids/dbo.bidcalendar.md) | cross-database |
+| [`VendorBids.dbo.registrations`](../VendorBids/dbo.registrations.md) | cross-database |
+| [`VendorBids.dbo.vendorBids`](../VendorBids/dbo.vendorBids.md) | cross-database |
 
 ## Used by
 

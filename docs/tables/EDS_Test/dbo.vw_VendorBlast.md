@@ -43,6 +43,13 @@ Updatable: `NO`
 | `dbo.Registrations` | unresolved |
 | `dbo.regusers` | unresolved |
 | `dbo.vendorbids` | unresolved |
+| [`VendorBids.dbo.BidSchedule`](../VendorBids/dbo.BidSchedule.md) | cross-database |
+| [`VendorBids.dbo.BidScheduleCats`](../VendorBids/dbo.BidScheduleCats.md) | cross-database |
+| [`VendorBids.dbo.DownloadLog`](../VendorBids/dbo.DownloadLog.md) | cross-database |
+| [`VendorBids.dbo.RegCalendar`](../VendorBids/dbo.RegCalendar.md) | cross-database |
+| [`VendorBids.dbo.Registrations`](../VendorBids/dbo.Registrations.md) | cross-database |
+| [`VendorBids.dbo.regusers`](../VendorBids/dbo.regusers.md) | cross-database |
+| [`VendorBids.dbo.vendorbids`](../VendorBids/dbo.vendorbids.md) | cross-database |
 
 ## Used by
 

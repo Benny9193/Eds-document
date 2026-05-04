@@ -25,6 +25,7 @@ Updatable: `NO`
 |--------|------|
 | `BidHeaders` | USER_TABLE |
 | [`dbo.BidImports`](dbo.BidImports.md) | unresolved |
+| [`EDS.dbo.BidImports`](../EDS/dbo.BidImports.md) | cross-database |
 
 ## Used by
 

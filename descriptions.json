@@ -93,5 +93,17 @@
   "ProcurementAnalytics.dbo.VendorPerformance": "Periodic vendor scorecards — on-time-delivery percent, quality, defect rate, responsiveness, cost competitiveness, and overall score. Drives vendor ranking and renewal recommendations.",
   "ProcurementAnalytics.dbo.EntityVendors": "Many-to-many of which vendors each entity transacts with, including the relationship start date and a primary-vendor flag.",
   "ProcurementAnalytics.dbo.EntityBudgets": "Per-entity, per-fiscal-year budget allocations by category. `AllocatedAmount` is the original amount; `AmendedAmount` reflects mid-year revisions.",
-  "ProcurementAnalytics.dbo.BudgetAllocations": "Org-level budget allocations (department / cost center / project / category) used as the rollup target for entity-level spend analytics."
+  "ProcurementAnalytics.dbo.BudgetAllocations": "Org-level budget allocations (department / cost center / project / category) used as the rollup target for entity-level spend analytics.",
+
+  "EDS.dbo.Vendors.Active": "Tinyint flag (0/1) controlling whether the vendor is visible across the platform. Setting to 0 hides the vendor's catalogs and bid responses everywhere — system-wide effect, not a soft delete.",
+  "EDS.dbo.Vendors.Code": "Short alphanumeric vendor code (≤16 chars) used as a human-friendly identifier on POs and reports. Distinct from `VendorId` (the surrogate key).",
+  "EDS.dbo.Vendors.DistrictId": "When non-null, marks this vendor as district-specific (only visible to that district). When null, the vendor is platform-wide.",
+  "EDS.dbo.Vendors.UseGrossPrices": "Tinyint flag (0/1). If 1, this vendor's pricing is interpreted as gross (list) prices that must be discounted against bid terms. If 0, prices are net.",
+
+  "EDS.dbo.CrossRefs.Active": "Tinyint flag (0/1) controlling whether this cross-ref appears in catalog browse / search results. The 1 → 0 transition is the normal soft-deactivate path; rows are rarely physically deleted.",
+  "EDS.dbo.CrossRefs.CatalogPrice": "Vendor's catalog (list) price for this item, in dollars. The price actually charged to a buyer is computed by applying the bid/award discount on top of this value — see `GrossPrice`.",
+  "EDS.dbo.CrossRefs.GrossPrice": "Pre-discount price used when the parent vendor has `UseGrossPrices = 1`. The discounted price = `GrossPrice * (1 - discountRate)`.",
+  "EDS.dbo.CrossRefs.Manufacturor": "Manufacturer name as text (note the legacy typo: `Manufacturor`, not `Manufacturer`). Use the normalized `ManufacturerId` FK instead for joins; this column is kept for historical / legacy display.",
+  "EDS.dbo.CrossRefs.DoNotDiscount": "Boolean-as-int flag. Non-zero means the system must NOT apply bid discounts to this cross-ref — used for special-deal items priced at net.",
+  "EDS.dbo.CrossRefs.DateDeactivated": "Set when `Active` flips to 0. NULL for currently-active cross-refs."
 }

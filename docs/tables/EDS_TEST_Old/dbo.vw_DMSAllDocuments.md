@@ -22,6 +22,9 @@ Updatable: `NO`
 | `dbo.DocumentFiles` | unresolved |
 | `dbo.Documents` | unresolved |
 | `dbo.DocumentTypes` | unresolved |
+| [`Documents.dbo.DocumentFiles`](../Documents/dbo.DocumentFiles.md) | cross-database |
+| [`Documents.dbo.Documents`](../Documents/dbo.Documents.md) | cross-database |
+| [`Documents.dbo.DocumentTypes`](../Documents/dbo.DocumentTypes.md) | cross-database |
 
 ## Used by
 

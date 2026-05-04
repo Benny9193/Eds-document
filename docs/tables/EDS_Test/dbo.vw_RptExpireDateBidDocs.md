@@ -33,6 +33,8 @@ Updatable: `NO`
 | [`dbo.BidHeaderCheckList`](dbo.BidHeaderCheckList.md) | USER_TABLE |
 | [`dbo.vw_AwardedVendorsAllCurrentAndFutureBids`](dbo.vw_AwardedVendorsAllCurrentAndFutureBids.md) | unresolved |
 | `dbo.vw_DocumentUploads` | unresolved |
+| [`EDS.dbo.vw_AwardedVendorsAllCurrentAndFutureBids`](../EDS/dbo.vw_AwardedVendorsAllCurrentAndFutureBids.md) | cross-database |
+| [`VendorBids.dbo.vw_DocumentUploads`](../VendorBids/dbo.vw_DocumentUploads.md) | cross-database |
 
 ## Used by
 

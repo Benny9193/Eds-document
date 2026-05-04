@@ -39,6 +39,7 @@ Updatable: `NO`
 | [`dbo.Items`](dbo.Items.md) | USER_TABLE |
 | `dbo.Master Catalog` | unresolved |
 | [`dbo.Units`](dbo.Units.md) | USER_TABLE |
+| [`catalogs.dbo.Master Catalog`](../catalogs/dbo.Master_Catalog.md) | cross-database |
 
 ## Used by
 

@@ -44,6 +44,7 @@ Updatable: `NO`
 | `ReportSubstances` | USER_TABLE |
 | `ReportSurveys` | USER_TABLE |
 | `dbo.vw_RTKInfo` | unresolved |
+| [`EDS.dbo.vw_RTKInfo`](../EDS/dbo.vw_RTKInfo.md) | cross-database |
 
 ## Used by
 

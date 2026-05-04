@@ -11,57 +11,57 @@ Vendor-item cross-reference (~171M rows — by far the hottest table in EDS). Ma
 
 ## Columns
 
-| # | Column | Type | Nullable | Default | PK |
-|---|--------|------|----------|---------|----|
-| 1 | `CrossRefId` | int | NO |  | YES |
-| 2 | `CrossRefId_Old` | int | YES |  |  |
-| 3 | `Active` | tinyint | YES |  |  |
-| 4 | `ItemId` | int | YES |  |  |
-| 5 | `VendorItemCode` | varchar(50) | YES |  |  |
-| 6 | `CatalogId` | int | YES |  |  |
-| 7 | `CatalogPrice` | money | YES |  |  |
-| 8 | `Page` | char(4) | YES |  |  |
-| 9 | `CatalogYear` | char(2) | YES |  |  |
-| 10 | `CrossRefLocation` | char(1) | YES |  |  |
-| 11 | `PackedCode` | varchar(50) | YES | `('([dbo].[uf_PackCode]([VendorItemCode]))')` |  |
-| 12 | `Manufacturor` | varchar(50) | YES |  |  |
-| 13 | `ManufacturorPartNumber` | varchar(50) | YES |  |  |
-| 14 | `DateDeactivated` | datetime | YES |  |  |
-| 15 | `DateUpdated` | datetime | YES | `(getdate())` |  |
-| 16 | `GrossPrice` | money | YES |  |  |
-| 17 | `DoNotDiscount` | int | YES |  |  |
-| 18 | `RTK_MSDSId` | int | YES |  |  |
-| 19 | `RTK_MSDSNotNeeded` | tinyint | YES |  |  |
-| 20 | `ReplacementCrossRefId` | int | YES |  |  |
-| 21 | `AdditionalShipping` | tinyint | YES |  |  |
-| 22 | `FullDescription` | varchar(4096) | YES |  |  |
-| 23 | `UOM` | varchar(20) | YES |  |  |
-| 24 | `MatchKey` | varchar(150) | YES |  |  |
-| 25 | `ManufacturerId` | int | YES |  |  |
-| 26 | `ProductLine` | varchar(50) | YES |  |  |
-| 27 | `ManufacturerProductLineId` | int | YES |  |  |
-| 28 | `ItemsPerUnit` | varchar(30) | YES |  |  |
-| 29 | `MSDSFlag` | tinyint | YES |  |  |
-| 30 | `MSDSRef` | varchar(255) | YES |  |  |
-| 31 | `Heading` | varchar(50) | YES |  |  |
-| 32 | `UniqueItemNumber` | varchar(50) | YES |  |  |
-| 33 | `ShortDescription` | varchar(512) | YES |  |  |
-| 34 | `keyword` | varchar(1024) | YES |  |  |
-| 35 | `ImageURL` | varchar(1024) | YES |  |  |
-| 36 | `UPC_ISBN` | varchar(20) | YES |  |  |
-| 37 | `UNSPSC` | varchar(20) | YES |  |  |
-| 38 | `ImageId` | bigint | YES |  |  |
-| 39 | `PerishableItem` | bit | YES | `((0))` |  |
-| 40 | `PrescriptionRequired` | bit | YES | `((0))` |  |
-| 41 | `DigitallyDelivered` | tinyint | YES |  |  |
-| 42 | `MinimumOrderQuantity` | int | YES |  |  |
-| 43 | `HashKey` | varbinary(64) | YES |  |  |
-| 44 | `ProductNames` | nvarchar(4000) | YES |  |  |
-| 45 | `TypeAheads` | nvarchar(4000) | YES |  |  |
-| 46 | `AIShortDesc` | nvarchar(1024) | YES |  |  |
-| 47 | `AIFullDesc` | nvarchar(4000) | YES |  |  |
-| 48 | `AIUNSPSC` | varchar(20) | YES |  |  |
-| 49 | `AIDate` | datetime | YES |  |  |
+| # | Column | Type | Nullable | Default | PK | Description |
+|---|--------|------|----------|---------|----|-------------|
+| 1 | `CrossRefId` | int | NO |  | YES |  |
+| 2 | `CrossRefId_Old` | int | YES |  |  |  |
+| 3 | `Active` | tinyint | YES |  |  | Tinyint flag (0/1) controlling whether this cross-ref appears in catalog browse / search results. The 1 → 0 transition is the normal soft-deactivate path; rows are rarely physically deleted. |
+| 4 | `ItemId` | int | YES |  |  |  |
+| 5 | `VendorItemCode` | varchar(50) | YES |  |  |  |
+| 6 | `CatalogId` | int | YES |  |  |  |
+| 7 | `CatalogPrice` | money | YES |  |  | Vendor's catalog (list) price for this item, in dollars. The price actually charged to a buyer is computed by applying the bid/award discount on top of this value — see `GrossPrice`. |
+| 8 | `Page` | char(4) | YES |  |  |  |
+| 9 | `CatalogYear` | char(2) | YES |  |  |  |
+| 10 | `CrossRefLocation` | char(1) | YES |  |  |  |
+| 11 | `PackedCode` | varchar(50) | YES | `('([dbo].[uf_PackCode]([VendorItemCode]))')` |  |  |
+| 12 | `Manufacturor` | varchar(50) | YES |  |  | Manufacturer name as text (note the legacy typo: `Manufacturor`, not `Manufacturer`). Use the normalized `ManufacturerId` FK instead for joins; this column is kept for historical / legacy display. |
+| 13 | `ManufacturorPartNumber` | varchar(50) | YES |  |  |  |
+| 14 | `DateDeactivated` | datetime | YES |  |  | Set when `Active` flips to 0. NULL for currently-active cross-refs. |
+| 15 | `DateUpdated` | datetime | YES | `(getdate())` |  |  |
+| 16 | `GrossPrice` | money | YES |  |  | Pre-discount price used when the parent vendor has `UseGrossPrices = 1`. The discounted price = `GrossPrice * (1 - discountRate)`. |
+| 17 | `DoNotDiscount` | int | YES |  |  | Boolean-as-int flag. Non-zero means the system must NOT apply bid discounts to this cross-ref — used for special-deal items priced at net. |
+| 18 | `RTK_MSDSId` | int | YES |  |  |  |
+| 19 | `RTK_MSDSNotNeeded` | tinyint | YES |  |  |  |
+| 20 | `ReplacementCrossRefId` | int | YES |  |  |  |
+| 21 | `AdditionalShipping` | tinyint | YES |  |  |  |
+| 22 | `FullDescription` | varchar(4096) | YES |  |  |  |
+| 23 | `UOM` | varchar(20) | YES |  |  |  |
+| 24 | `MatchKey` | varchar(150) | YES |  |  |  |
+| 25 | `ManufacturerId` | int | YES |  |  |  |
+| 26 | `ProductLine` | varchar(50) | YES |  |  |  |
+| 27 | `ManufacturerProductLineId` | int | YES |  |  |  |
+| 28 | `ItemsPerUnit` | varchar(30) | YES |  |  |  |
+| 29 | `MSDSFlag` | tinyint | YES |  |  |  |
+| 30 | `MSDSRef` | varchar(255) | YES |  |  |  |
+| 31 | `Heading` | varchar(50) | YES |  |  |  |
+| 32 | `UniqueItemNumber` | varchar(50) | YES |  |  |  |
+| 33 | `ShortDescription` | varchar(512) | YES |  |  |  |
+| 34 | `keyword` | varchar(1024) | YES |  |  |  |
+| 35 | `ImageURL` | varchar(1024) | YES |  |  |  |
+| 36 | `UPC_ISBN` | varchar(20) | YES |  |  |  |
+| 37 | `UNSPSC` | varchar(20) | YES |  |  |  |
+| 38 | `ImageId` | bigint | YES |  |  |  |
+| 39 | `PerishableItem` | bit | YES | `((0))` |  |  |
+| 40 | `PrescriptionRequired` | bit | YES | `((0))` |  |  |
+| 41 | `DigitallyDelivered` | tinyint | YES |  |  |  |
+| 42 | `MinimumOrderQuantity` | int | YES |  |  |  |
+| 43 | `HashKey` | varbinary(64) | YES |  |  |  |
+| 44 | `ProductNames` | nvarchar(4000) | YES |  |  |  |
+| 45 | `TypeAheads` | nvarchar(4000) | YES |  |  |  |
+| 46 | `AIShortDesc` | nvarchar(1024) | YES |  |  |  |
+| 47 | `AIFullDesc` | nvarchar(4000) | YES |  |  |  |
+| 48 | `AIUNSPSC` | varchar(20) | YES |  |  |  |
+| 49 | `AIDate` | datetime | YES |  |  |  |
 
 ## Foreign keys (outgoing)
 

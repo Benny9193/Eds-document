@@ -1,7 +1,7 @@
 # Table: `dbo.Detail`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 32608939
+**Approx rows:** 32609098
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

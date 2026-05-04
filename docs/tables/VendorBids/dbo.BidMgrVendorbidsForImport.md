@@ -28,6 +28,7 @@ Updatable: `NO`
 | `Registrations` | USER_TABLE |
 | `vendorbids` | USER_TABLE |
 | `dbo.bidimports` | unresolved |
+| [`eds.dbo.bidimports`](../eds/dbo.bidimports.md) | cross-database |
 
 ## Used by
 

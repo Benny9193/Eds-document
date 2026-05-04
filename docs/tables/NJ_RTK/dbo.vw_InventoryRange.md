@@ -21,6 +21,9 @@ Updatable: `NO`
 | `dbo.RTK_Inventories` | unresolved |
 | `dbo.RTK_ReportItems` | unresolved |
 | `dbo.RTK_Sites` | unresolved |
+| [`eds.dbo.RTK_Inventories`](../eds/dbo.RTK_Inventories.md) | cross-database |
+| [`eds.dbo.RTK_ReportItems`](../eds/dbo.RTK_ReportItems.md) | cross-database |
+| [`eds.dbo.RTK_Sites`](../eds/dbo.RTK_Sites.md) | cross-database |
 
 ## Used by
 

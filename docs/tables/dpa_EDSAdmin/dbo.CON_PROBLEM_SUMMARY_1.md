@@ -1,7 +1,7 @@
 # Table: `dbo.CON_PROBLEM_SUMMARY_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 3481
+**Approx rows:** 3486
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

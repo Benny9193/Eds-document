@@ -1,7 +1,7 @@
 # Table: `dbo.CSMessages`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 12204
+**Approx rows:** 12205
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

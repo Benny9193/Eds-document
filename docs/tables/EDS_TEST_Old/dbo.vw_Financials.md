@@ -37,6 +37,7 @@ Updatable: `NO`
 | `DistrictProposedCharges` | USER_TABLE |
 | `Months` | USER_TABLE |
 | `dbo.ufn_RegExSplit` | unresolved |
+| [`master.dbo.ufn_RegExSplit`](../master/dbo.ufn_RegExSplit.md) | cross-database |
 
 ## Used by
 

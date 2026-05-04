@@ -1,7 +1,7 @@
 # Table: `dbo.SessionTable`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 12805741
+**Approx rows:** 12806019
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

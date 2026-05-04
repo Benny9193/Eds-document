@@ -405,7 +405,7 @@
 | [`dbo.TopUOM`](dbo.TopUOM.md) | 4579 |  |
 | [`dbo.Trades`](dbo.Trades.md) | 107 |  |
 | [`dbo.TransactionLog_HISTORY`](dbo.TransactionLog_HISTORY.md) | 99019937 |  |
-| [`dbo.TransactionLogCF`](dbo.TransactionLogCF.md) | 129053 |  |
+| [`dbo.TransactionLogCF`](dbo.TransactionLogCF.md) | 129157 |  |
 | [`dbo.TransactionLogCF_Arc`](dbo.TransactionLogCF_Arc.md) | 32358341 |  |
 | [`dbo.TransactionTypes`](dbo.TransactionTypes.md) | 0 |  |
 | [`dbo.TransmitLog`](dbo.TransmitLog.md) | 139925 |  |

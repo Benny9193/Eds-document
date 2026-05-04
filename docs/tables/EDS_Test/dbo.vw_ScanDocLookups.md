@@ -23,6 +23,9 @@ Updatable: `NO`
 | `dbo.DocType` | unresolved |
 | `dbo.DocTypeFieldExternalLookup` | unresolved |
 | [`dbo.ScanJobs`](dbo.ScanJobs.md) | USER_TABLE |
+| [`ContentCentral.dbo.Catalog`](../ContentCentral/dbo.Catalog.md) | cross-database |
+| [`ContentCentral.dbo.DocType`](../ContentCentral/dbo.DocType.md) | cross-database |
+| [`ContentCentral.dbo.DocTypeFieldExternalLookup`](../ContentCentral/dbo.DocTypeFieldExternalLookup.md) | cross-database |
 
 ## Used by
 

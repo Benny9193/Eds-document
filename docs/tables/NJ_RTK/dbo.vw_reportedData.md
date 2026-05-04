@@ -39,6 +39,10 @@ Updatable: `NO`
 | `dbo.RTK_InventoryRangeCodes` | unresolved |
 | `dbo.RTK_MixtureCodes` | unresolved |
 | `dbo.RTK_UOMCodes` | unresolved |
+| [`EDS.dbo.RTK_ContainerCodes`](../EDS/dbo.RTK_ContainerCodes.md) | cross-database |
+| [`EDS.dbo.RTK_InventoryRangeCodes`](../EDS/dbo.RTK_InventoryRangeCodes.md) | cross-database |
+| [`EDS.dbo.RTK_MixtureCodes`](../EDS/dbo.RTK_MixtureCodes.md) | cross-database |
+| [`EDS.dbo.RTK_UOMCodes`](../EDS/dbo.RTK_UOMCodes.md) | cross-database |
 
 ## Used by
 

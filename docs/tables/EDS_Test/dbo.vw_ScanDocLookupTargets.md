@@ -30,6 +30,11 @@ Updatable: `NO`
 | `dbo.DocTypeFieldExternalLookup` | unresolved |
 | `dbo.DocTypeFieldExternalLookupSelectItem` | unresolved |
 | [`dbo.ScanJobs`](dbo.ScanJobs.md) | USER_TABLE |
+| [`ContentCentral.dbo.Catalog`](../ContentCentral/dbo.Catalog.md) | cross-database |
+| [`ContentCentral.dbo.DocType`](../ContentCentral/dbo.DocType.md) | cross-database |
+| [`ContentCentral.dbo.DocTypeField`](../ContentCentral/dbo.DocTypeField.md) | cross-database |
+| [`ContentCentral.dbo.DocTypeFieldExternalLookup`](../ContentCentral/dbo.DocTypeFieldExternalLookup.md) | cross-database |
+| [`ContentCentral.dbo.DocTypeFieldExternalLookupSelectItem`](../ContentCentral/dbo.DocTypeFieldExternalLookupSelectItem.md) | cross-database |
 
 ## Used by
 

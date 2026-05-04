@@ -1,7 +1,7 @@
 # Table: `dbo.Approvals`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 8042423
+**Approx rows:** 8042751
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

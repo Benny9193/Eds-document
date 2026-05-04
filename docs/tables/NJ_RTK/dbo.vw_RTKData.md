@@ -44,6 +44,9 @@ Updatable: `NO`
 | `dbo.DistrictCategories` | unresolved |
 | `dbo.uf_SanitizeData` | SQL_SCALAR_FUNCTION |
 | `dbo.vw_RTKInfoAnnual` | unresolved |
+| [`EDS.dbo.Category`](../EDS/dbo.Category.md) | cross-database |
+| [`eds.dbo.DistrictCategories`](../eds/dbo.DistrictCategories.md) | cross-database |
+| [`EDS.dbo.vw_RTKInfoAnnual`](../EDS/dbo.vw_RTKInfoAnnual.md) | cross-database |
 
 ## Used by
 

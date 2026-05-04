@@ -42,6 +42,14 @@ Updatable: `NO`
 | `dbo.DocumentFolder` | unresolved |
 | `dbo.DocumentVersion` | unresolved |
 | `dbo.DocumentVersionFile` | unresolved |
+| [`ContentCentral.dbo.Catalog`](../ContentCentral/dbo.Catalog.md) | cross-database |
+| [`ContentCentral.dbo.DocType`](../ContentCentral/dbo.DocType.md) | cross-database |
+| [`ContentCentral.dbo.DocTypeField`](../ContentCentral/dbo.DocTypeField.md) | cross-database |
+| [`ContentCentral.dbo.Document`](../ContentCentral/dbo.Document.md) | cross-database |
+| [`ContentCentral.dbo.DocumentField`](../ContentCentral/dbo.DocumentField.md) | cross-database |
+| [`ContentCentral.dbo.DocumentFolder`](../ContentCentral/dbo.DocumentFolder.md) | cross-database |
+| [`ContentCentral.dbo.DocumentVersion`](../ContentCentral/dbo.DocumentVersion.md) | cross-database |
+| [`ContentCentral.dbo.DocumentVersionFile`](../ContentCentral/dbo.DocumentVersionFile.md) | cross-database |
 
 ## Used by
 

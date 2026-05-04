@@ -31,6 +31,7 @@ Updatable: `NO`
 | `dbo.ufn_MSDSManufacturers` | SQL_SCALAR_FUNCTION |
 | `dbo.ufn_MSDSMPNs` | SQL_SCALAR_FUNCTION |
 | `dbo.ufn_RegExIsMatch` | unresolved |
+| [`master.dbo.ufn_RegExIsMatch`](../master/dbo.ufn_RegExIsMatch.md) | cross-database |
 
 ## Used by
 

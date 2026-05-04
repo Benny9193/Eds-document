@@ -2,6 +2,16 @@
 
 [← back to top](../../../SCHEMA.md)
 
+## Domain indexes
+
+Curated, name-based groupings of views to make this database easier to navigate. Views may appear in more than one index.
+
+- [Bid](_domain-bid.md) — 138 views
+- [MSRP](_domain-msrp.md) — 39 views
+- [PO](_domain-po.md) — 33 views
+- [Vendor](_domain-vendor.md) — 94 views
+- [Requisition](_domain-requisition.md) — 42 views
+
 ## Schema: `archive`
 
 ### Tables
@@ -69,7 +79,7 @@
 | [`dbo.AccountingDetail`](dbo.AccountingDetail.md) | 0 |  |
 | [`dbo.AccountingFormats`](dbo.AccountingFormats.md) | 49 |  |
 | [`dbo.AccountingUserFields`](dbo.AccountingUserFields.md) | 80 |  |
-| [`dbo.Accounts`](dbo.Accounts.md) | 110643 |  |
+| [`dbo.Accounts`](dbo.Accounts.md) | 110644 |  |
 | [`dbo.AccountSeparators`](dbo.AccountSeparators.md) | 0 |  |
 | [`dbo.AddendumItems`](dbo.AddendumItems.md) | 0 |  |
 | [`dbo.additems`](dbo.additems.md) | 0 |  |
@@ -77,8 +87,8 @@
 | [`dbo.allitems`](dbo.allitems.md) | 6276768 |  |
 | [`dbo.AnswerTypes`](dbo.AnswerTypes.md) | 0 |  |
 | [`dbo.ApprovalLevels`](dbo.ApprovalLevels.md) | 9 |  |
-| [`dbo.Approvals`](dbo.Approvals.md) | 8042423 | Per-step approval audit trail (~8M rows). Records who approved or rejected each requisition at each level of the district's approval chain, with timestamp an… |
-| [`dbo.ApprovalsHistory`](dbo.ApprovalsHistory.md) | 341748 |  |
+| [`dbo.Approvals`](dbo.Approvals.md) | 8042751 | Per-step approval audit trail (~8M rows). Records who approved or rejected each requisition at each level of the district's approval chain, with timestamp an… |
+| [`dbo.ApprovalsHistory`](dbo.ApprovalsHistory.md) | 341753 |  |
 | [`dbo.Audit`](dbo.Audit.md) | 2568656 | Generic audit log (~2.6M rows) — application-level events (logins, permission changes, data exports, admin actions). Distinct from the change-log tables, whi… |
 | [`dbo.AuditLog`](dbo.AuditLog.md) | 0 |  |
 | [`dbo.Awardings`](dbo.Awardings.md) | 11450 |  |
@@ -142,7 +152,7 @@
 | [`dbo.BidTrades`](dbo.BidTrades.md) | 1591 |  |
 | [`dbo.BidTypes`](dbo.BidTypes.md) | 2 |  |
 | [`dbo.BookTypes`](dbo.BookTypes.md) | 4 |  |
-| [`dbo.BudgetAccounts`](dbo.BudgetAccounts.md) | 1419612 | District budget accounts / charge codes (~1.4M rows). Hierarchical (often fund-function-object), district-scoped. Requisition lines distribute against rows h… |
+| [`dbo.BudgetAccounts`](dbo.BudgetAccounts.md) | 1419613 | District budget accounts / charge codes (~1.4M rows). Hierarchical (often fund-function-object), district-scoped. Requisition lines distribute against rows h… |
 | [`dbo.Budgets`](dbo.Budgets.md) | 16413 |  |
 | [`dbo.CalDistricts`](dbo.CalDistricts.md) | 0 |  |
 | [`dbo.CalendarDates`](dbo.CalendarDates.md) | 2261 |  |
@@ -177,13 +187,13 @@
 | [`dbo.CrossRefs`](dbo.CrossRefs.md) | 171650134 | Vendor-item cross-reference (~171M rows — by far the hottest table in EDS). Maps a vendor's part number to an EDS `Items` master record with vendor-specific … |
 | [`dbo.CSCommands`](dbo.CSCommands.md) | 16 |  |
 | [`dbo.CSMessageFiles`](dbo.CSMessageFiles.md) | 0 |  |
-| [`dbo.CSMessages`](dbo.CSMessages.md) | 12204 |  |
+| [`dbo.CSMessages`](dbo.CSMessages.md) | 12205 |  |
 | [`dbo.CSRep`](dbo.CSRep.md) | 45 |  |
 | [`dbo.CXmlSession`](dbo.CXmlSession.md) | 66747 |  |
 | [`dbo.dchtest`](dbo.dchtest.md) | 1192 |  |
-| [`dbo.DebugMsgs`](dbo.DebugMsgs.md) | 23710296 |  |
+| [`dbo.DebugMsgs`](dbo.DebugMsgs.md) | 23712887 |  |
 | [`dbo.DebugMsgs_Orig`](dbo.DebugMsgs_Orig.md) | 5211696 |  |
-| [`dbo.Detail`](dbo.Detail.md) | 32608939 | Line items for both requisitions and purchase orders — ~30M rows, the largest transactional table in the procurement chain. Each row links back to its `Requi… |
+| [`dbo.Detail`](dbo.Detail.md) | 32609098 | Line items for both requisitions and purchase orders — ~30M rows, the largest transactional table in the procurement chain. Each row links back to its `Requi… |
 | [`dbo.DetailChangeLog`](dbo.DetailChangeLog.md) | 2926274 | Append-only audit log of edits to `Detail` rows (~2.9M rows). Same structure as `RequisitionChangeLog` but scoped to line items. |
 | [`dbo.DetailChanges`](dbo.DetailChanges.md) | 26502061 |  |
 | [`dbo.DetailHold`](dbo.DetailHold.md) | 1 |  |
@@ -309,14 +319,14 @@
 | [`dbo.RateTypes`](dbo.RateTypes.md) | 0 |  |
 | [`dbo.RateUnits`](dbo.RateUnits.md) | 0 |  |
 | [`dbo.Receiving`](dbo.Receiving.md) | 0 |  |
-| [`dbo.ReportSession`](dbo.ReportSession.md) | 5445708 | User-facing report executions (~5.4M rows) — what reports were run, by whom, with which parameters. |
-| [`dbo.ReportSessionLinks`](dbo.ReportSessionLinks.md) | 52719356 | Per-session output links (~52.7M rows) — joins a report session to the rows it generated, used to support drill-throughs and saved exports. |
+| [`dbo.ReportSession`](dbo.ReportSession.md) | 5445816 | User-facing report executions (~5.4M rows) — what reports were run, by whom, with which parameters. |
+| [`dbo.ReportSessionLinks`](dbo.ReportSessionLinks.md) | 52720882 | Per-session output links (~52.7M rows) — joins a report session to the rows it generated, used to support drill-throughs and saved exports. |
 | [`dbo.ReqAudit`](dbo.ReqAudit.md) | 0 |  |
 | [`dbo.RequisitionChangeLog`](dbo.RequisitionChangeLog.md) | 1938501 | Append-only audit log of edits to requisition headers and lines (~1.9M rows). Captures field-level before/after values with user and timestamp. Used for the … |
 | [`dbo.RequisitionNoteEmails`](dbo.RequisitionNoteEmails.md) | 16689 |  |
 | [`dbo.RequisitionNotes`](dbo.RequisitionNotes.md) | 25480 |  |
-| [`dbo.Requisitions`](dbo.Requisitions.md) | 2204102 | Header record for every purchase request created in EDS. One row per requisition; line items live in `Detail`. Drives the approval workflow that ultimately p… |
-| [`dbo.ResetPasswordTracking`](dbo.ResetPasswordTracking.md) | 124790 |  |
+| [`dbo.Requisitions`](dbo.Requisitions.md) | 2204172 | Header record for every purchase request created in EDS. One row per requisition; line items live in `Detail`. Drives the approval workflow that ultimately p… |
+| [`dbo.ResetPasswordTracking`](dbo.ResetPasswordTracking.md) | 124824 |  |
 | [`dbo.Rights`](dbo.Rights.md) | 0 |  |
 | [`dbo.RightsLink`](dbo.RightsLink.md) | 0 |  |
 | [`dbo.RTK_2010NJHSL`](dbo.RTK_2010NJHSL.md) | 3322 |  |
@@ -362,15 +372,15 @@
 | [`dbo.SecurityKeys`](dbo.SecurityKeys.md) | 14 |  |
 | [`dbo.SecurityRoleKeys`](dbo.SecurityRoleKeys.md) | 65 |  |
 | [`dbo.SecurityRoles`](dbo.SecurityRoles.md) | 5 |  |
-| [`dbo.SecurityRoleUsers`](dbo.SecurityRoleUsers.md) | 364858 |  |
+| [`dbo.SecurityRoleUsers`](dbo.SecurityRoleUsers.md) | 364867 |  |
 | [`dbo.Services`](dbo.Services.md) | 0 |  |
 | [`dbo.SessionCmds`](dbo.SessionCmds.md) | 0 |  |
-| [`dbo.SessionTable`](dbo.SessionTable.md) | 12805741 | Active and recent user-session state (~12.8M rows). Holds the user's current district, school, requisition, PO, budget, mode, and screen state. Hot during bu… |
+| [`dbo.SessionTable`](dbo.SessionTable.md) | 12806019 | Active and recent user-session state (~12.8M rows). Holds the user's current district, school, requisition, PO, budget, mode, and screen state. Hot during bu… |
 | [`dbo.ShipLocations`](dbo.ShipLocations.md) | 6924 |  |
 | [`dbo.ShippingCosts`](dbo.ShippingCosts.md) | 1110 |  |
 | [`dbo.ShippingRequests`](dbo.ShippingRequests.md) | 728 |  |
 | [`dbo.ShippingVendor`](dbo.ShippingVendor.md) | 38754 |  |
-| [`dbo.SSOLoginTracking`](dbo.SSOLoginTracking.md) | 188417 |  |
+| [`dbo.SSOLoginTracking`](dbo.SSOLoginTracking.md) | 188456 |  |
 | [`dbo.States`](dbo.States.md) | 3 |  |
 | [`dbo.StatusTable`](dbo.StatusTable.md) | 53 |  |
 | [`dbo.Sulphite`](dbo.Sulphite.md) | 49 |  |
@@ -405,18 +415,18 @@
 | [`dbo.TopUOM`](dbo.TopUOM.md) | 4579 |  |
 | [`dbo.Trades`](dbo.Trades.md) | 107 |  |
 | [`dbo.TransactionLog_HISTORY`](dbo.TransactionLog_HISTORY.md) | 124442937 | Long-tail historical event log (~124M rows). Cold storage — query with date filters and expect slow reads. Rarely needed for operational work; kept for compl… |
-| [`dbo.TransactionLogCF`](dbo.TransactionLogCF.md) | 3520496 |  |
-| [`dbo.TransactionLogCF_Arc`](dbo.TransactionLogCF_Arc.md) | 31598836 |  |
+| [`dbo.TransactionLogCF`](dbo.TransactionLogCF.md) | 3535993 |  |
+| [`dbo.TransactionLogCF_Arc`](dbo.TransactionLogCF_Arc.md) | 31597995 |  |
 | [`dbo.TransactionTypes`](dbo.TransactionTypes.md) | 0 |  |
 | [`dbo.TransmitLog`](dbo.TransmitLog.md) | 155926 |  |
 | [`dbo.Units`](dbo.Units.md) | 11233 |  |
 | [`dbo.UNSPSCs`](dbo.UNSPSCs.md) | 50317 |  |
 | [`dbo.UnsubscriptionEmail`](dbo.UnsubscriptionEmail.md) | 0 |  |
-| [`dbo.UserAccounts`](dbo.UserAccounts.md) | 3377473 | Per-user budget account permissions (~3.4M rows). Joins users to the `BudgetAccounts` they're allowed to charge against. Drives the account dropdown shown wh… |
+| [`dbo.UserAccounts`](dbo.UserAccounts.md) | 3377480 | Per-user budget account permissions (~3.4M rows). Joins users to the `BudgetAccounts` they're allowed to charge against. Drives the account dropdown shown wh… |
 | [`dbo.UserAdminLog`](dbo.UserAdminLog.md) | 6466 |  |
 | [`dbo.UserCategory`](dbo.UserCategory.md) | 0 |  |
 | [`dbo.UserImports`](dbo.UserImports.md) | 328 |  |
-| [`dbo.Users`](dbo.Users.md) | 345682 | Master user directory (~345K rows) — every person with login or named-recipient status across all districts. `Active` flag controls login eligibility; deleti… |
+| [`dbo.Users`](dbo.Users.md) | 345687 | Master user directory (~345K rows) — every person with login or named-recipient status across all districts. `Active` flag controls login eligibility; deleti… |
 | [`dbo.UserTrees`](dbo.UserTrees.md) | 56920 |  |
 | [`dbo.VendorCatalogNote`](dbo.VendorCatalogNote.md) | 11 |  |
 | [`dbo.VendorCategory`](dbo.VendorCategory.md) | 6898 |  |
@@ -442,7 +452,7 @@
 | [`dbo.VendorQueryTandMDetail`](dbo.VendorQueryTandMDetail.md) | 1197 |  |
 | [`dbo.VendorQueryTandMStatus`](dbo.VendorQueryTandMStatus.md) | 1870 |  |
 | [`dbo.Vendors`](dbo.Vendors.md) | 19037 | Master vendor record — supplier directory for the whole platform (~19K rows). One row per vendor company. The `Active` column (tinyint) gates whether a vendo… |
-| [`dbo.VendorSessions`](dbo.VendorSessions.md) | 10992 |  |
+| [`dbo.VendorSessions`](dbo.VendorSessions.md) | 10993 |  |
 | [`dbo.VendorUploads`](dbo.VendorUploads.md) | 1538915 | Log of every vendor catalog or pricing file submitted (~1.5M rows). Tracks file name, vendor, upload type, status, and the eventual import result. Direct wri… |
 | [`dbo.VPOLoginAttempts`](dbo.VPOLoginAttempts.md) | 0 |  |
 | [`dbo.VPORegistrations`](dbo.VPORegistrations.md) | 6 |  |

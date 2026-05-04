@@ -48,6 +48,7 @@ Updatable: `NO`
 | `dbo.uf_VendorEmails` | SQL_SCALAR_FUNCTION |
 | `dbo.uf_VendorPhones` | SQL_SCALAR_FUNCTION |
 | [`dbo.Vendors`](dbo.Vendors.md) | unresolved |
+| [`EDS.dbo.Vendors`](../EDS/dbo.Vendors.md) | cross-database |
 
 ## Used by
 

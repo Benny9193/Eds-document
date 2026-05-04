@@ -37,6 +37,7 @@ Updatable: `NO`
 | [`dbo.Keywords`](dbo.Keywords.md) | USER_TABLE |
 | `dbo.ufn_RegExReplace` | unresolved |
 | [`dbo.Vendors`](dbo.Vendors.md) | USER_TABLE |
+| [`master.dbo.ufn_RegExReplace`](../master/dbo.ufn_RegExReplace.md) | cross-database |
 
 ## Used by
 

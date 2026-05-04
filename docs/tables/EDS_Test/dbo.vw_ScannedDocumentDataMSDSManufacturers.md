@@ -17,6 +17,7 @@ Updatable: `NO`
 | Object | Type |
 |--------|------|
 | [`dbo.vw_ScannedDocumentDataMSDS`](dbo.vw_ScannedDocumentDataMSDS.md) | unresolved |
+| [`EDS.dbo.vw_ScannedDocumentDataMSDS`](../EDS/dbo.vw_ScannedDocumentDataMSDS.md) | cross-database |
 
 ## Used by
 

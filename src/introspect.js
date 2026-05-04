@@ -647,14 +647,14 @@ function renderCrossDbSection(out, dbsInfo) {
 
   const pairs = new Map();
   for (const e of edges) {
-    const key = `${e.srcDb}${e.tgtDb}`;
+    const key = `${e.srcDb}|>>|${e.tgtDb}`;
     if (!pairs.has(key)) pairs.set(key, []);
     pairs.get(key).push(e);
   }
 
   const sortedKeys = [...pairs.keys()].sort();
   for (const key of sortedKeys) {
-    const [src, tgt] = key.split('');
+    const [src, tgt] = key.split('|>>|');
     const list = pairs.get(key);
     const distinctSources = new Set(list.map((e) => `${e.srcSchema}.${e.srcName}`));
     out.push(`### \`${src}\` → \`${tgt}\``);

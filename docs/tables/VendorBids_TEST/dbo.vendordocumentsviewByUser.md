@@ -28,6 +28,9 @@ Updatable: `NO`
 | `dbo.BidDocumentTypes` | unresolved |
 | `dbo.BidHeaderCheckList` | unresolved |
 | `dbo.vw_DMSVendorDocuments` | unresolved |
+| [`EDS.dbo.BidDocumentTypes`](../EDS/dbo.BidDocumentTypes.md) | cross-database |
+| [`EDS.dbo.BidHeaderCheckList`](../EDS/dbo.BidHeaderCheckList.md) | cross-database |
+| [`EDS.dbo.vw_DMSVendorDocuments`](../EDS/dbo.vw_DMSVendorDocuments.md) | cross-database |
 
 ## Used by
 

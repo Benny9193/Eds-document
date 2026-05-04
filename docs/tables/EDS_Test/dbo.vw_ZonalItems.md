@@ -41,6 +41,11 @@ Updatable: `NO`
 | `dbo.DocTypeFieldRecognitionZone` | unresolved |
 | [`dbo.ScanJobs`](dbo.ScanJobs.md) | USER_TABLE |
 | [`dbo.ScannerZones`](dbo.ScannerZones.md) | USER_TABLE |
+| [`ContentCentral.dbo.CaptureJob`](../ContentCentral/dbo.CaptureJob.md) | cross-database |
+| [`ContentCentral.dbo.Catalog`](../ContentCentral/dbo.Catalog.md) | cross-database |
+| [`ContentCentral.dbo.DocType`](../ContentCentral/dbo.DocType.md) | cross-database |
+| [`ContentCentral.dbo.DocTypeField`](../ContentCentral/dbo.DocTypeField.md) | cross-database |
+| [`ContentCentral.dbo.DocTypeFieldRecognitionZone`](../ContentCentral/dbo.DocTypeFieldRecognitionZone.md) | cross-database |
 
 ## Used by
 

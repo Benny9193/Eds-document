@@ -22,6 +22,11 @@ Updatable: `NO`
 | `dbo.DownloadLog` | unresolved |
 | `dbo.registrations` | unresolved |
 | `dbo.regusers` | unresolved |
+| [`VendorBids.dbo.bidcalendar`](../VendorBids/dbo.bidcalendar.md) | cross-database |
+| [`VendorBids.dbo.BidScheduleCats`](../VendorBids/dbo.BidScheduleCats.md) | cross-database |
+| [`VendorBids.dbo.DownloadLog`](../VendorBids/dbo.DownloadLog.md) | cross-database |
+| [`VendorBids.dbo.registrations`](../VendorBids/dbo.registrations.md) | cross-database |
+| [`VendorBids.dbo.regusers`](../VendorBids/dbo.regusers.md) | cross-database |
 
 ## Used by
 

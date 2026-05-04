@@ -18,6 +18,7 @@ Updatable: `NO`
 | Object | Type |
 |--------|------|
 | `dbo.BidMgrVendorEmailListView` | unresolved |
+| [`VendorBids.dbo.BidMgrVendorEmailListView`](../VendorBids/dbo.BidMgrVendorEmailListView.md) | cross-database |
 
 ## Used by
 

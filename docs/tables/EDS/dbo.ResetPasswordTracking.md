@@ -1,7 +1,7 @@
 # Table: `dbo.ResetPasswordTracking`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 124790
+**Approx rows:** 124824
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

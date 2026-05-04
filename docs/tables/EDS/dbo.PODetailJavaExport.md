@@ -124,6 +124,7 @@ Updatable: `NO`
 | `vw_DetailDescription` | VIEW |
 | `dbo.uf_PackCodeExport` | SQL_SCALAR_FUNCTION |
 | `dbo.ufn_RegExReplace` | unresolved |
+| [`master.dbo.ufn_RegExReplace`](../master/dbo.ufn_RegExReplace.md) | cross-database |
 
 ## Used by
 

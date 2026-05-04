@@ -50,6 +50,7 @@ Updatable: `NO`
 | [`dbo.DMSVendorBidDocuments`](dbo.DMSVendorBidDocuments.md) | USER_TABLE |
 | [`dbo.Vendors`](dbo.Vendors.md) | USER_TABLE |
 | `dbo.vw_DocumentUploads` | unresolved |
+| [`VendorBids.dbo.vw_DocumentUploads`](../VendorBids/dbo.vw_DocumentUploads.md) | cross-database |
 
 ## Used by
 
