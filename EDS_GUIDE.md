@@ -96,7 +96,7 @@ Long-running event and history tables. Mostly cold storage — query with date f
 | Table | Rows | Description |
 |-------|------|-------------|
 | [`dbo.Audit`](docs/tables/EDS/dbo.Audit.md) | ~2.6M | Generic audit log (~2.6M rows) — application-level events (logins, permission changes, data exports, admin actions). Distinct from the change-log tables, which are field-level. |
-| [`dbo.TransactionLog_HISTORY`](docs/tables/EDS/dbo.TransactionLog_HISTORY.md) | ~124.4M | Long-tail historical event log (~124M rows). Cold storage — query with date filters and expect slow reads. Rarely needed for operational work; kept for compliance. |
+| [`dbo.TransactionLog_HISTORY`](docs/tables/EDS/dbo.TransactionLog_HISTORY.md) | ~122.3M | Long-tail historical event log (~124M rows). Cold storage — query with date filters and expect slow reads. Rarely needed for operational work; kept for compliance. |
 | [`dbo.OrderBookDetail`](docs/tables/EDS/dbo.OrderBookDetail.md) | ~37.8M | Aggregated order/spending facts used by reporting (~37.8M rows). Fed from completed `PODetailItems`. The `OrderBookDetailOld` table (~187M rows) is the prior-format archive — read but do not write. |
 | [`dbo.OrderBookDetailOld`](docs/tables/EDS/dbo.OrderBookDetailOld.md) | ~187.6M | Legacy archive of `OrderBookDetail` (~187M rows). Read-only; all new spend rolls up into `OrderBookDetail`. |
 | [`dbo.ReportSession`](docs/tables/EDS/dbo.ReportSession.md) | ~5.4M | User-facing report executions (~5.4M rows) — what reports were run, by whom, with which parameters. |
