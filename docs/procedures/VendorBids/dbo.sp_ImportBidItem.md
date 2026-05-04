@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_ImportBidItem`
 
-_Generated on 2026-05-04T13:08:01.415Z_
+_Generated on 2026-05-04T13:43:22.336Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

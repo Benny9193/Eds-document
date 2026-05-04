@@ -30,19 +30,21 @@ function escapeSql(s) {
   return s.replace(/'/g, "''");
 }
 
+// Each emitForObject() now renders ONLY the per-statement body and trailing GO.
+// The `USE [<db>];` is emitted once per database section in the main loop,
+// since the active database persists across batches in the same sqlcmd
+// connection. This keeps the output diff-friendly (one USE per section instead
+// of one per statement).
 function emitForObject(e) {
   // Quote SQL Server identifiers safely; descriptions.json keys are
   // controlled and known-good, but defense in depth is cheap.
-  const safe = (id) => `[${id.replace(/]/g, ']]')}]`;
-  const dbQ = safe(e.db);
   const schemaLit = `'${escapeSql(e.schema)}'`;
   const nameLit = `'${escapeSql(e.name)}'`;
   const descLit = `N'${escapeSql(e.desc)}'`;
 
   if (e.kind === 'column') {
     const colLit = `'${escapeSql(e.column)}'`;
-    return `USE ${dbQ};
-IF EXISTS (
+    return `IF EXISTS (
     SELECT 1 FROM sys.fn_listextendedproperty(
         N'MS_Description', N'SCHEMA', ${schemaLit}, N'TABLE', ${nameLit}, N'COLUMN', ${colLit})
 )
@@ -69,8 +71,7 @@ GO
   //   U, V             → 'TABLE'      (extended properties use 'TABLE' for views too)
   //   P                → 'PROCEDURE'
   //   FN, IF, TF       → 'FUNCTION'
-  return `USE ${dbQ};
-DECLARE @lvl1 sysname;
+  return `DECLARE @lvl1 sysname;
 SELECT @lvl1 = CASE
         WHEN o.type IN ('U','V') THEN N'TABLE'
         WHEN o.type = 'P'        THEN N'PROCEDURE'
@@ -101,6 +102,10 @@ GO
 `;
 }
 
+function safeDbName(db) {
+  return `[${db.replace(/]/g, ']]')}]`;
+}
+
 (() => {
   const entries = loadDescriptions();
 
@@ -125,8 +130,31 @@ GO
   out.push('GO');
   out.push('');
 
+  // Group entries by database. Within each group, sort by schema/object/column
+  // for stable diff-friendly output. Emit one `USE [<db>]` per group.
+  const byDb = new Map();
   for (const e of entries) {
-    out.push(emitForObject(e));
+    if (!byDb.has(e.db)) byDb.set(e.db, []);
+    byDb.get(e.db).push(e);
+  }
+  const sortedDbs = [...byDb.keys()].sort();
+  for (const db of sortedDbs) {
+    const dbEntries = byDb.get(db);
+    dbEntries.sort((a, b) => {
+      // Tables before columns within the same parent, then alphabetical.
+      const aKey = `${a.schema}.${a.name}.${a.kind === 'column' ? a.column : ''}`;
+      const bKey = `${b.schema}.${b.name}.${b.kind === 'column' ? b.column : ''}`;
+      return aKey.localeCompare(bKey);
+    });
+    out.push(`-- ============================================================`);
+    out.push(`-- ${db}: ${dbEntries.filter((e) => e.kind === 'object').length} object, ${dbEntries.filter((e) => e.kind === 'column').length} column`);
+    out.push(`-- ============================================================`);
+    out.push(`USE ${safeDbName(db)};`);
+    out.push('GO');
+    out.push('');
+    for (const e of dbEntries) {
+      out.push(emitForObject(e));
+    }
   }
 
   out.push('-- Verify object-level descriptions with (covers tables, views, procedures, functions):');

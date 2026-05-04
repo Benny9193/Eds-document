@@ -1,6 +1,6 @@
 # Procedures & Functions: `ProcurementAnalytics`
 
-_Generated on 2026-05-04T13:08:03.225Z_
+_Generated on 2026-05-04T13:43:23.800Z_
 
 **Database:** `ProcurementAnalytics`
 
@@ -11,6 +11,7 @@ _Generated on 2026-05-04T13:08:03.225Z_
 - Procedures: **0**
 - Functions: **0**
 - Encrypted: **0**
+- Described (curated): **0**
 
 ## Procedures
 

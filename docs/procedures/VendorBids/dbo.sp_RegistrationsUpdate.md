@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_RegistrationsUpdate`
 
-_Generated on 2026-05-04T13:08:01.418Z_
+_Generated on 2026-05-04T13:43:22.340Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

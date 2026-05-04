@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_CleanExtdAsciiChars`
 
-_Generated on 2026-05-04T13:07:57.591Z_
+_Generated on 2026-05-04T13:43:18.979Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

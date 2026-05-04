@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_getobjwithprop_u`
 
-_Generated on 2026-05-04T13:08:01.398Z_
+_Generated on 2026-05-04T13:43:22.314Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

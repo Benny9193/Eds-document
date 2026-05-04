@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_VendorBidItemMaint`
 
-_Generated on 2026-05-04T13:08:01.427Z_
+_Generated on 2026-05-04T13:43:22.351Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_UpdateDetails`
 
-_Generated on 2026-05-04T13:07:57.539Z_
+_Generated on 2026-05-04T13:43:18.924Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

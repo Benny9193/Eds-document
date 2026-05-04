@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_ProcessMiddletownCatalog`
 
-_Generated on 2026-05-04T13:07:58.741Z_
+_Generated on 2026-05-04T13:43:20.012Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

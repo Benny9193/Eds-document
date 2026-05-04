@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_BidMSRPRankedManufacturerProductLinesOrdered`
 
-_Generated on 2026-05-04T13:07:57.578Z_
+_Generated on 2026-05-04T13:43:18.966Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

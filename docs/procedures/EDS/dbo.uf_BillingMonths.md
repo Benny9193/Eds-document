@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_BillingMonths`
 
-_Generated on 2026-05-04T13:07:57.584Z_
+_Generated on 2026-05-04T13:43:18.973Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

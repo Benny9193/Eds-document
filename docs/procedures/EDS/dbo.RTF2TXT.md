@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.RTF2TXT`
 
-_Generated on 2026-05-04T13:07:57.332Z_
+_Generated on 2026-05-04T13:43:18.683Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

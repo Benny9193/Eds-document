@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CCSchoolMaint`
 
-_Generated on 2026-05-04T13:07:57.378Z_
+_Generated on 2026-05-04T13:43:18.734Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

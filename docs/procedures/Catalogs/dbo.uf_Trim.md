@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_Trim`
 
-_Generated on 2026-05-04T13:07:58.753Z_
+_Generated on 2026-05-04T13:43:20.017Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

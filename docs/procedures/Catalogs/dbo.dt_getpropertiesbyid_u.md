@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_getpropertiesbyid_u`
 
-_Generated on 2026-05-04T13:07:58.703Z_
+_Generated on 2026-05-04T13:43:19.995Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

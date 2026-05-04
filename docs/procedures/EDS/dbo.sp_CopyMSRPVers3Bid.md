@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CopyMSRPVers3Bid`
 
-_Generated on 2026-05-04T13:07:57.404Z_
+_Generated on 2026-05-04T13:43:18.760Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

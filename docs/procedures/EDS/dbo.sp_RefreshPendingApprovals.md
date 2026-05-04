@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_RefreshPendingApprovals`
 
-_Generated on 2026-05-04T13:07:57.517Z_
+_Generated on 2026-05-04T13:43:18.894Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

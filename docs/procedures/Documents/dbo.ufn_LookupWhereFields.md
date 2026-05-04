@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.ufn_LookupWhereFields`
 
-_Generated on 2026-05-04T13:08:00.523Z_
+_Generated on 2026-05-04T13:43:21.513Z_
 
 **Database:** `Documents` &nbsp;|&nbsp; **Schema:** `dbo`
 

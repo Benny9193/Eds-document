@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_SearchVendors`
 
-_Generated on 2026-05-04T13:07:57.805Z_
+_Generated on 2026-05-04T13:43:19.198Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

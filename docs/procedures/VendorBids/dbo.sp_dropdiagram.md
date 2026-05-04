@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_dropdiagram`
 
-_Generated on 2026-05-04T13:08:01.413Z_
+_Generated on 2026-05-04T13:43:22.333Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

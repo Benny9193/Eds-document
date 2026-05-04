@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_ScanDocSelectFields`
 
-_Generated on 2026-05-04T13:07:57.710Z_
+_Generated on 2026-05-04T13:43:19.093Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

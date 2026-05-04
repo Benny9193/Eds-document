@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_TeachersDiscoveryItemCode`
 
-_Generated on 2026-05-04T13:07:58.752Z_
+_Generated on 2026-05-04T13:43:20.016Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Function: inline table-valued: `dbo.uf_BidItemWinner`
 
-_Generated on 2026-05-04T13:07:57.576Z_
+_Generated on 2026-05-04T13:43:18.965Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

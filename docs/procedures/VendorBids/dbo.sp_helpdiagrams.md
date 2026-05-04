@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_helpdiagrams`
 
-_Generated on 2026-05-04T13:08:01.414Z_
+_Generated on 2026-05-04T13:43:22.335Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

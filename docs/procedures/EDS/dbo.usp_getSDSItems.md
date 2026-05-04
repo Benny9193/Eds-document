@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_getSDSItems`
 
-_Generated on 2026-05-04T13:07:57.787Z_
+_Generated on 2026-05-04T13:43:19.178Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

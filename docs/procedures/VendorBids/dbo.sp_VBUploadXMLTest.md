@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_VBUploadXMLTest`
 
-_Generated on 2026-05-04T13:08:01.426Z_
+_Generated on 2026-05-04T13:43:22.350Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

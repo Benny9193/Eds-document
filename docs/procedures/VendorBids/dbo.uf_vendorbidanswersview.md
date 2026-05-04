@@ -1,6 +1,6 @@
 # Function: inline table-valued: `dbo.uf_vendorbidanswersview`
 
-_Generated on 2026-05-04T13:08:01.431Z_
+_Generated on 2026-05-04T13:43:22.356Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

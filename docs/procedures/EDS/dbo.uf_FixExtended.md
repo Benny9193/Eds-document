@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_FixExtended`
 
-_Generated on 2026-05-04T13:07:57.627Z_
+_Generated on 2026-05-04T13:43:19.013Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_AttemptLogin`
 
-_Generated on 2026-05-04T13:08:01.407Z_
+_Generated on 2026-05-04T13:43:22.327Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

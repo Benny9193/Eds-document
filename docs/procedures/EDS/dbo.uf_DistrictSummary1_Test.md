@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_DistrictSummary1_Test`
 
-_Generated on 2026-05-04T13:07:57.613Z_
+_Generated on 2026-05-04T13:43:18.999Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

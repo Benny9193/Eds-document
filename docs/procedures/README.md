@@ -1,6 +1,6 @@
 # Procedures & Functions
 
-_Generated on 2026-05-04T13:08:04.076Z_
+_Generated on 2026-05-04T13:43:24.523Z_
 
 **Server:** `eds-sqlserver.eastus2.cloudapp.azure.com`
 

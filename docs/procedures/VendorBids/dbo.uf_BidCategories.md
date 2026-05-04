@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_BidCategories`
 
-_Generated on 2026-05-04T13:08:01.430Z_
+_Generated on 2026-05-04T13:43:22.355Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

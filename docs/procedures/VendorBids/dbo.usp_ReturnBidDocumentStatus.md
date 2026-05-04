@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_ReturnBidDocumentStatus`
 
-_Generated on 2026-05-04T13:08:01.436Z_
+_Generated on 2026-05-04T13:43:22.361Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

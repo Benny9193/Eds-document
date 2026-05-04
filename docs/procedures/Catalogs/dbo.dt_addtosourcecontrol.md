@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_addtosourcecontrol`
 
-_Generated on 2026-05-04T13:07:58.672Z_
+_Generated on 2026-05-04T13:43:19.985Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

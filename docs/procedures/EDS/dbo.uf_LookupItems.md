@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_LookupItems`
 
-_Generated on 2026-05-04T13:07:57.650Z_
+_Generated on 2026-05-04T13:43:19.033Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

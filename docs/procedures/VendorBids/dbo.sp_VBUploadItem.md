@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_VBUploadItem`
 
-_Generated on 2026-05-04T13:08:01.424Z_
+_Generated on 2026-05-04T13:43:22.348Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

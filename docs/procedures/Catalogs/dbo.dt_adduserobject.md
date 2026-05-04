@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_adduserobject`
 
-_Generated on 2026-05-04T13:07:58.675Z_
+_Generated on 2026-05-04T13:43:19.986Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

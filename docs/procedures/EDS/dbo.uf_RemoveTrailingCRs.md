@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_RemoveTrailingCRs`
 
-_Generated on 2026-05-04T13:07:57.693Z_
+_Generated on 2026-05-04T13:43:19.074Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

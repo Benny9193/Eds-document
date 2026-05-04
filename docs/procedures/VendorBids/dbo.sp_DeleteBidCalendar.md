@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_DeleteBidCalendar`
 
-_Generated on 2026-05-04T13:08:01.412Z_
+_Generated on 2026-05-04T13:43:22.332Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

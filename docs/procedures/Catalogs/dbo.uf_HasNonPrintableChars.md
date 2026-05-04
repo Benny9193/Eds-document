@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_HasNonPrintableChars`
 
-_Generated on 2026-05-04T13:07:58.747Z_
+_Generated on 2026-05-04T13:43:20.014Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

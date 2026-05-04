@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CatalogImporterXML`
 
-_Generated on 2026-05-04T13:07:57.372Z_
+_Generated on 2026-05-04T13:43:18.727Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

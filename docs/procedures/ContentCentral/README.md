@@ -1,6 +1,6 @@
 # Procedures & Functions: `ContentCentral`
 
-_Generated on 2026-05-04T13:07:59.603Z_
+_Generated on 2026-05-04T13:43:20.755Z_
 
 **Database:** `ContentCentral`
 
@@ -11,6 +11,7 @@ _Generated on 2026-05-04T13:07:59.603Z_
 - Procedures: **0**
 - Functions: **0**
 - Encrypted: **0**
+- Described (curated): **0**
 
 ## Procedures
 

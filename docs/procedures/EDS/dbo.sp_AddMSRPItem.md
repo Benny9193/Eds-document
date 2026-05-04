@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_AddMSRPItem`
 
-_Generated on 2026-05-04T13:07:57.334Z_
+_Generated on 2026-05-04T13:43:18.687Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_RTK_Build_MSDS_and_MSDSDetail`
 
-_Generated on 2026-05-04T13:07:57.522Z_
+_Generated on 2026-05-04T13:43:18.903Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

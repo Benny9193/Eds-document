@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_StoreImage`
 
-_Generated on 2026-05-04T13:07:57.810Z_
+_Generated on 2026-05-04T13:43:19.205Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CreateBidDocumentAck`
 
-_Generated on 2026-05-04T13:08:01.408Z_
+_Generated on 2026-05-04T13:43:22.328Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

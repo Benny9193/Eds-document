@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_SanitizeDataTest`
 
-_Generated on 2026-05-04T13:08:04.074Z_
+_Generated on 2026-05-04T13:43:24.520Z_
 
 **Database:** `NJ_RTK` &nbsp;|&nbsp; **Schema:** `dbo`
 

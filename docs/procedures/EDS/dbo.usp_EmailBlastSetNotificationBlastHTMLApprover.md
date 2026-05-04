@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_EmailBlastSetNotificationBlastHTMLApprover`
 
-_Generated on 2026-05-04T13:07:57.763Z_
+_Generated on 2026-05-04T13:43:19.157Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

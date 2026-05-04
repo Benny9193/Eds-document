@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CCUpdateAddendaItemSizesOnly`
 
-_Generated on 2026-05-04T13:07:57.380Z_
+_Generated on 2026-05-04T13:43:18.736Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.ufn_LookupSelectStatement`
 
-_Generated on 2026-05-04T13:08:00.522Z_
+_Generated on 2026-05-04T13:43:21.512Z_
 
 **Database:** `Documents` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_ActiveAccountList`
 
-_Generated on 2026-05-04T13:07:57.560Z_
+_Generated on 2026-05-04T13:43:18.946Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_VendorPhones`
 
-_Generated on 2026-05-04T13:07:57.736Z_
+_Generated on 2026-05-04T13:43:19.127Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

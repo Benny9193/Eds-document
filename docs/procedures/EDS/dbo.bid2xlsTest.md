@@ -1,6 +1,6 @@
 # Procedure: `dbo.bid2xlsTest`
 
-_Generated on 2026-05-04T13:07:57.293Z_
+_Generated on 2026-05-04T13:43:18.645Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

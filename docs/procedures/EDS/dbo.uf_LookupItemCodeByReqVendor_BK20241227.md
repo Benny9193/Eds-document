@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_LookupItemCodeByReqVendor_BK20241227`
 
-_Generated on 2026-05-04T13:07:57.647Z_
+_Generated on 2026-05-04T13:43:19.030Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

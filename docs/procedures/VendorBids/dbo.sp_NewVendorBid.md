@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_NewVendorBid`
 
-_Generated on 2026-05-04T13:08:01.417Z_
+_Generated on 2026-05-04T13:43:22.338Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

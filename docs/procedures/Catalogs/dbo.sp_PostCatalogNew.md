@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_PostCatalogNew`
 
-_Generated on 2026-05-04T13:07:58.738Z_
+_Generated on 2026-05-04T13:43:20.010Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

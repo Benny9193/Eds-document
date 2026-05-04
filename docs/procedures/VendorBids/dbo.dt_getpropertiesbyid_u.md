@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_getpropertiesbyid_u`
 
-_Generated on 2026-05-04T13:08:01.400Z_
+_Generated on 2026-05-04T13:43:22.315Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

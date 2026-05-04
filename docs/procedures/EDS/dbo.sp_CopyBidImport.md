@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CopyBidImport`
 
-_Generated on 2026-05-04T13:07:57.393Z_
+_Generated on 2026-05-04T13:43:18.750Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

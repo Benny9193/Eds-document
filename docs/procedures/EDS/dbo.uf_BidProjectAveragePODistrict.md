@@ -1,6 +1,6 @@
 # Function: inline table-valued: `dbo.uf_BidProjectAveragePODistrict`
 
-_Generated on 2026-05-04T13:07:57.580Z_
+_Generated on 2026-05-04T13:43:18.968Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

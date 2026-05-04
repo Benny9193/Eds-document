@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_alterdiagram`
 
-_Generated on 2026-05-04T13:08:00.514Z_
+_Generated on 2026-05-04T13:43:21.507Z_
 
 **Database:** `Documents` &nbsp;|&nbsp; **Schema:** `dbo`
 

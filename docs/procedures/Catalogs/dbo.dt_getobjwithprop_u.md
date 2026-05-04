@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_getobjwithprop_u`
 
-_Generated on 2026-05-04T13:07:58.700Z_
+_Generated on 2026-05-04T13:43:19.994Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

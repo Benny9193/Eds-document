@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_SearchItems`
 
-_Generated on 2026-05-04T13:07:57.524Z_
+_Generated on 2026-05-04T13:43:18.907Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

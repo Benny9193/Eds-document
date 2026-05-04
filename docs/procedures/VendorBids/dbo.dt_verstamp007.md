@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_verstamp007`
 
-_Generated on 2026-05-04T13:08:01.405Z_
+_Generated on 2026-05-04T13:43:22.323Z_
 
 **Database:** `VendorBids` &nbsp;|&nbsp; **Schema:** `dbo`
 

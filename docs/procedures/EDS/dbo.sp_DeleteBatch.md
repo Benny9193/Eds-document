@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_DeleteBatch`
 
-_Generated on 2026-05-04T13:07:57.430Z_
+_Generated on 2026-05-04T13:43:18.796Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_MergeCatalogs`
 
-_Generated on 2026-05-04T13:07:58.732Z_
+_Generated on 2026-05-04T13:43:20.006Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 

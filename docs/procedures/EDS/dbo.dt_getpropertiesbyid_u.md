@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_getpropertiesbyid_u`
 
-_Generated on 2026-05-04T13:07:57.315Z_
+_Generated on 2026-05-04T13:43:18.668Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

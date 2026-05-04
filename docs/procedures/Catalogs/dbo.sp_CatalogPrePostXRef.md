@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CatalogPrePostXRef`
 
-_Generated on 2026-05-04T13:07:58.730Z_
+_Generated on 2026-05-04T13:43:20.005Z_
 
 **Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
 
