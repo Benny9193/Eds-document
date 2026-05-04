@@ -3,7 +3,25 @@ const fs = require('fs');
 const path = require('path');
 const { query, close } = require('./db');
 
-const OUTPUT_PATH = path.join(__dirname, '..', 'SCHEMA.md');
+const ROOT = path.join(__dirname, '..');
+const SCHEMA_MD_PATH = path.join(ROOT, 'SCHEMA.md');
+const TABLES_DIR = path.join(ROOT, 'docs', 'tables');
+
+function safeSegment(s) {
+  return String(s).replace(/[^A-Za-z0-9._-]/g, '_');
+}
+
+function tableFile(dbName, schema, table) {
+  return path.join(TABLES_DIR, safeSegment(dbName), `${safeSegment(schema)}.${safeSegment(table)}.md`);
+}
+
+function tableLinkFromRoot(dbName, schema, table) {
+  return `docs/tables/${safeSegment(dbName)}/${safeSegment(schema)}.${safeSegment(table)}.md`;
+}
+
+function tableLinkFromDbIndex(schema, table) {
+  return `${safeSegment(schema)}.${safeSegment(table)}.md`;
+}
 
 async function listUserDatabases() {
   const r = await query(
@@ -42,7 +60,8 @@ async function inspectDatabase(dbName) {
       sch_p.name AS parent_schema, tab_p.name AS parent_table, col_p.name AS parent_column,
       sch_r.name AS ref_schema,    tab_r.name AS ref_table,    col_r.name AS ref_column,
       fk.delete_referential_action_desc AS on_delete,
-      fk.update_referential_action_desc AS on_update
+      fk.update_referential_action_desc AS on_update,
+      fkc.constraint_column_id
     FROM [${dbName}].sys.foreign_keys fk
     JOIN [${dbName}].sys.foreign_key_columns fkc ON fk.object_id = fkc.constraint_object_id
     JOIN [${dbName}].sys.tables   tab_p ON fkc.parent_object_id = tab_p.object_id
@@ -65,11 +84,6 @@ async function inspectDatabase(dbName) {
     WHERE i.type > 0 AND i.is_hypothetical = 0
     ORDER BY schema_name, table_name, index_name, ic.is_included_column, ic.key_ordinal
   `);
-  const views = await query(`
-    SELECT TABLE_SCHEMA, TABLE_NAME
-    FROM [${dbName}].INFORMATION_SCHEMA.VIEWS
-    ORDER BY TABLE_SCHEMA, TABLE_NAME
-  `);
   const procs = await query(`
     SELECT ROUTINE_SCHEMA, ROUTINE_NAME, ROUTINE_TYPE, DATA_TYPE
     FROM [${dbName}].INFORMATION_SCHEMA.ROUTINES
@@ -89,7 +103,6 @@ async function inspectDatabase(dbName) {
     pks: pks.recordset,
     fks: fks.recordset,
     indexes: indexes.recordset,
-    views: views.recordset,
     procs: procs.recordset,
     rowCounts: rowCounts.recordset,
   };
@@ -107,105 +120,152 @@ function formatType(c) {
   return t;
 }
 
-function renderDatabase(dbName, info) {
+function mkdirp(p) {
+  fs.mkdirSync(p, { recursive: true });
+}
+
+function renderTablePage(dbName, t, info, knownTables) {
+  const schema = t.TABLE_SCHEMA;
+  const table = t.TABLE_NAME;
+  const fq = `${schema}.${table}`;
+  const kind = t.TABLE_TYPE === 'VIEW' ? 'View' : 'Table';
+  const rc = info.rowCounts.find((r) => r.schema_name === schema && r.table_name === table);
+
   const out = [];
-  out.push(`## Database: \`${dbName}\``);
+  out.push(`# ${kind}: \`${fq}\``);
+  out.push('');
+  out.push(`**Database:** \`${dbName}\` &nbsp;|&nbsp; **Schema:** \`${schema}\``);
+  if (rc) out.push(`**Approx rows:** ${rc.row_count}`);
+  out.push('');
+  out.push('[← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)');
   out.push('');
 
-  const tablesBySchema = new Map();
-  for (const t of info.tables) {
-    const key = t.TABLE_SCHEMA;
-    if (!tablesBySchema.has(key)) tablesBySchema.set(key, []);
-    tablesBySchema.get(key).push(t);
-  }
-
-  if (info.tables.length === 0) {
-    out.push('_No user tables or views._');
-    out.push('');
-    return out.join('\n');
-  }
-
-  out.push(`**Tables / Views:** ${info.tables.length}`);
+  out.push('## Columns');
   out.push('');
-
-  const rowCountKey = (s, t) => `${s}.${t}`;
-  const rowCountMap = new Map(
-    info.rowCounts.map((r) => [rowCountKey(r.schema_name, r.table_name), r.row_count])
+  const cols = info.columns.filter((c) => c.TABLE_SCHEMA === schema && c.TABLE_NAME === table);
+  const pkCols = new Set(
+    info.pks
+      .filter((p) => p.TABLE_SCHEMA === schema && p.TABLE_NAME === table)
+      .map((p) => p.COLUMN_NAME)
   );
+  out.push('| # | Column | Type | Nullable | Default | PK |');
+  out.push('|---|--------|------|----------|---------|----|');
+  for (const c of cols) {
+    out.push(
+      `| ${c.ORDINAL_POSITION} | \`${c.COLUMN_NAME}\` | ${formatType(c)} | ${c.IS_NULLABLE} | ${
+        c.COLUMN_DEFAULT ? '`' + c.COLUMN_DEFAULT + '`' : ''
+      } | ${pkCols.has(c.COLUMN_NAME) ? 'YES' : ''} |`
+    );
+  }
+  out.push('');
 
-  for (const [schema, tables] of tablesBySchema) {
-    out.push(`### Schema: \`${schema}\``);
-    out.push('');
-    for (const t of tables) {
-      const fq = `${schema}.${t.TABLE_NAME}`;
-      const kind = t.TABLE_TYPE === 'VIEW' ? 'View' : 'Table';
-      const rc = rowCountMap.get(rowCountKey(schema, t.TABLE_NAME));
-      out.push(`#### ${kind}: \`${fq}\`${rc != null ? ` (rows: ${rc})` : ''}`);
-      out.push('');
-
-      const cols = info.columns.filter(
-        (c) => c.TABLE_SCHEMA === schema && c.TABLE_NAME === t.TABLE_NAME
+  const outgoing = info.fks.filter(
+    (f) => f.parent_schema === schema && f.parent_table === table
+  );
+  out.push('## Foreign keys (outgoing)');
+  out.push('');
+  if (outgoing.length === 0) {
+    out.push('_None._');
+  } else {
+    out.push('| Name | Column | References | On Delete | On Update |');
+    out.push('|------|--------|------------|-----------|-----------|');
+    for (const f of outgoing) {
+      const refKey = `${f.ref_schema}.${f.ref_table}`;
+      const refLabel = `\`${f.ref_schema}.${f.ref_table}.${f.ref_column}\``;
+      const refLinked = knownTables.has(refKey)
+        ? `[${refLabel}](${tableLinkFromDbIndex(f.ref_schema, f.ref_table)})`
+        : refLabel;
+      out.push(
+        `| \`${f.fk_name}\` | \`${f.parent_column}\` | ${refLinked} | ${f.on_delete} | ${f.on_update} |`
       );
-      const pkCols = new Set(
-        info.pks
-          .filter((p) => p.TABLE_SCHEMA === schema && p.TABLE_NAME === t.TABLE_NAME)
-          .map((p) => p.COLUMN_NAME)
-      );
-
-      out.push('| # | Column | Type | Nullable | Default | PK |');
-      out.push('|---|--------|------|----------|---------|----|');
-      for (const c of cols) {
-        out.push(
-          `| ${c.ORDINAL_POSITION} | \`${c.COLUMN_NAME}\` | ${formatType(c)} | ${c.IS_NULLABLE} | ${
-            c.COLUMN_DEFAULT ? '`' + c.COLUMN_DEFAULT + '`' : ''
-          } | ${pkCols.has(c.COLUMN_NAME) ? 'YES' : ''} |`
-        );
-      }
-      out.push('');
-
-      const tableFks = info.fks.filter(
-        (f) => f.parent_schema === schema && f.parent_table === t.TABLE_NAME
-      );
-      if (tableFks.length) {
-        out.push('**Foreign keys**');
-        out.push('');
-        out.push('| Name | Column | References | On Delete | On Update |');
-        out.push('|------|--------|------------|-----------|-----------|');
-        for (const f of tableFks) {
-          out.push(
-            `| \`${f.fk_name}\` | \`${f.parent_column}\` | \`${f.ref_schema}.${f.ref_table}.${f.ref_column}\` | ${f.on_delete} | ${f.on_update} |`
-          );
-        }
-        out.push('');
-      }
-
-      const tableIdx = info.indexes.filter(
-        (i) => i.schema_name === schema && i.table_name === t.TABLE_NAME && !i.is_primary_key
-      );
-      if (tableIdx.length) {
-        const grouped = new Map();
-        for (const i of tableIdx) {
-          if (!grouped.has(i.index_name))
-            grouped.set(i.index_name, { unique: i.is_unique, type: i.type_desc, keys: [], inc: [] });
-          const g = grouped.get(i.index_name);
-          (i.is_included_column ? g.inc : g.keys).push(i.column_name);
-        }
-        out.push('**Indexes**');
-        out.push('');
-        out.push('| Name | Unique | Type | Columns | Included |');
-        out.push('|------|--------|------|---------|----------|');
-        for (const [name, g] of grouped) {
-          out.push(
-            `| \`${name}\` | ${g.unique ? 'YES' : 'no'} | ${g.type} | ${g.keys.map((k) => '`' + k + '`').join(', ')} | ${g.inc.map((k) => '`' + k + '`').join(', ')} |`
-          );
-        }
-        out.push('');
-      }
     }
   }
+  out.push('');
 
+  const incoming = info.fks.filter(
+    (f) => f.ref_schema === schema && f.ref_table === table
+  );
+  out.push('## Referenced by (incoming foreign keys)');
+  out.push('');
+  if (incoming.length === 0) {
+    out.push('_None._');
+  } else {
+    out.push('| From | Column | Targets | On Delete | On Update |');
+    out.push('|------|--------|---------|-----------|-----------|');
+    for (const f of incoming) {
+      const fromKey = `${f.parent_schema}.${f.parent_table}`;
+      const fromLabel = `\`${f.parent_schema}.${f.parent_table}\``;
+      const fromLinked = knownTables.has(fromKey)
+        ? `[${fromLabel}](${tableLinkFromDbIndex(f.parent_schema, f.parent_table)})`
+        : fromLabel;
+      out.push(
+        `| ${fromLinked} | \`${f.parent_column}\` | \`${f.ref_column}\` | ${f.on_delete} | ${f.on_update} |`
+      );
+    }
+  }
+  out.push('');
+
+  const tableIdx = info.indexes.filter(
+    (i) => i.schema_name === schema && i.table_name === table && !i.is_primary_key
+  );
+  out.push('## Indexes');
+  out.push('');
+  if (tableIdx.length === 0) {
+    out.push('_No non-PK indexes._');
+  } else {
+    const grouped = new Map();
+    for (const i of tableIdx) {
+      if (!grouped.has(i.index_name))
+        grouped.set(i.index_name, { unique: i.is_unique, type: i.type_desc, keys: [], inc: [] });
+      const g = grouped.get(i.index_name);
+      (i.is_included_column ? g.inc : g.keys).push(i.column_name);
+    }
+    out.push('| Name | Unique | Type | Columns | Included |');
+    out.push('|------|--------|------|---------|----------|');
+    for (const [name, g] of grouped) {
+      out.push(
+        `| \`${name}\` | ${g.unique ? 'YES' : 'no'} | ${g.type} | ${g.keys.map((k) => '`' + k + '`').join(', ')} | ${g.inc.map((k) => '`' + k + '`').join(', ')} |`
+      );
+    }
+  }
+  out.push('');
+
+  return out.join('\n');
+}
+
+function renderDbIndex(dbName, info) {
+  const out = [];
+  out.push(`# Database: \`${dbName}\``);
+  out.push('');
+  out.push('[← back to top](../../../SCHEMA.md)');
+  out.push('');
+  if (info.tables.length === 0) {
+    out.push('_No user tables or views._');
+    return out.join('\n');
+  }
+  const rcMap = new Map(
+    info.rowCounts.map((r) => [`${r.schema_name}.${r.table_name}`, r.row_count])
+  );
+  const bySchema = new Map();
+  for (const t of info.tables) {
+    if (!bySchema.has(t.TABLE_SCHEMA)) bySchema.set(t.TABLE_SCHEMA, []);
+    bySchema.get(t.TABLE_SCHEMA).push(t);
+  }
+  for (const [schema, tables] of bySchema) {
+    out.push(`## Schema: \`${schema}\``);
+    out.push('');
+    out.push('| Object | Type | Rows |');
+    out.push('|--------|------|------|');
+    for (const t of tables) {
+      const rc = rcMap.get(`${schema}.${t.TABLE_NAME}`);
+      out.push(
+        `| [\`${schema}.${t.TABLE_NAME}\`](${tableLinkFromDbIndex(schema, t.TABLE_NAME)}) | ${t.TABLE_TYPE} | ${rc ?? ''} |`
+      );
+    }
+    out.push('');
+  }
   if (info.procs.length) {
-    out.push('### Routines (procedures / functions)');
+    out.push('## Routines');
     out.push('');
     out.push('| Schema | Name | Type | Returns |');
     out.push('|--------|------|------|---------|');
@@ -216,7 +276,70 @@ function renderDatabase(dbName, info) {
     }
     out.push('');
   }
+  return out.join('\n');
+}
 
+function writeDatabaseDocs(dbName, info) {
+  const dir = path.join(TABLES_DIR, safeSegment(dbName));
+  mkdirp(dir);
+
+  const knownTables = new Set(info.tables.map((t) => `${t.TABLE_SCHEMA}.${t.TABLE_NAME}`));
+
+  for (const t of info.tables) {
+    const md = renderTablePage(dbName, t, info, knownTables);
+    fs.writeFileSync(tableFile(dbName, t.TABLE_SCHEMA, t.TABLE_NAME), md);
+  }
+  fs.writeFileSync(path.join(dir, 'README.md'), renderDbIndex(dbName, info));
+}
+
+function renderRootSchema(dbsInfo) {
+  const out = [];
+  out.push('# Database Schema');
+  out.push('');
+  out.push(`_Generated on ${new Date().toISOString()}_`);
+  out.push('');
+  out.push(`**Server:** \`${process.env.DB_SERVER}\``);
+  out.push(`**Default database:** \`${process.env.DB_DATABASE}\``);
+  out.push('');
+
+  if (dbsInfo.length === 0) {
+    out.push('> Connected successfully, but only system databases are present.');
+    out.push('> Set `DB_DATABASE` to a user database in `.env` and re-run.');
+    return out.join('\n');
+  }
+
+  out.push('## Databases');
+  out.push('');
+  for (const { db, info, error } of dbsInfo) {
+    if (error) {
+      out.push(`### \`${db}\``);
+      out.push('');
+      out.push(`_Error inspecting: ${error}_`);
+      out.push('');
+      continue;
+    }
+    out.push(`### [\`${db}\`](docs/tables/${safeSegment(db)}/README.md)`);
+    out.push('');
+    out.push(`Tables / views: **${info.tables.length}**, routines: **${info.procs.length}**`);
+    out.push('');
+    if (info.tables.length === 0) {
+      out.push('_No user tables or views._');
+      out.push('');
+      continue;
+    }
+    out.push('| Object | Type | Rows |');
+    out.push('|--------|------|------|');
+    const rcMap = new Map(
+      info.rowCounts.map((r) => [`${r.schema_name}.${r.table_name}`, r.row_count])
+    );
+    for (const t of info.tables) {
+      const rc = rcMap.get(`${t.TABLE_SCHEMA}.${t.TABLE_NAME}`);
+      out.push(
+        `| [\`${t.TABLE_SCHEMA}.${t.TABLE_NAME}\`](${tableLinkFromRoot(db, t.TABLE_SCHEMA, t.TABLE_NAME)}) | ${t.TABLE_TYPE} | ${rc ?? ''} |`
+      );
+    }
+    out.push('');
+  }
   return out.join('\n');
 }
 
@@ -225,39 +348,26 @@ function renderDatabase(dbName, info) {
     const dbs = await listUserDatabases();
     console.log(`Found ${dbs.length} user database(s): ${dbs.join(', ') || '(none)'}`);
 
-    const sections = [];
-    sections.push('# Database Schema');
-    sections.push('');
-    sections.push(`_Generated on ${new Date().toISOString()}_`);
-    sections.push('');
-    sections.push(`**Server:** \`${process.env.DB_SERVER}\``);
-    sections.push(`**Default database:** \`${process.env.DB_DATABASE}\``);
-    sections.push('');
-    sections.push(
-      `User databases discovered: ${dbs.length === 0 ? '_none_' : dbs.map((d) => '`' + d + '`').join(', ')}`
-    );
-    sections.push('');
+    if (fs.existsSync(TABLES_DIR)) {
+      fs.rmSync(TABLES_DIR, { recursive: true, force: true });
+    }
+    mkdirp(TABLES_DIR);
 
+    const dbsInfo = [];
     for (const db of dbs) {
       try {
         const info = await inspectDatabase(db);
-        sections.push(renderDatabase(db, info));
+        writeDatabaseDocs(db, info);
+        dbsInfo.push({ db, info });
+        console.log(`  ${db}: ${info.tables.length} tables/views written`);
       } catch (e) {
-        sections.push(`## Database: \`${db}\``);
-        sections.push('');
-        sections.push(`_Error inspecting: ${e.message}_`);
-        sections.push('');
+        dbsInfo.push({ db, error: e.message });
+        console.error(`  ${db}: ERROR ${e.message}`);
       }
     }
 
-    if (dbs.length === 0) {
-      sections.push('> Connected successfully, but only system databases are present.');
-      sections.push('> Set `DB_DATABASE` to a user database in `.env` and re-run.');
-      sections.push('');
-    }
-
-    fs.writeFileSync(OUTPUT_PATH, sections.join('\n'));
-    console.log(`Wrote ${OUTPUT_PATH}`);
+    fs.writeFileSync(SCHEMA_MD_PATH, renderRootSchema(dbsInfo));
+    console.log(`Wrote ${SCHEMA_MD_PATH} and per-table docs under ${TABLES_DIR}`);
   } catch (e) {
     console.error('Schema introspection failed:', e.message);
     process.exitCode = 1;
