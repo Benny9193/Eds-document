@@ -9,19 +9,34 @@ const TABLES_DIR = path.join(ROOT, 'docs', 'tables');
 const DESCRIPTIONS_PATH = path.join(ROOT, 'descriptions.json');
 
 function loadDescriptions() {
-  if (!fs.existsSync(DESCRIPTIONS_PATH)) return new Map();
+  if (!fs.existsSync(DESCRIPTIONS_PATH)) return { objects: new Map(), columns: new Map(), size: 0 };
   const raw = JSON.parse(fs.readFileSync(DESCRIPTIONS_PATH, 'utf8'));
-  const m = new Map();
+  const objects = new Map(); // "db.schema.name" -> description
+  const columns = new Map(); // "db.schema.name" -> Map<column, description>
+  let total = 0;
   for (const [k, v] of Object.entries(raw)) {
     if (k.startsWith('_')) continue;
     if (typeof v !== 'string' || !v.trim()) continue;
-    m.set(k, v.trim());
+    const parts = k.split('.');
+    if (parts.length === 3) {
+      objects.set(k, v.trim());
+      total++;
+    } else if (parts.length === 4) {
+      const objKey = `${parts[0]}.${parts[1]}.${parts[2]}`;
+      if (!columns.has(objKey)) columns.set(objKey, new Map());
+      columns.get(objKey).set(parts[3], v.trim());
+      total++;
+    }
   }
-  return m;
+  return { objects, columns, size: total };
 }
 
 function descriptionFor(descriptions, dbName, schema, name) {
-  return descriptions.get(`${dbName}.${schema}.${name}`) || null;
+  return descriptions.objects.get(`${dbName}.${schema}.${name}`) || null;
+}
+
+function columnDescriptionsFor(descriptions, dbName, schema, name) {
+  return descriptions.columns.get(`${dbName}.${schema}.${name}`) || new Map();
 }
 
 function safeSegment(s) {
@@ -152,6 +167,21 @@ async function inspectDatabase(dbName) {
     WHERE v_obj.type = 'V'
     ORDER BY view_schema, view_name, dependent_schema, dependent_name
   `);
+  const escapedDbName = dbName.replace(/'/g, "''");
+  const crossDbDeps = await query(`
+    SELECT DISTINCT
+      SCHEMA_NAME(v_obj.schema_id) AS view_schema,
+      v_obj.name                   AS view_name,
+      d.referenced_database_name   AS ref_db,
+      d.referenced_schema_name     AS ref_schema,
+      d.referenced_entity_name     AS ref_name
+    FROM [${dbName}].sys.objects v_obj
+    JOIN [${dbName}].sys.sql_expression_dependencies d ON d.referencing_id = v_obj.object_id
+    WHERE v_obj.type = 'V'
+      AND d.referenced_database_name IS NOT NULL
+      AND d.referenced_database_name <> '${escapedDbName}'
+    ORDER BY view_schema, view_name, ref_db, ref_schema, ref_name
+  `);
   return {
     tables: tables.recordset,
     columns: columns.recordset,
@@ -163,6 +193,7 @@ async function inspectDatabase(dbName) {
     viewMeta: viewMeta.recordset,
     viewDeps: viewDeps.recordset,
     viewDependents: viewDependents.recordset,
+    crossDbDeps: crossDbDeps.recordset,
   };
 }
 
@@ -182,15 +213,25 @@ function mkdirp(p) {
   fs.mkdirSync(p, { recursive: true });
 }
 
-function renderColumns(out, cols, pkCols) {
-  out.push('| # | Column | Type | Nullable | Default | PK |');
-  out.push('|---|--------|------|----------|---------|----|');
+function renderColumns(out, cols, pkCols, columnDescs) {
+  const hasDescs = columnDescs && columnDescs.size > 0;
+  if (hasDescs) {
+    out.push('| # | Column | Type | Nullable | Default | PK | Description |');
+    out.push('|---|--------|------|----------|---------|----|-------------|');
+  } else {
+    out.push('| # | Column | Type | Nullable | Default | PK |');
+    out.push('|---|--------|------|----------|---------|----|');
+  }
   for (const c of cols) {
-    out.push(
-      `| ${c.ORDINAL_POSITION} | \`${c.COLUMN_NAME}\` | ${formatType(c)} | ${c.IS_NULLABLE} | ${
-        c.COLUMN_DEFAULT ? '`' + c.COLUMN_DEFAULT + '`' : ''
-      } | ${pkCols.has(c.COLUMN_NAME) ? 'YES' : ''} |`
-    );
+    const base = `| ${c.ORDINAL_POSITION} | \`${c.COLUMN_NAME}\` | ${formatType(c)} | ${c.IS_NULLABLE} | ${
+      c.COLUMN_DEFAULT ? '`' + c.COLUMN_DEFAULT + '`' : ''
+    } | ${pkCols.has(c.COLUMN_NAME) ? 'YES' : ''} |`;
+    if (hasDescs) {
+      const d = (columnDescs.get(c.COLUMN_NAME) || '').replace(/\s+/g, ' ').trim();
+      out.push(`${base} ${d} |`);
+    } else {
+      out.push(base);
+    }
   }
   out.push('');
 }
@@ -204,6 +245,9 @@ function renderViewPage(dbName, t, info, knownTables, descriptions) {
   );
   const cols = info.columns.filter((c) => c.TABLE_SCHEMA === schema && c.TABLE_NAME === view);
   const deps = info.viewDeps.filter(
+    (d) => d.view_schema === schema && d.view_name === view
+  );
+  const crossDeps = (info.crossDbDeps || []).filter(
     (d) => d.view_schema === schema && d.view_name === view
   );
   const dependents = info.viewDependents.filter(
@@ -242,11 +286,11 @@ function renderViewPage(dbName, t, info, knownTables, descriptions) {
 
   out.push('## Columns');
   out.push('');
-  renderColumns(out, cols, new Set());
+  renderColumns(out, cols, new Set(), columnDescriptionsFor(descriptions, dbName, schema, view));
 
   out.push('## Depends on');
   out.push('');
-  if (deps.length === 0) {
+  if (deps.length === 0 && crossDeps.length === 0) {
     out.push('_None resolved._');
   } else {
     out.push('| Object | Type |');
@@ -258,6 +302,11 @@ function renderViewPage(dbName, t, info, knownTables, descriptions) {
         ? `[${label}](${tableLinkFromDbIndex(d.ref_schema, d.ref_name)})`
         : label;
       out.push(`| ${linked} | ${d.ref_type || 'unresolved'} |`);
+    }
+    for (const d of crossDeps) {
+      const fq = `${d.ref_db}.${d.ref_schema || 'dbo'}.${d.ref_name}`;
+      const link = `../${safeSegment(d.ref_db)}/${safeSegment(d.ref_schema || 'dbo')}.${safeSegment(d.ref_name)}.md`;
+      out.push(`| [\`${fq}\`](${link}) | cross-database |`);
     }
   }
   out.push('');
@@ -345,7 +394,7 @@ function renderTablePage(dbName, t, info, knownTables, descriptions) {
       .filter((p) => p.TABLE_SCHEMA === schema && p.TABLE_NAME === table)
       .map((p) => p.COLUMN_NAME)
   );
-  renderColumns(out, cols, pkCols);
+  renderColumns(out, cols, pkCols, columnDescriptionsFor(descriptions, dbName, schema, table));
 
   const outgoing = info.fks.filter(
     (f) => f.parent_schema === schema && f.parent_table === table
@@ -427,12 +476,69 @@ function shortDesc(d) {
   return oneLine.length > 160 ? oneLine.slice(0, 157) + '…' : oneLine;
 }
 
-function renderDbIndex(dbName, info, descriptions) {
+const DOMAIN_INDEX_DBS = new Set(['EDS']);
+const DOMAINS = [
+  { key: 'bid',         label: 'Bid',         match: (n) => /Bid/.test(n) },
+  { key: 'msrp',        label: 'MSRP',        match: (n) => /MSRP/.test(n) },
+  { key: 'po',          label: 'PO',          match: (n) =>
+      /^PO[A-Z]/.test(n) || /^vw_PO[A-Z]/.test(n) || /OrderBook/i.test(n) || /VendorPO/.test(n) },
+  { key: 'vendor',      label: 'Vendor',      match: (n) => /Vendor/.test(n) },
+  { key: 'requisition', label: 'Requisition', match: (n) =>
+      /Requisition/i.test(n) || /(^|_)Req(?=[A-Z])/.test(n) || /^vw_Approve/.test(n) },
+];
+
+function writeDomainIndexes(dbName, info, descriptions) {
+  if (!DOMAIN_INDEX_DBS.has(dbName)) return [];
+  const dir = path.join(TABLES_DIR, safeSegment(dbName));
+  const views = info.tables.filter((t) => t.TABLE_TYPE === 'VIEW');
+  const written = [];
+  for (const dom of DOMAINS) {
+    const matched = views.filter((v) => dom.match(v.TABLE_NAME));
+    if (matched.length === 0) continue;
+    const out = [];
+    out.push(`# ${dom.label} Views — \`${dbName}\``);
+    out.push('');
+    out.push('[← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)');
+    out.push('');
+    out.push(`${matched.length} view${matched.length === 1 ? '' : 's'} matched the **${dom.label}** domain by name.`);
+    out.push('A view may appear in more than one domain index (e.g. `vw_VendorBidLookup` is both Bid and Vendor).');
+    out.push('');
+    out.push('| View | Schema | Description |');
+    out.push('|------|--------|-------------|');
+    const sorted = matched.slice().sort((a, b) => {
+      if (a.TABLE_SCHEMA !== b.TABLE_SCHEMA) return a.TABLE_SCHEMA.localeCompare(b.TABLE_SCHEMA);
+      return a.TABLE_NAME.localeCompare(b.TABLE_NAME);
+    });
+    for (const v of sorted) {
+      const desc = shortDesc(descriptionFor(descriptions, dbName, v.TABLE_SCHEMA, v.TABLE_NAME));
+      out.push(
+        `| [\`${v.TABLE_SCHEMA}.${v.TABLE_NAME}\`](${tableLinkFromDbIndex(v.TABLE_SCHEMA, v.TABLE_NAME)}) | \`${v.TABLE_SCHEMA}\` | ${desc} |`
+      );
+    }
+    out.push('');
+    const file = `_domain-${dom.key}.md`;
+    fs.writeFileSync(path.join(dir, file), out.join('\n'));
+    written.push({ key: dom.key, label: dom.label, file, count: matched.length });
+  }
+  return written;
+}
+
+function renderDbIndex(dbName, info, descriptions, domainIndexes = []) {
   const out = [];
   out.push(`# Database: \`${dbName}\``);
   out.push('');
   out.push('[← back to top](../../../SCHEMA.md)');
   out.push('');
+  if (domainIndexes.length) {
+    out.push('## Domain indexes');
+    out.push('');
+    out.push('Curated, name-based groupings of views to make this database easier to navigate. Views may appear in more than one index.');
+    out.push('');
+    for (const d of domainIndexes) {
+      out.push(`- [${d.label}](${d.file}) — ${d.count} view${d.count === 1 ? '' : 's'}`);
+    }
+    out.push('');
+  }
   if (info.tables.length === 0) {
     out.push('_No user tables or views._');
     return out.join('\n');

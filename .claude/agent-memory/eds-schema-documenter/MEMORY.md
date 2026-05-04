@@ -2,3 +2,5 @@
 - [EDS routine inventory snapshot](project_eds_routine_counts.md) — As of 2026-05-04: EDS has 377 procedures, 217 functions, 0 encrypted; no cross-DB references resolved by sys.sql_expression_dependencies.
 - [Routine inventory 2026-05-04 (8 DBs)](db_routine_inventory_2026-05-04.md) — Per-DB proc/func counts across 8 production DBs; 3 are empty (ContentCentral, IDIQ_Platform, ProcurementAnalytics); Catalogs has parallel sp_PostCatalog* variants.
 - [Defensive null-schema filter for sys.objects](feedback_null_schema_rows.md) — Some sys.objects rows have null schema/name; filter before sorting/rendering.
+- [Cross-DB dependency graph 2026-05-04](project_cross_db_dependencies_2026-05-04.md) — Strongest couplings: EDS->Documents 222, Catalogs->EDS 198, EDS->ContentCentral 68; EDS is the hub.
+- [SED unreliable for cross-DB](feedback_sed_unreliable_for_cross_db.md) — sys.sql_expression_dependencies misses 385 edges and over-reports 163; combine with text-grep, and filter SED by literal db name (DB_NAME() returns the connection DB, not the target).

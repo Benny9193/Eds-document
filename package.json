@@ -8,8 +8,10 @@
     "test:connection": "node src/test-connection.js",
     "schema": "node src/introspect.js",
     "procs": "node src/document-procedures.js",
+    "deps": "node src/document-dependencies.js",
     "guide": "node src/generate-guide.js",
-    "descriptions:sql": "node src/generate-ms-description-sql.js"
+    "descriptions:sql": "node src/generate-ms-description-sql.js",
+    "descriptions:check": "node src/validate-descriptions.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
