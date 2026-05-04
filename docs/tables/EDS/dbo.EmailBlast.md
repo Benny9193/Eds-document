@@ -1,7 +1,7 @@
 # Table: `dbo.EmailBlast`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 18132
+**Approx rows:** 18137
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

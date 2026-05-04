@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Master vendor record — supplier directory for the whole platform (~19K rows). One row per vendor company. The `Active` column (tinyint) gates whether a vendor's catalogs and bid responses are visible to buyers; mutating it has system-wide effect.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

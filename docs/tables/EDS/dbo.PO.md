@@ -1,9 +1,13 @@
 # Table: `dbo.PO`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 2484874
+**Approx rows:** 2484936
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Purchase order header (~2.5M rows). Created when a requisition reaches final approval and is converted. One PO has many `PODetailItems` lines and references the originating `Requisitions` row 1:1.
 
 ## Columns
 

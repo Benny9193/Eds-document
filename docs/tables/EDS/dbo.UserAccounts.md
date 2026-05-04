@@ -1,9 +1,13 @@
 # Table: `dbo.UserAccounts`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 3377469
+**Approx rows:** 3377473
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Per-user budget account permissions (~3.4M rows). Joins users to the `BudgetAccounts` they're allowed to charge against. Drives the account dropdown shown when building a requisition.
 
 ## Columns
 

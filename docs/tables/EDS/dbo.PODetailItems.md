@@ -1,9 +1,13 @@
 # Table: `dbo.PODetailItems`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 24510877
+**Approx rows:** 24511399
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+PO line-item detail (~24.5M rows). Snapshot of item, quantity, unit price, and account split at the moment of PO issuance. Independent from `Detail` — Detail can change after PO issuance, PODetailItems is the immutable contractual record.
 
 ## Columns
 

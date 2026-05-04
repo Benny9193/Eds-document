@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Per-line bid specifications (~123M rows — second-largest table in EDS). Holds the items, specs, and quantities a bid is asking vendors to price. Always filter by `BidHeaderId` before any analytical work.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

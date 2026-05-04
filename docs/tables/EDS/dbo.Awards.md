@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Bid award outcomes (~139K rows). Records which vendor's `BidResults` were chosen for each awarded line, including award date and award type. Awarded prices typically flow back into `CrossRefs` via a vendor catalog upload.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

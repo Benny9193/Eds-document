@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Manufacturer/brand directory (~9K rows). Note the legacy column spelling `Manufacturor` appears in some related tables — see quirks reference. Items reference a manufacturer; vendors do not.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

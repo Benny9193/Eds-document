@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Master record for a participating school district or other public entity (~979 rows). Top of the customer hierarchy. Budgets, approval chains, and price plans attach here. Treat as effectively static — bulk changes propagate everywhere.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

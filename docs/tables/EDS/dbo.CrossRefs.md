@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Vendor-item cross-reference (~171M rows — by far the hottest table in EDS). Maps a vendor's part number to an EDS `Items` master record with vendor-specific price, pack size, and effective dates. This is where pricing actually lives. Always filter or `TOP n` when querying — full scans are catastrophic.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

@@ -1,7 +1,7 @@
 # Table: `dbo.CopyRequests`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 24666
+**Approx rows:** 24667
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

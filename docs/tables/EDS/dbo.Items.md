@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Master product catalog (~44M rows) — normalized, vendor-agnostic items that vendor offerings link to via `CrossRefs`. Categorized by `Category` and (where applicable) attributed to a `Manufacturers` record.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

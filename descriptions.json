@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "purpose": "Curated business descriptions for EDS objects. Consumed by src/introspect.js (injects into per-table pages), src/generate-guide.js (curated guide), and src/generate-ms-description-sql.js (extended properties).",
+    "format": "EDS.<schema>.<object>: 1-3 sentence description in plain English. Cross-DB keys allowed.",
+    "scope": "Curated set of the most load-bearing tables in the EDS production catalog. Add entries as needed; missing entries simply skip injection."
+  },
+
+  "EDS.dbo.Requisitions": "Header record for every purchase request created in EDS. One row per requisition; line items live in `Detail`. Drives the approval workflow that ultimately produces a PO. Belongs to a District and originating User.",
+  "EDS.dbo.Detail": "Line items for both requisitions and purchase orders — ~30M rows, the largest transactional table in the procurement chain. Each row links back to its `Requisitions` (and after conversion, to its `PO`) and references either a vendor catalog item via `CrossRefs` or a free-text entry. Pricing, quantities, and account distribution all live here.",
+  "EDS.dbo.Approvals": "Per-step approval audit trail (~8M rows). Records who approved or rejected each requisition at each level of the district's approval chain, with timestamp and any comment. Combined with `PendingApprovals` to drive the queue an approver sees in the UI.",
+  "EDS.dbo.PendingApprovals": "Active work queue — one row per (requisition, approver) pair currently awaiting action. Rows are deleted as approvers act; historical record is preserved in `Approvals`.",
+  "EDS.dbo.PO": "Purchase order header (~2.5M rows). Created when a requisition reaches final approval and is converted. One PO has many `PODetailItems` lines and references the originating `Requisitions` row 1:1.",
+  "EDS.dbo.PODetailItems": "PO line-item detail (~24.5M rows). Snapshot of item, quantity, unit price, and account split at the moment of PO issuance. Independent from `Detail` — Detail can change after PO issuance, PODetailItems is the immutable contractual record.",
+  "EDS.dbo.POStatus": "Lookup table of PO lifecycle states (open, partial, received, closed, voided, etc.) joined to `PO` via status code.",
+  "EDS.dbo.RequisitionChangeLog": "Append-only audit log of edits to requisition headers and lines (~1.9M rows). Captures field-level before/after values with user and timestamp. Used for the requisition history view.",
+  "EDS.dbo.DetailChangeLog": "Append-only audit log of edits to `Detail` rows (~2.9M rows). Same structure as `RequisitionChangeLog` but scoped to line items.",
+
+  "EDS.dbo.Vendors": "Master vendor record — supplier directory for the whole platform (~19K rows). One row per vendor company. The `Active` column (tinyint) gates whether a vendor's catalogs and bid responses are visible to buyers; mutating it has system-wide effect.",
+  "EDS.dbo.VendorContacts": "Named contacts (sales reps, AP contacts, etc.) attached to a vendor. Used for PO routing, bid notifications, and dispute correspondence.",
+  "EDS.dbo.VendorUploads": "Log of every vendor catalog or pricing file submitted (~1.5M rows). Tracks file name, vendor, upload type, status, and the eventual import result. Direct writes to `CrossRefs` should always trace back to a row here.",
+  "EDS.dbo.Catalog": "Vendor-published catalog — a named container that groups a set of `CrossRefs` entries (~4K rows). One vendor may publish multiple catalogs (e.g., per product line or per bid award).",
+  "EDS.dbo.CrossRefs": "Vendor-item cross-reference (~171M rows — by far the hottest table in EDS). Maps a vendor's part number to an EDS `Items` master record with vendor-specific price, pack size, and effective dates. This is where pricing actually lives. Always filter or `TOP n` when querying — full scans are catastrophic.",
+  "EDS.dbo.Items": "Master product catalog (~44M rows) — normalized, vendor-agnostic items that vendor offerings link to via `CrossRefs`. Categorized by `Category` and (where applicable) attributed to a `Manufacturers` record.",
+  "EDS.dbo.Category": "Top-level product taxonomy (~134 rows). Small, stable lookup — used for browse, reporting rollups, and price-plan scoping.",
+  "EDS.dbo.Manufacturers": "Manufacturer/brand directory (~9K rows). Note the legacy column spelling `Manufacturor` appears in some related tables — see quirks reference. Items reference a manufacturer; vendors do not.",
+
+  "EDS.dbo.BidHeaders": "Bid solicitation header (~9.6K rows). One row per RFP/IFB/cooperative bid issued to vendors. Drives the bid-response window and ultimately produces `Awards`.",
+  "EDS.dbo.BidHeaderDetail": "Per-line bid specifications (~123M rows — second-largest table in EDS). Holds the items, specs, and quantities a bid is asking vendors to price. Always filter by `BidHeaderId` before any analytical work.",
+  "EDS.dbo.BidRequestItems": "Items the bid is asking about (~27.9M rows) — paired with `BidHeaderDetail` to define the buy. Vendor responses to these line items land in `BidResults`.",
+  "EDS.dbo.BidItems": "Master list of items eligible to appear on bids (~27.5M rows). Distinct from `BidRequestItems` (request-time snapshot) — this is the catalog side.",
+  "EDS.dbo.Bids": "Vendor bid response header (~147K rows). One row per (bid, vendor) submission, indicating intent to respond and submission status. Line-by-line responses are in `BidResults`.",
+  "EDS.dbo.BidResults": "Vendor line-item bid responses (~33.2M rows) — the prices, lead times, and notes a vendor submitted for each `BidRequestItems` line they chose to bid on.",
+  "EDS.dbo.Awards": "Bid award outcomes (~139K rows). Records which vendor's `BidResults` were chosen for each awarded line, including award date and award type. Awarded prices typically flow back into `CrossRefs` via a vendor catalog upload.",
+  "EDS.dbo.BidAnswers": "Vendor responses to non-pricing bid questions (~552K rows) — terms, certifications, attribute confirmations.",
+
+  "EDS.dbo.District": "Master record for a participating school district or other public entity (~979 rows). Top of the customer hierarchy. Budgets, approval chains, and price plans attach here. Treat as effectively static — bulk changes propagate everywhere.",
+  "EDS.dbo.School": "Schools/buildings beneath a district (~6.6K rows). Used for ship-to address and reporting rollups; not a security boundary.",
+  "EDS.dbo.Users": "Master user directory (~345K rows) — every person with login or named-recipient status across all districts. `Active` flag controls login eligibility; deletion is rare (audit references).",
+  "EDS.dbo.UserAccounts": "Per-user budget account permissions (~3.4M rows). Joins users to the `BudgetAccounts` they're allowed to charge against. Drives the account dropdown shown when building a requisition.",
+
+  "EDS.dbo.BudgetAccounts": "District budget accounts / charge codes (~1.4M rows). Hierarchical (often fund-function-object), district-scoped. Requisition lines distribute against rows here.",
+  "EDS.dbo.PricePlans": "Named price-plan definitions (~585 rows) — controls which categories/vendors are visible to which districts at what pricing tier. Small but pivotal: changes here change what buyers see.",
+
+  "EDS.dbo.Audit": "Generic audit log (~2.6M rows) — application-level events (logins, permission changes, data exports, admin actions). Distinct from the change-log tables, which are field-level.",
+  "EDS.dbo.TransactionLog_HISTORY": "Long-tail historical event log (~124M rows). Cold storage — query with date filters and expect slow reads. Rarely needed for operational work; kept for compliance.",
+
+  "EDS.dbo.OrderBookDetail": "Aggregated order/spending facts used by reporting (~37.8M rows). Fed from completed `PODetailItems`. The `OrderBookDetailOld` table (~187M rows) is the prior-format archive — read but do not write.",
+  "EDS.dbo.OrderBookDetailOld": "Legacy archive of `OrderBookDetail` (~187M rows). Read-only; all new spend rolls up into `OrderBookDetail`.",
+
+  "EDS.dbo.ReportSession": "User-facing report executions (~5.4M rows) — what reports were run, by whom, with which parameters.",
+  "EDS.dbo.ReportSessionLinks": "Per-session output links (~52.7M rows) — joins a report session to the rows it generated, used to support drill-throughs and saved exports.",
+
+  "EDS.dbo.BatchDetail": "Staging table for batch-imported requisition / order detail (~5M rows). Holds raw character-typed values (`OrigType`, `OrigDistrictCode`, `OrigCometCode`, `OrigItemCode`, `OrigQuantity`) alongside their resolved IDs so the importer can report and back-out errors. `ErrorField` flags malformed rows.",
+  "EDS.dbo.BidProductLinePrices": "Manufacturer product-line discount tiers offered by a vendor on a bid (~1.3M rows). `RangeBase` is the dollar floor for the tier; `DiscountRate` is the percent off list. Joins a `BidProductLines` row to its tiered pricing structure.",
+  "EDS.dbo.BidMappedItems": "Audit of item remapping decisions made during bid setup. Records the original `OrigItemId`, the chosen `NewItemId`, a `ReasonCode`, and the date — so award lineage stays explicit when a bid line is re-pointed at a different master item.",
+  "EDS.dbo.BidRequestPriceRanges": "Quantity / dollar tier definitions a bid is asking vendors to price against (~1.9M rows). Tied to a `BidHeaderId` and (optionally) a manufacturer/product-line, with a `RangeBase` floor and `RangeWeight` used to compute the weighted bid score.",
+  "EDS.dbo.BidAnswersJournal": "Append-only change history for `BidAnswers` (~1.3M rows). Captures the prior value, session, and modification timestamp every time a vendor edits a non-pricing bid response.",
+  "EDS.dbo.BidMSRPResultPrices": "Per-tier MSRP-discount results submitted by a vendor on an MSRP-style bid (~423K rows). One row per `BidRequestPriceRange` per vendor result, with the discount-applied price.",
+  "EDS.dbo.BidRequestOptions": "Optional bid-line attributes per (manufacturer, product line) — color, capacity, etc. Each row weights one named option for use in vendor evaluation.",
+  "EDS.dbo.EmailBlastLog": "Audit of every transactional / marketing email sent from the platform (~1.5M rows). Captures sender, recipient, CC/BCC, send date, and the rendered XML payload. `Attachment` is the file name, not the content.",
+  "EDS.dbo.ImportDetail": "Raw rows captured from a generic file import (~883K rows). One row of `ImportData` per source line, scoped to an `ImportId` header. Read after parsing to inspect malformed input.",
+  "EDS.dbo.IPQueueUsers": "Per-user import-process queue assignments (~490K rows). Tracks `Requested`, `Started`, `Completed` timestamps and `Status` so background work can be parallelized and resumed.",
+  "EDS.dbo.POQueueItems": "Outbound PO transmission queue (~401K rows). One row per PO send attempt, with `SendStarted`, `SendEnded`, `SendStatus` and a `PayloadId` referencing the rendered cXML / email body.",
+  "EDS.dbo.PricingConsolidatedOrderCounts": "Demand-history counts feeding the consolidated-pricing analytics pipeline (~401K rows). One row per (`BidHeaderId`, `ItemId`) with `OrderCount` — used to weight bid evaluation by realized buying patterns.",
+  "EDS.dbo.RTK_ReportItems": "New Jersey Right-To-Know chemical-reporting line items (~1M rows). Joins district + site + category + item + quantity, paired with `RTK_Sites` (locations) and `RTK_Items` (chemical detail). Feeds the annual NJ RTK survey.",
+  "EDS.dbo.DetailNotifications": "Buyer-facing notifications about line-item changes (~3M rows). When a vendor substitutes or replaces an item the system writes a row here capturing the original vs. new `ItemId`, `VendorId`, and `BidPrice` so the buyer can review.",
+  "EDS.dbo.TaskSchedule": "Bid-cycle / pricing-cycle work schedule (~1.5M rows). Tracks original, projected, and actual start/end dates for each task in a project, scoped by district, category, and price plan.",
+  "EDS.dbo.SessionTable": "Active and recent user-session state (~12.8M rows). Holds the user's current district, school, requisition, PO, budget, mode, and screen state. Hot during business hours; queried heavily on every page load.",
+  "EDS.dbo.DMSVendorBidDocuments": "Document metadata for vendor bid attachments stored in the document-management system (~750K rows). One row per uploaded file with `DocType`, `ExpirationDate`, page count, and a `DocId` GUID pointing into DMS storage.",
+  "EDS.dbo.CatalogTextParts": "Tokenized catalog text for full-text search (~17M rows). One row per text fragment per `CatalogText` entry with a `BaseOffset` so the original text can be reassembled. Rebuilt during catalog imports.",
+  "EDS.dbo.HeaderWorkItems": "Working set of items being aggregated into an OrderBook header (~492K rows). Transient — populated during OrderBook generation and emptied when the run completes.",
+
+  "EDS.VMS.vw_Login": "Vendor-portal login lookup view. Used by the vendor-management UI to authenticate and resolve a vendor's accessible bids.",
+  "EDS.VMS.vw_BidsByVendor": "Vendor-portal view listing bids visible to each vendor — the per-vendor cut of `BidHeaders` joined with award status. Drives the vendor's bid-list screen.",
+
+  "EDS.EDSIQWebUser.OrderBookView": "Reporting view over consolidated order data — top-level grain, suitable for dashboard summaries.",
+  "EDS.EDSIQWebUser.OrderBookDetailView": "Reporting view exposing line-level OrderBook detail — the drill-through target from `OrderBookView`.",
+  "EDS.EDSIQWebUser.POAccountList": "Reporting view listing PO line items by budget account — used for budget-utilization reports.",
+
+  "Catalogs.dbo.Master Catalog": "Consolidated cross-vendor master catalog used as the import target for catalog file processing (~144M rows — the largest table on the server). Read-heavy; rebuilt by the catalog-import pipeline.",
+  "Catalogs.dbo.CatalogImports": "Catalog-import job audit (~405 rows) — one row per upload run, capturing source, status, and outcome counts.",
+  "Catalogs.dbo.uniqueCodes": "Dedup helper for catalog imports (~331K rows) — tracks unique vendor part / item codes already seen so subsequent runs can skip duplicates.",
+  "Catalogs.dbo.Grainger Jan 2019": "Frozen snapshot of the Grainger January 2019 catalog feed (~1.5M rows). One of several Grainger snapshots in this DB (`Grainger Jan 2015`, `…Jan 2016`, `…Jan 2017`, `…Jan 2017 Revised`, `…Feb 2018`, `…May 2018`, `…May 2017`, `…May 2016`). Kept for historical pricing comparisons.",
+
+  "ProcurementAnalytics.dbo.Entities": "Customer entities (districts and other public organizations) participating in cooperative procurement — analytics-side master record. Distinct from `EDS.dbo.District` and includes additional analytics fields like `StudentCount`, `Population`, `Region`.",
+  "ProcurementAnalytics.dbo.Vendors": "Analytics-side vendor master. Smaller and cleaner than `EDS.dbo.Vendors` — kept in sync via the analytics ETL.",
+  "ProcurementAnalytics.dbo.Contracts": "Cooperative-contract master used for spend analytics. Captures contract value, term, negotiated savings, status, and auto-renew settings per (vendor, contract).",
+  "ProcurementAnalytics.dbo.PurchaseOrders": "PO header — analytics flatten of EDS PO data with denormalized department / cost-center / project-code fields and lifecycle dates.",
+  "ProcurementAnalytics.dbo.PurchaseOrderLines": "PO line detail joined back to its `PurchaseOrders` header. Holds qty, unit price, line total, UoM, and received qty for variance analysis.",
+  "ProcurementAnalytics.dbo.SpendTransactions": "Atomic spend events feeding the analytics fact tables. Each row pairs a PO line with a contract (or `IsOffContract = 1` for maverick spend) plus fiscal-period attributes.",
+  "ProcurementAnalytics.dbo.EntitySpend": "Bridge linking an `Entity` to a `SpendTransaction` so spend can be rolled up by entity without re-traversing the PO chain.",
+  "ProcurementAnalytics.dbo.VendorPerformance": "Periodic vendor scorecards — on-time-delivery percent, quality, defect rate, responsiveness, cost competitiveness, and overall score. Drives vendor ranking and renewal recommendations.",
+  "ProcurementAnalytics.dbo.EntityVendors": "Many-to-many of which vendors each entity transacts with, including the relationship start date and a primary-vendor flag.",
+  "ProcurementAnalytics.dbo.EntityBudgets": "Per-entity, per-fiscal-year budget allocations by category. `AllocatedAmount` is the original amount; `AmendedAmount` reflects mid-year revisions.",
+  "ProcurementAnalytics.dbo.BudgetAllocations": "Org-level budget allocations (department / cost center / project / category) used as the rollup target for entity-level spend analytics."
+}

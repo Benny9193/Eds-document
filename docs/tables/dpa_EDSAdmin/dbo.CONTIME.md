@@ -1,7 +1,7 @@
 # Table: `dbo.CONTIME`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 268754
+**Approx rows:** 268576
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

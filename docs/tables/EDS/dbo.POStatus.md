@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Lookup table of PO lifecycle states (open, partial, received, closed, voided, etc.) joined to `PO` via status code.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

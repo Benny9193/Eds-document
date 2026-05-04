@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/index.js",
     "test:connection": "node src/test-connection.js",
-    "schema": "node src/introspect.js"
+    "schema": "node src/introspect.js",
+    "procs": "node src/document-procedures.js",
+    "guide": "node src/generate-guide.js",
+    "descriptions:sql": "node src/generate-ms-description-sql.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

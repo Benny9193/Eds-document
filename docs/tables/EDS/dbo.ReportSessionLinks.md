@@ -1,9 +1,13 @@
 # Table: `dbo.ReportSessionLinks`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 52717831
+**Approx rows:** 52719356
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Per-session output links (~52.7M rows) — joins a report session to the rows it generated, used to support drill-throughs and saved exports.
 
 ## Columns
 

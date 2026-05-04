@@ -6,6 +6,6 @@
 
 ### Tables
 
-| Table | Rows |
-|-------|------|
-| [`dbo.xmlData`](dbo.xmlData.md) | 0 |
+| Table | Rows | Description |
+|-------|------|-------------|
+| [`dbo.xmlData`](dbo.xmlData.md) | 0 |  |

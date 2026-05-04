@@ -6,6 +6,23 @@ const { query, close } = require('./db');
 const ROOT = path.join(__dirname, '..');
 const SCHEMA_MD_PATH = path.join(ROOT, 'SCHEMA.md');
 const TABLES_DIR = path.join(ROOT, 'docs', 'tables');
+const DESCRIPTIONS_PATH = path.join(ROOT, 'descriptions.json');
+
+function loadDescriptions() {
+  if (!fs.existsSync(DESCRIPTIONS_PATH)) return new Map();
+  const raw = JSON.parse(fs.readFileSync(DESCRIPTIONS_PATH, 'utf8'));
+  const m = new Map();
+  for (const [k, v] of Object.entries(raw)) {
+    if (k.startsWith('_')) continue;
+    if (typeof v !== 'string' || !v.trim()) continue;
+    m.set(k, v.trim());
+  }
+  return m;
+}
+
+function descriptionFor(descriptions, dbName, schema, name) {
+  return descriptions.get(`${dbName}.${schema}.${name}`) || null;
+}
 
 function safeSegment(s) {
   return String(s).replace(/[^A-Za-z0-9._-]/g, '_');
@@ -178,7 +195,7 @@ function renderColumns(out, cols, pkCols) {
   out.push('');
 }
 
-function renderViewPage(dbName, t, info, knownTables) {
+function renderViewPage(dbName, t, info, knownTables, descriptions) {
   const schema = t.TABLE_SCHEMA;
   const view = t.TABLE_NAME;
   const fq = `${schema}.${view}`;
@@ -214,6 +231,14 @@ function renderViewPage(dbName, t, info, knownTables) {
   }
   out.push('[← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)');
   out.push('');
+
+  const desc = descriptionFor(descriptions, dbName, schema, view);
+  if (desc) {
+    out.push('## Description');
+    out.push('');
+    out.push(desc);
+    out.push('');
+  }
 
   out.push('## Columns');
   out.push('');
@@ -289,7 +314,7 @@ function renderViewPage(dbName, t, info, knownTables) {
   return out.join('\n');
 }
 
-function renderTablePage(dbName, t, info, knownTables) {
+function renderTablePage(dbName, t, info, knownTables, descriptions) {
   const schema = t.TABLE_SCHEMA;
   const table = t.TABLE_NAME;
   const fq = `${schema}.${table}`;
@@ -303,6 +328,14 @@ function renderTablePage(dbName, t, info, knownTables) {
   out.push('');
   out.push('[← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)');
   out.push('');
+
+  const desc = descriptionFor(descriptions, dbName, schema, table);
+  if (desc) {
+    out.push('## Description');
+    out.push('');
+    out.push(desc);
+    out.push('');
+  }
 
   out.push('## Columns');
   out.push('');
@@ -388,7 +421,13 @@ function renderTablePage(dbName, t, info, knownTables) {
   return out.join('\n');
 }
 
-function renderDbIndex(dbName, info) {
+function shortDesc(d) {
+  if (!d) return '';
+  const oneLine = d.replace(/\s+/g, ' ').trim();
+  return oneLine.length > 160 ? oneLine.slice(0, 157) + '…' : oneLine;
+}
+
+function renderDbIndex(dbName, info, descriptions) {
   const out = [];
   out.push(`# Database: \`${dbName}\``);
   out.push('');
@@ -414,12 +453,13 @@ function renderDbIndex(dbName, info) {
     if (tables.length) {
       out.push('### Tables');
       out.push('');
-      out.push('| Table | Rows |');
-      out.push('|-------|------|');
+      out.push('| Table | Rows | Description |');
+      out.push('|-------|------|-------------|');
       for (const t of tables) {
         const rc = rcMap.get(`${schema}.${t.TABLE_NAME}`);
+        const desc = shortDesc(descriptionFor(descriptions, dbName, schema, t.TABLE_NAME));
         out.push(
-          `| [\`${schema}.${t.TABLE_NAME}\`](${tableLinkFromDbIndex(schema, t.TABLE_NAME)}) | ${rc ?? ''} |`
+          `| [\`${schema}.${t.TABLE_NAME}\`](${tableLinkFromDbIndex(schema, t.TABLE_NAME)}) | ${rc ?? ''} | ${desc} |`
         );
       }
       out.push('');
@@ -427,11 +467,12 @@ function renderDbIndex(dbName, info) {
     if (views.length) {
       out.push('### Views');
       out.push('');
-      out.push('| View |');
-      out.push('|------|');
+      out.push('| View | Description |');
+      out.push('|------|-------------|');
       for (const v of views) {
+        const desc = shortDesc(descriptionFor(descriptions, dbName, schema, v.TABLE_NAME));
         out.push(
-          `| [\`${schema}.${v.TABLE_NAME}\`](${tableLinkFromDbIndex(schema, v.TABLE_NAME)}) |`
+          `| [\`${schema}.${v.TABLE_NAME}\`](${tableLinkFromDbIndex(schema, v.TABLE_NAME)}) | ${desc} |`
         );
       }
       out.push('');
@@ -452,7 +493,7 @@ function renderDbIndex(dbName, info) {
   return out.join('\n');
 }
 
-function writeDatabaseDocs(dbName, info) {
+function writeDatabaseDocs(dbName, info, descriptions) {
   const dir = path.join(TABLES_DIR, safeSegment(dbName));
   mkdirp(dir);
 
@@ -460,11 +501,11 @@ function writeDatabaseDocs(dbName, info) {
 
   for (const t of info.tables) {
     const md = t.TABLE_TYPE === 'VIEW'
-      ? renderViewPage(dbName, t, info, knownTables)
-      : renderTablePage(dbName, t, info, knownTables);
+      ? renderViewPage(dbName, t, info, knownTables, descriptions)
+      : renderTablePage(dbName, t, info, knownTables, descriptions);
     fs.writeFileSync(tableFile(dbName, t.TABLE_SCHEMA, t.TABLE_NAME), md);
   }
-  fs.writeFileSync(path.join(dir, 'README.md'), renderDbIndex(dbName, info));
+  fs.writeFileSync(path.join(dir, 'README.md'), renderDbIndex(dbName, info, descriptions));
 }
 
 function renderRootSchema(dbsInfo) {
@@ -523,6 +564,9 @@ function renderRootSchema(dbsInfo) {
 
 (async () => {
   try {
+    const descriptions = loadDescriptions();
+    console.log(`Loaded ${descriptions.size} curated description(s) from descriptions.json`);
+
     const dbs = await listUserDatabases();
     console.log(`Found ${dbs.length} user database(s): ${dbs.join(', ') || '(none)'}`);
 
@@ -535,7 +579,7 @@ function renderRootSchema(dbsInfo) {
     for (const db of dbs) {
       try {
         const info = await inspectDatabase(db);
-        writeDatabaseDocs(db, info);
+        writeDatabaseDocs(db, info, descriptions);
         dbsInfo.push({ db, info });
         console.log(`  ${db}: ${info.tables.length} tables/views written`);
       } catch (e) {

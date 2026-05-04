@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Schools/buildings beneath a district (~6.6K rows). Used for ship-to address and reporting rollups; not a security boundary.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

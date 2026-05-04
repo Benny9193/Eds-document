@@ -1,9 +1,13 @@
 # Table: `dbo.Detail`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 32605411
+**Approx rows:** 32608939
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Line items for both requisitions and purchase orders — ~30M rows, the largest transactional table in the procurement chain. Each row links back to its `Requisitions` (and after conversion, to its `PO`) and references either a vendor catalog item via `CrossRefs` or a free-text entry. Pricing, quantities, and account distribution all live here.
 
 ## Columns
 

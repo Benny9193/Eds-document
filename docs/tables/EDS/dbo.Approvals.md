@@ -1,9 +1,13 @@
 # Table: `dbo.Approvals`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 8042015
+**Approx rows:** 8042423
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Per-step approval audit trail (~8M rows). Records who approved or rejected each requisition at each level of the district's approval chain, with timestamp and any comment. Combined with `PendingApprovals` to drive the queue an approver sees in the UI.
 
 ## Columns
 

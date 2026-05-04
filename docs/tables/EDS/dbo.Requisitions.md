@@ -1,9 +1,13 @@
 # Table: `dbo.Requisitions`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 2203866
+**Approx rows:** 2204102
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Header record for every purchase request created in EDS. One row per requisition; line items live in `Detail`. Drives the approval workflow that ultimately produces a PO. Belongs to a District and originating User.
 
 ## Columns
 

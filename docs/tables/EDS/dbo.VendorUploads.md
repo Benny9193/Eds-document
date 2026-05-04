@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Log of every vendor catalog or pricing file submitted (~1.5M rows). Tracks file name, vendor, upload type, status, and the eventual import result. Direct writes to `CrossRefs` should always trace back to a row here.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Vendor responses to non-pricing bid questions (~552K rows) — terms, certifications, attribute confirmations.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

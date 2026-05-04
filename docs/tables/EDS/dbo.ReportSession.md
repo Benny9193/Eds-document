@@ -1,9 +1,13 @@
 # Table: `dbo.ReportSession`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 5445541
+**Approx rows:** 5445708
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+User-facing report executions (~5.4M rows) — what reports were run, by whom, with which parameters.
 
 ## Columns
 

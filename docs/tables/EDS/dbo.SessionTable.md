@@ -1,9 +1,13 @@
 # Table: `dbo.SessionTable`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 12805321
+**Approx rows:** 12805741
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Active and recent user-session state (~12.8M rows). Holds the user's current district, school, requisition, PO, budget, mode, and screen state. Hot during business hours; queried heavily on every page load.
 
 ## Columns
 

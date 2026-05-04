@@ -1,7 +1,7 @@
 # Table: `dbo.SSOLoginTracking`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 188360
+**Approx rows:** 188417
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

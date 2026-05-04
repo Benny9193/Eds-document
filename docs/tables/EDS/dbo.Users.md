@@ -1,9 +1,13 @@
 # Table: `dbo.Users`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 345681
+**Approx rows:** 345682
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Master user directory (~345K rows) — every person with login or named-recipient status across all districts. `Active` flag controls login eligibility; deletion is rare (audit references).
 
 ## Columns
 

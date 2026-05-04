@@ -1,7 +1,7 @@
 # Table: `dbo.CONSPT_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 475963
+**Approx rows:** 476117
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
