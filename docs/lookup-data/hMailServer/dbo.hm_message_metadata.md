@@ -1,0 +1,7 @@
+# Lookup: `dbo.hm_message_metadata`
+
+**Database:** `hMailServer` &nbsp;|&nbsp; **Rows:** 0 &nbsp;|&nbsp; **Generated:** 2026-05-04
+
+[← back to index](../README.md)
+
+_Table is empty._

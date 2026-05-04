@@ -1,0 +1,23 @@
+# Lookup: `dbo.HistoryTableDDL`
+
+**Database:** `SolarWindsOrion` &nbsp;|&nbsp; **Rows:** 15 &nbsp;|&nbsp; **Generated:** 2026-05-04
+
+[← back to index](../README.md)
+
+| HistoryTableDDLID | TableNamePrefix | ObjectName | ObjectType | DDLScript | DatePartString | NumberOfDaysPerPartition | NumberOfDaysAhead | NumberOfDaysSettingId | DeleteBatchSize | MinutesPerInsertBatch | DateTimeColumn | UseUTC |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | ResponseTime_Detail | ResponseTime | Detail | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ResponseTime_Detail_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 1 | 7 | SWNetPerfMon-Settings-Retain Detail | 10000 | 60 |  | false |
+| 2 | ResponseTime_Hourly | ResponseTime | Hourly | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ResponseTime_Hourly_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 1 | 7 | SWNetPerfMon-Settings-Retain Hourly | 10000 | 1440 |  | false |
+| 3 | ResponseTime_Daily | ResponseTime | Daily | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ResponseTime_Daily_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 7 | 8 | SWNetPerfMon-Settings-Retain Daily | 10000 | 60 | DateTime | false |
+| 4 | VolumeUsage_Daily | VolumeUsage | Daily | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[VolumeUsage_Daily_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 7 | 8 | SWNetPerfMon-Settings-Retain Daily | 10000 | 60 | DateTime | false |
+| 5 | VolumeUsage_Detail | VolumeUsage | Detail | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[VolumeUsage_Detail_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 1 | 7 | SWNetPerfMon-Settings-Retain Detail | 10000 | 60 |  | false |
+| 6 | VolumeUsage_Hourly | VolumeUsage | Hourly | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[VolumeUsage_Hourly_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 1 | 7 | SWNetPerfMon-Settings-Retain Hourly | 10000 | 1440 |  | false |
+| 7 | CiscoBuffers_Daily | CiscoBuffers | Daily | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CiscoBuffers_Daily_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 7 | 8 | SWNetPerfMon-Settings-Retain Daily | 10000 | 60 | DateTime | false |
+| 8 | CiscoBuffers_Detail | CiscoBuffers | Detail | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CiscoBuffers_Detail_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 1 | 7 | SWNetPerfMon-Settings-Retain Detail | 10000 | 60 |  | false |
+| 9 | CiscoBuffers_Hourly | CiscoBuffers | Hourly | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CiscoBuffers_Hourly_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 1 | 7 | SWNetPerfMon-Settings-Retain Hourly | 10000 | 1440 |  | false |
+| 10 | CPULoad_Daily | CPULoad | Daily | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CPULoad_Daily_@enddatestr]') AND type in (N'U'))         BEGIN CR… | day | 7 | 8 | SWNetPerfMon-Settings-Retain Daily | 10000 | 60 | DateTime | false |
+| 11 | CPULoad_Detail | CPULoad | Detail | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CPULoad_Detail_@enddatestr]') AND type in (N'U'))         BEGIN C… | day | 1 | 7 | SWNetPerfMon-Settings-Retain Detail | 10000 | 60 |  | false |
+| 12 | CPULoad_Hourly | CPULoad | Hourly | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CPULoad_Hourly_@enddatestr]') AND type in (N'U'))         BEGIN C… | day | 1 | 7 | SWNetPerfMon-Settings-Retain Hourly | 10000 | 1440 |  | false |
+| 13 | LoadAverage_Daily | LoadAverage | Daily | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[LoadAverage_Daily_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 7 | 8 | SWNetPerfMon-Settings-Retain Daily | 10000 | 60 | TimeStampUTC | true |
+| 14 | LoadAverage_Detail | LoadAverage | Detail | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[LoadAverage_Detail_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 1 | 7 | SWNetPerfMon-Settings-Retain Detail | 10000 | 60 |  | true |
+| 15 | LoadAverage_Hourly | LoadAverage | Hourly | IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[LoadAverage_Hourly_@enddatestr]') AND type in (N'U'))         BEGIN … | day | 1 | 7 | SWNetPerfMon-Settings-Retain Hourly | 10000 | 1440 |  | true |

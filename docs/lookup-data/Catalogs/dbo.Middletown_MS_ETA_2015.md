@@ -1,0 +1,43 @@
+# Lookup: `dbo.Middletown MS ETA 2015`
+
+**Database:** `Catalogs` &nbsp;|&nbsp; **Rows:** 35 &nbsp;|&nbsp; **Generated:** 2026-05-04
+
+[← back to index](../README.md)
+
+| Col001 | Col002 | Col003 | Col004 | Col005 |
+| --- | --- | --- | --- | --- |
+| BD4288 | TILES COLOR 1"" PLSTC SET/400 | 6 | 11.62 | * |
+| BD520 | TRANSPARENT RULERS (SET/10) | 6-8 | 1.89 | * |
+| BD906 | CUBES, PLACE VALUE, WOOD SET/1 | 6 | 1.10 | * |
+| BD715 | COUNTERS, 3/4"", TRANS, 6 COLOR | 6 | 1.41 | * |
+| BD5324 | RULER, ANGLE, SET/30 | 6-8 | 15.78 | * |
+| BD5320 | RULER, ANGLE, EACH | 6-8 | 0.49 | * |
+| BD40640 | POPCUBES, 10 COLORS, SET/300 | 6 | 13.49 | * |
+| BD4694 | GRAPH PAPER, CM, 500 SHEETS | 6-8 | 8.64 | * |
+| BD4167 | GRAPH PAPER, 1"", 500 SHEETS | 6,7 | 17.28 | * |
+| BD4678 | STOPWATCH, DIGITAL | 7 | 0.99 | * |
+| BD9674 | GEOBOARD, 11X11 PIN, NO BANDS | 6,8 | 1.25 | * |
+| BD9658 | RUBBER BANDS ASSRTD, 4 OZ | 6,8 | 1.72 | * |
+| BD76083 | COMPASS, CIRCLE MASTER, type set of 30 | 6,8 | 60.17 | * |
+| BD4119 | COMPASS, CIRCLE MASTER, EA | 6,8 | 2.31 | * |
+| BD524 | TAPE MEASURE ENGLISH/METRIC, SET/10, 60 INCH, FIBERGLASS | 6,7 | 1.10 | * |
+| BD875-1 | COINS, PENNIES, SET/100 | 6,7 | 0.68 | * |
+| BD25140 | CUP, WAXED PAPER, 12 OZ PK/100 | 6 | 5.45 | * |
+| BD25135-50 | BAG LUNCH SIZE PAPER PK/50 | 6,7 | 1.39 | * |
+| BD070505 | BASE10 UNITS, YELLOW, SET/100 | 7 | 0.57 | * |
+| BD5552 | BASE10 UNITS, BLUE, SET/100 | 7 | 0.73 | * |
+| BD5521 | BASE10 UNITS, ORANGE, SET/100 | 7 | 0.73 | * |
+| BD40655 | CUBES, COLOR, 1"", WD, SET/100 | 7 | 10.07 | * |
+| BD30008 | RICE, 1 LB (.45 KG) UNCOOKED | 7 | 1.70 | * |
+| BD52178 | CLAY, PLAY DOH,ASST COLORS S/4 | 7 | 4.90 | * |
+| BD5821 | BALLS, TABLE TENNIS SET/6 | 7 | 1.02 | * |
+| BD40818 | GEOM SOLIDS,FOLDING SET/16 | 7 | 24.62 | * |
+| BD521 | YARD/METERSTICK, ECON, SET/10 | 8 | 10.08 | * |
+| BD5314A | PROTRACTOR, STUDENT, SET/20 | 7,8 | 2.75 | * |
+| BD4212A | CUIS ROD, 6 TRAYS OF 74, PLSTC | 8 | 23.39 | * |
+| BD511 | YARD/METER STICK, WD, SET/6 | 8 | 9.65 | * |
+| BD40654 | CUBES COLOR 2CM MNPLT SET/102 | 8 | 5.38 | * |
+| BD4650 | CENTIMETER CUBES, SET/1000 | 8 | 9.84 | * |
+| BD4577C | SPINNERS, NUMBER 0-9, SET/5 | 8 | 1.08 | * |
+| IN4119 | Circle Master Compass | 8 | 2.50 | * |
+| IN715 | Transparent Color Counters 3/4"" (set of 250) | 8 | 2.50 | * |

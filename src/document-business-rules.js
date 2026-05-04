@@ -179,10 +179,10 @@ async function inspectBusinessRules(dbName) {
   // These are pre-computed result sets and represent committed-to derived data.
   const indexedViews = await query(`
     SELECT DISTINCT
-      SCHEMA_NAME(v.schema_id)  AS [view_schema],
-      v.name                    AS [view_name],
+      SCHEMA_NAME(v.schema_id)     AS [view_schema],
+      v.name                       AS [view_name],
       v.with_check_option,
-      v.is_schema_bound,
+      COALESCE(m.is_schema_bound, 0) AS [is_schema_bound],
       v.create_date,
       v.modify_date,
       m.definition
@@ -202,7 +202,8 @@ async function inspectBusinessRules(dbName) {
       v.create_date,
       v.modify_date
     FROM [${dbName}].sys.views v
-    WHERE v.is_schema_bound = 1
+    JOIN [${dbName}].sys.sql_modules m ON m.object_id = v.object_id
+    WHERE m.is_schema_bound = 1
       AND NOT EXISTS (
         SELECT 1 FROM [${dbName}].sys.indexes i
         WHERE i.object_id = v.object_id AND i.type = 1

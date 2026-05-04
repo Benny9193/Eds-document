@@ -1,0 +1,38 @@
+# Lookup: `dbo.StackParticipation`
+
+**Database:** `SolarWindsOrion` &nbsp;|&nbsp; **Rows:** 30 &nbsp;|&nbsp; **Generated:** 2026-05-04
+
+[← back to index](../README.md)
+
+| Id | SystemUuid | UiOrder | UserOverride | RequiresInstall | Stack | Category | CategoryDisplayToken | EntityType | MembershipJoins | MembershipInclude | MembershipExclude | Comment |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 85AC6886-B563-4ADF-9ABA-FB02F79022B3 | 300 |  | false | app | groups | @{R=AppStack.Strings;K=Appstack_Category_groups;D=late} | Orion.Groups |  | All | None | Add all groups |
+| 2 | 35469706-EDB8-486D-B71A-4D7929C618B6 | 400 |  | false | app | applications | @{R=AppStack.Strings;K=Appstack_Category_applications;D=late} | Orion.APM.Application |  | All | None | Add all applications |
+| 3 | FDC81B83-DE1D-46D1-926D-7984BCB39D4C | 600 |  | false | app | transactions | @{R=AppStack.Strings;K=Appstack_Category_transactions;D=late} | Orion.SEUM.Transactions |  | All | None | Add all transactions |
+| 4 | 45C69C2D-0C49-4E48-AB11-82CEBB601312 | 700 |  | false | app | steps | @{R=AppStack.Strings;K=Appstack_Category_steps;D=late} | Orion.SEUM.TransactionSteps |  | All | None | Add all transaction steps |
+| 5 | 9EC66A72-C634-4528-91D6-8E82776752D1 | 800 |  | false | app | servers | @{R=AppStack.Strings;K=Appstack_Category_servers;D=late} | Orion.Nodes |  | (${tableref}.IsServer = 'true' OR ${tableref}.Category = 2) | None | Add nodes, where IsServer = true (updated with rediscovery) |
+| 6 | 5ED921C2-21AB-423B-A2C9-0460485B256C | 800 |  | false | app | servers | @{R=AppStack.Strings;K=Appstack_Category_servers;D=late} | Orion.VIM.VirtualMachines |  | ${tableref}.NodeID IS NULL | None | Add vim virtualmachines, where no matching node |
+| 7 | 88AF1FC4-D6D6-4B31-808D-CEA30160AE28 | 800 |  | false | app | servers | @{R=AppStack.Strings;K=Appstack_Category_servers;D=late} | Orion.Nodes+Orion.VIM.VirtualMachines |  | ${tableref}.NodeID IN (SELECT NodeId FROM Orion.VIM.VirtualMachines WHERE NodeID IS NOT NULL) | None | Add nodes, where matching virtualmachine |
+| 8 | 24B91462-5558-48A7-8421-6E4FAC95BA65 | 800 |  | false | app | servers | @{R=AppStack.Strings;K=Appstack_Category_servers;D=late} | Orion.Nodes+Orion.VIM.Hosts |  | None | ${tableref}.NodeID IN (SELECT NodeId FROM Orion.VIM.Hosts WHERE NodeID IS NOT NULL) | Remove nodes matching vim host, due to existing in hosts category |
+| 9 | BFA6579D-EF77-43B1-AE4B-3305221696B1 | 800 |  | false | app | servers | @{R=AppStack.Strings;K=Appstack_Category_servers;D=late} | Orion.Nodes+Orion.VIM.VCenters |  | None | ${tableref}.NodeID IN (SELECT NodeId FROM Orion.VIM.VCenters WHERE NodeID IS NOT NULL) | Remove nodes matching vim vcenters, due to being in vcenter category |
+| 10 | 962160F9-01F6-4426-BFB7-C9D06B616752 | 800 |  | false | app | servers | @{R=AppStack.Strings;K=Appstack_Category_servers;D=late} | Orion.Nodes+Orion.APM.Application |  | ${tableref}.NodeID IN (Select NodeID FROM Orion.APM.Application WHERE NodeID IS NOT NULL) | None | Add nodes, have an application assigned |
+| 11 | 197D0DB7-57F6-422C-80F8-FF73B24F9B6A | 900 |  | false | app | hosts | @{R=AppStack.Strings;K=Appstack_Category_hosts;D=late} | Orion.Nodes+Orion.VIM.Hosts |  | ${tableref}.NodeID IN (Select NodeID FROM Orion.VIM.Hosts WHERE NodeID IS NOT NULL) | None | Add nodes, having matching vim host |
+| 12 | 1821AB11-8F93-4717-BED9-0B175C3ADBB3 | 900 |  | false | app | hosts | @{R=AppStack.Strings;K=Appstack_Category_hosts;D=late} | Orion.VIM.Hosts |  | ${tableref}.NodeID IS NULL | None | Add vim hosts, where no matching node |
+| 13 | B9696736-4967-46AD-ADE3-B3B0DD88E71E | 920 |  | false | app | clusters | @{R=AppStack.Strings;K=Appstack_Category_clusters;D=late} | Orion.VIM.Clusters |  | All | None | Add all vim clusters |
+| 14 | DEEC2DCD-27C8-43F5-BF0E-EE26C3E34E20 | 930 |  | false | app | vdatacenters | @{R=AppStack.Strings;K=Appstack_Category_vdatacenters;D=late} | Orion.VIM.DataCenters |  | All | None | Add all vim data centers |
+| 15 | 670506B1-743D-494C-B555-9DB6F747E735 | 940 |  | false | app | vcenters | @{R=AppStack.Strings;K=Appstack_Category_vcenters;D=late} | Orion.VIM.VCenters |  | ${tableref}.NodeID IS NULL | None | Add vim vcenters, where no matching node |
+| 16 | 9DC6E27E-81B0-4824-8D91-6C408B33D60A | 940 |  | false | app | vcenters | @{R=AppStack.Strings;K=Appstack_Category_vcenters;D=late} | Orion.Nodes+Orion.VIM.VCenters |  | ${tableref}.NodeID IN (Select NodeID FROM Orion.VIM.VCenters WHERE NodeID IS NOT NULL) | None | Add nodes, having matching vim vcenter |
+| 17 | B27F285E-87C1-4EE2-89BE-71BA97C2E3C5 | 1100 |  | false | app | datastores | @{R=AppStack.Strings;K=Appstack_Category_datastores;D=late} | Orion.VIM.Datastores |  | All | None | Add all datastores |
+| 19 | E0AE4305-0542-4FDF-91BB-0C1198634784 | 1200 |  | false | app | luns | @{R=AppStack.Strings;K=Appstack_Category_luns;D=late} | Orion.SRM.LUNs |  | All | None | Add all LUNs |
+| 20 | 462F56DF-3E69-4B3A-BC41-B9F9DD7F11C2 | 1300 |  | false | app | nasvolumes | @{R=AppStack.Strings;K=Appstack_Category_nasvolumes;D=late} | Orion.SRM.Volumes |  | All | None | Add all NAS volumes |
+| 21 | 192BA1F8-B813-4463-974D-EB5F124E69D8 | 1400 |  | false | app | storagepools | @{R=AppStack.Strings;K=Appstack_Category_storagepools;D=late} | Orion.SRM.Pools |  | All | None | Add all storage pools |
+| 22 | C11D0139-C997-43AA-97FA-3A9B12EBA3C2 | 1450 |  | false | app | vservers | @{R=AppStack.Strings;K=Appstack_Category_vservers;D=late} | Orion.SRM.VServers |  | All | None | Add all storage vservers |
+| 18 | BD4DC200-3021-4F2B-A7DA-A1AC20AC8E88 | 1150 |  | false | app | volumes | @{R=AppStack.Strings;K=Appstack_Category_volumes;D=late} | Orion.Volumes |  | ${tableref}.VolumeTypeID IN (4,10,100) | None | Add *all* physical orion volumes, network disks and mount points. |
+| 23 | 827579F7-4EA2-44CE-BC43-EE2E0C34CB07 | 1500 |  | false | app | arrays | @{R=AppStack.Strings;K=Appstack_Category_arrays;D=late} | Orion.SRM.StorageArrays |  | All | None | Add all storage arrays |
+| 24 | 1EC369A7-06B9-40CD-82D4-B067108CA8C2 | 100 |  | false | tile | networkdevices | @{R=AppStack.Strings;K=Tilestack_Category_NetworkDevices;D=late} | Orion.Nodes |  | ${tableref}.Category = 1 | None | Add all nodes, where Category is Network (updated with rediscovery) |
+| 25 | DC91CC9B-C913-4B22-8171-2E7207FBE82D | 800 |  | false | tile | servers | @{R=AppStack.Strings;K=Tilestack_Category_Servers;D=late} | Orion.Nodes |  | ${tableref}.Category = 2 | None | Add nodes, where Category is Server (updated with rediscovery) |
+| 26 | FA46CC52-7C87-441F-B7CE-8FA28D303C71 | 200 |  | false | tile | virtualhosts | @{R=AppStack.Strings;K=Tilestack_Category_VirtualHosts;D=late} | Orion.VIM.Hosts |  | All | None | Add all VIM Hosts |
+| 27 | E430F7A8-A320-42F5-9EC8-C29925EC8B31 | 400 |  | false | tile | applications | @{R=AppStack.Strings;K=Tilestack_Category_Applications;D=late} | Orion.APM.Application |  | All | None | Add all applications |
+| 28 | D3E00A1B-0B78-41E7-965C-9FC20763DDC3 | 500 |  | false | tile | storagearrays | @{R=AppStack.Strings;K=Tilestack_Category_Storage;D=late} | Orion.SRM.StorageArrays |  | All | None | Add all storage arrays. |
+| 29 | CB4B8C4F-D250-417A-8892-37C207533F35 | 600 |  | false | tile | websites | @{R=AppStack.Strings;K=Tilestack_Category_Websites;D=late} | Orion.SEUM.Transactions |  | All | None | Add all websites. |
+| 30 | 46386537-82BF-4B6C-899A-B1B06A528E9B | 450 |  | false | app | databaseinstances | @{R=AppStack.Strings;K=Tilestack_Category_DatabaseInstances;D=late} | Orion.DPA.DatabaseInstance |  | All | None | Add all database instances |
