@@ -1,7 +1,7 @@
 # Table: `dbo.CON_DEADLOCK_VICTIM_SUM_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 2289
+**Approx rows:** 2295
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

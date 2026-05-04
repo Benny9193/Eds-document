@@ -1,7 +1,7 @@
 # Table: `dbo.CON_HASH_REFRESH`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 127
+**Approx rows:** 124
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

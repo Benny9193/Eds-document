@@ -1,7 +1,7 @@
 # Table: `dbo.CON_SAMPLE_TEN_MIN_EXT_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 4400
+**Approx rows:** 4404
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

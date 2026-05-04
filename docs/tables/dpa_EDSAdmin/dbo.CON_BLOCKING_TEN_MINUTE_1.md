@@ -1,7 +1,7 @@
 # Table: `dbo.CON_BLOCKING_TEN_MINUTE_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 1809
+**Approx rows:** 2063
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

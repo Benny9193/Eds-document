@@ -1,7 +1,7 @@
 # Table: `dbo.CON_BLOCKING_SUM_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 83331
+**Approx rows:** 83737
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

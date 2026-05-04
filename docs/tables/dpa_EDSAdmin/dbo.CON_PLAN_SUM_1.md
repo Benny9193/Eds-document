@@ -1,7 +1,7 @@
 # Table: `dbo.CON_PLAN_SUM_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 525365
+**Approx rows:** 525655
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

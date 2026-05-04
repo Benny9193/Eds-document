@@ -1,7 +1,7 @@
 # Table: `dbo.CON_PLAN_TEN_MINUTE_1`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 32044
+**Approx rows:** 32582
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

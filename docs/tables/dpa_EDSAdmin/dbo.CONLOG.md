@@ -1,7 +1,7 @@
 # Table: `dbo.CONLOG`
 
 **Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 50062
+**Approx rows:** 50229
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

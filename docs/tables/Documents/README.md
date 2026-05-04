@@ -10,17 +10,17 @@
 |-------|------|-------------|
 | [`dbo.AccessTypes`](dbo.AccessTypes.md) | 0 |  |
 | [`dbo.Audit`](dbo.Audit.md) | 0 |  |
-| [`dbo.DocumentFiles`](dbo.DocumentFiles.md) | 602148 |  |
-| [`dbo.Documents`](dbo.Documents.md) | 600590 |  |
+| [`dbo.DocumentFiles`](dbo.DocumentFiles.md) | 602149 |  |
+| [`dbo.Documents`](dbo.Documents.md) | 600591 |  |
 | [`dbo.DocumentTypeFields`](dbo.DocumentTypeFields.md) | 132 |  |
 | [`dbo.DocumentTypeLookupKeys`](dbo.DocumentTypeLookupKeys.md) | 16 |  |
 | [`dbo.DocumentTypeLookupResults`](dbo.DocumentTypeLookupResults.md) | 21 |  |
 | [`dbo.DocumentTypeLookups`](dbo.DocumentTypeLookups.md) | 11 |  |
 | [`dbo.DocumentTypes`](dbo.DocumentTypes.md) | 10 |  |
-| [`dbo.DocumentWorkFiles`](dbo.DocumentWorkFiles.md) | 17740 |  |
+| [`dbo.DocumentWorkFiles`](dbo.DocumentWorkFiles.md) | 17741 |  |
 | [`dbo.droppedDocs`](dbo.droppedDocs.md) | 3195 |  |
 | [`dbo.droppedFieldData`](dbo.droppedFieldData.md) | 32374 |  |
-| [`dbo.FieldData`](dbo.FieldData.md) | 6412782 |  |
+| [`dbo.FieldData`](dbo.FieldData.md) | 6412792 |  |
 | [`dbo.Fields`](dbo.Fields.md) | 142 |  |
 | [`dbo.FileTypes`](dbo.FileTypes.md) | 5 |  |
 | [`dbo.GroupMembers`](dbo.GroupMembers.md) | 0 |  |
