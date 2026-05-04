@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_VendorBidContactAddress`
 
-_Generated on 2026-05-04T13:04:00.660Z_
+_Generated on 2026-05-04T13:04:24.338Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

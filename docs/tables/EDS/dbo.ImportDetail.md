@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Raw rows captured from a generic file import (~883K rows). One row of `ImportData` per source line, scoped to an `ImportId` header. Read after parsing to inspect malformed input.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

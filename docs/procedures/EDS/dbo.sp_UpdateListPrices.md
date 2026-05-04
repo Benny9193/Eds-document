@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_UpdateListPrices`
 
-_Generated on 2026-05-04T13:04:00.471Z_
+_Generated on 2026-05-04T13:04:24.196Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

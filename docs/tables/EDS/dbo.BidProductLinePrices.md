@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Manufacturer product-line discount tiers offered by a vendor on a bid (~1.3M rows). `RangeBase` is the dollar floor for the tier; `DiscountRate` is the percent off list. Joins a `BidProductLines` row to its tiered pricing structure.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

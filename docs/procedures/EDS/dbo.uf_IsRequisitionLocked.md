@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_IsRequisitionLocked`
 
-_Generated on 2026-05-04T13:04:00.554Z_
+_Generated on 2026-05-04T13:04:24.267Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

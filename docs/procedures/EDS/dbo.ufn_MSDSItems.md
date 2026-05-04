@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.ufn_MSDSItems`
 
-_Generated on 2026-05-04T13:04:00.676Z_
+_Generated on 2026-05-04T13:04:24.346Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

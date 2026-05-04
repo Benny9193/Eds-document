@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Append-only change history for `BidAnswers` (~1.3M rows). Captures the prior value, session, and modification timestamp every time a vendor edits a non-pricing bid response.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

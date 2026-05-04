@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Optional bid-line attributes per (manufacturer, product line) — color, capacity, etc. Each row weights one named option for use in vendor evaluation.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

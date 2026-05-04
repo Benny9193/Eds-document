@@ -6,6 +6,10 @@ Updatable: `NO`
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Reporting view exposing line-level OrderBook detail — the drill-through target from `OrderBookView`.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

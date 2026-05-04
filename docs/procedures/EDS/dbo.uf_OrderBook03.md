@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_OrderBook03`
 
-_Generated on 2026-05-04T13:04:00.585Z_
+_Generated on 2026-05-04T13:04:24.293Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

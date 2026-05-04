@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Document metadata for vendor bid attachments stored in the document-management system (~750K rows). One row per uploaded file with `DocType`, `ExpirationDate`, page count, and a `DocId` GUID pointing into DMS storage.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

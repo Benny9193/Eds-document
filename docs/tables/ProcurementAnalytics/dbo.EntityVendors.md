@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Many-to-many of which vendors each entity transacts with, including the relationship start date and a primary-vendor flag.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

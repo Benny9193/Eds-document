@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Atomic spend events feeding the analytics fact tables. Each row pairs a PO line with a contract (or `IsOffContract = 1` for maverick spend) plus fiscal-period attributes.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

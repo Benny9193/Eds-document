@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Analytics-side vendor master. Smaller and cleaner than `EDS.dbo.Vendors` — kept in sync via the analytics ETL.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

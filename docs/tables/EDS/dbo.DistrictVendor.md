@@ -1,7 +1,7 @@
 # Table: `dbo.DistrictVendor`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 316648
+**Approx rows:** 316658
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

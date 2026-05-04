@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CopyMSRPVers2BidUsingCursorSave`
 
-_Generated on 2026-05-04T13:04:00.335Z_
+_Generated on 2026-05-04T13:04:24.096Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

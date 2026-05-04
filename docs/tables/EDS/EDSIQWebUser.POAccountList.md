@@ -6,6 +6,10 @@ Updatable: `NO`
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Reporting view listing PO line items by budget account — used for budget-utilization reports.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

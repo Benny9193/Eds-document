@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_NextCometId`
 
-_Generated on 2026-05-04T13:04:00.581Z_
+_Generated on 2026-05-04T13:04:24.290Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

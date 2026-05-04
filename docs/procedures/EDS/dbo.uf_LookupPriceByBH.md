@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_LookupPriceByBH`
 
-_Generated on 2026-05-04T13:04:00.572Z_
+_Generated on 2026-05-04T13:04:24.284Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

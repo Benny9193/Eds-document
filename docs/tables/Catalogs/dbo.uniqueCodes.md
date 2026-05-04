@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Dedup helper for catalog imports (~331K rows) — tracks unique vendor part / item codes already seen so subsequent runs can skip duplicates.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

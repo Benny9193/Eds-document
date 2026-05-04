@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Periodic vendor scorecards — on-time-delivery percent, quality, defect rate, responsiveness, cost competitiveness, and overall score. Drives vendor ranking and renewal recommendations.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

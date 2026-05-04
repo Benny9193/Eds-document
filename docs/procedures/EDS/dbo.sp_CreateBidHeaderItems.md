@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CreateBidHeaderItems`
 
-_Generated on 2026-05-04T13:04:00.341Z_
+_Generated on 2026-05-04T13:04:24.102Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

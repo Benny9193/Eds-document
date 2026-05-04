@@ -102,6 +102,19 @@ Long-running event and history tables. Mostly cold storage — query with date f
 | [`dbo.ReportSession`](docs/tables/EDS/dbo.ReportSession.md) | ~5.4M | User-facing report executions (~5.4M rows) — what reports were run, by whom, with which parameters. |
 | [`dbo.ReportSessionLinks`](docs/tables/EDS/dbo.ReportSessionLinks.md) | ~52.7M | Per-session output links (~52.7M rows) — joins a report session to the rows it generated, used to support drill-throughs and saved exports. |
 
+## Related databases
+
+EDS shares a server with several adjacent databases that come up in analytics and import workflows. Per-table descriptions for these (where curated) live alongside the EDS pages under `docs/tables/<db>/`.
+
+| Database | What it is |
+|----------|------------|
+| [`Catalogs`](docs/tables/Catalogs/README.md) | Catalog import staging — `Master Catalog` (~144M rows) plus historical Grainger snapshots. |
+| [`ProcurementAnalytics`](docs/tables/ProcurementAnalytics/README.md) | Clean, modern analytics flatten of EDS data — entities, vendors, contracts, spend transactions, vendor performance. Different schema conventions (PascalCase, `datetime2`). |
+| [`VendorBids`](docs/tables/VendorBids/README.md) | Vendor-side bid response staging (64 tables; UAT mirror at `VendorBids_TEST`). |
+| [`Documents`](docs/tables/Documents/README.md) | Document-management storage referenced by `EDS.dbo.DMSVendorBidDocuments`. |
+| [`IDIQ_Platform`](docs/tables/IDIQ_Platform/README.md) | Indefinite-Delivery / Indefinite-Quantity contract platform (UAT mirror at `IDIQ_Platform_UAT`). |
+| [`ContentCentral`](docs/tables/ContentCentral/README.md) | Content/CMS data — 141 tables. |
+
 ## Conventions worth knowing
 
 - **PK / FK naming.** Primary keys are usually `{Table}Id` (e.g. `VendorId`); foreign keys reuse the same column name.

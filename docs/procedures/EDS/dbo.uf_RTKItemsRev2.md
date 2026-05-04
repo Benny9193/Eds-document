@@ -1,6 +1,6 @@
 # Function: inline table-valued: `dbo.uf_RTKItemsRev2`
 
-_Generated on 2026-05-04T13:04:00.623Z_
+_Generated on 2026-05-04T13:04:24.313Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

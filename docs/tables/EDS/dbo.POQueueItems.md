@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Outbound PO transmission queue (~401K rows). One row per PO send attempt, with `SendStarted`, `SendEnded`, `SendStatus` and a `PayloadId` referencing the rendered cXML / email body.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

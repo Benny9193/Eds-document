@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_CatalogFtsHighlights`
 
-_Generated on 2026-05-04T13:04:00.513Z_
+_Generated on 2026-05-04T13:04:24.230Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

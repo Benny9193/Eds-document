@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_UpdateMSRPItem`
 
-_Generated on 2026-05-04T13:04:00.472Z_
+_Generated on 2026-05-04T13:04:24.197Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

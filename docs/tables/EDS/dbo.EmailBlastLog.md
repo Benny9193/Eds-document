@@ -1,9 +1,13 @@
 # Table: `dbo.EmailBlastLog`
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 1546626
+**Approx rows:** 1546807
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Description
+
+Audit of every transactional / marketing email sent from the platform (~1.5M rows). Captures sender, recipient, CC/BCC, send date, and the rendered XML payload. `Attachment` is the file name, not the content.
 
 ## Columns
 

@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Frozen snapshot of the Grainger January 2019 catalog feed (~1.5M rows). One of several Grainger snapshots in this DB (`Grainger Jan 2015`, `…Jan 2016`, `…Jan 2017`, `…Jan 2017 Revised`, `…Feb 2018`, `…May 2018`, `…May 2017`, `…May 2016`). Kept for historical pricing comparisons.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_NextLowestPriceId`
 
-_Generated on 2026-05-04T13:04:00.583Z_
+_Generated on 2026-05-04T13:04:24.291Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

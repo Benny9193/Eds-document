@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_DistrictPaymentHistory`
 
-_Generated on 2026-05-04T13:04:00.531Z_
+_Generated on 2026-05-04T13:04:24.244Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

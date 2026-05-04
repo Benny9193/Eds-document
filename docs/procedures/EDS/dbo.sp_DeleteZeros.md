@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_DeleteZeros`
 
-_Generated on 2026-05-04T13:04:00.368Z_
+_Generated on 2026-05-04T13:04:24.117Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

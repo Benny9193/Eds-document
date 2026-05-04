@@ -6,6 +6,10 @@ Updatable: `NO`
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Vendor-portal login lookup view. Used by the vendor-management UI to authenticate and resolve a vendor's accessible bids.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

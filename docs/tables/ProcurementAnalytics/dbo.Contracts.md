@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Cooperative-contract master used for spend analytics. Captures contract value, term, negotiated savings, status, and auto-renew settings per (vendor, contract).
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

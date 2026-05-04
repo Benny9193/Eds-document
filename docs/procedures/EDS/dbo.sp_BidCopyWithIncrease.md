@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_BidCopyWithIncrease`
 
-_Generated on 2026-05-04T13:04:00.307Z_
+_Generated on 2026-05-04T13:04:24.070Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

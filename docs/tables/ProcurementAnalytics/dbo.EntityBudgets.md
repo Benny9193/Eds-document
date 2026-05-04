@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Per-entity, per-fiscal-year budget allocations by category. `AllocatedAmount` is the original amount; `AmendedAmount` reflects mid-year revisions.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

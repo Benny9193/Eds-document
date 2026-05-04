@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.fnParseRTF`
 
-_Generated on 2026-05-04T13:04:00.272Z_
+_Generated on 2026-05-04T13:04:24.052Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

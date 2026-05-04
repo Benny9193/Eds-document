@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_SavingsLetterOld`
 
-_Generated on 2026-05-04T13:04:00.628Z_
+_Generated on 2026-05-04T13:04:24.318Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

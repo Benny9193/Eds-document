@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Catalog-import job audit (~405 rows) — one row per upload run, capturing source, status, and outcome counts.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

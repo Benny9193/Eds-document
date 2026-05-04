@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_RemoveHighOrder`
 
-_Generated on 2026-05-04T13:04:00.610Z_
+_Generated on 2026-05-04T13:04:24.307Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_Logout`
 
-_Generated on 2026-05-04T13:04:00.412Z_
+_Generated on 2026-05-04T13:04:24.144Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

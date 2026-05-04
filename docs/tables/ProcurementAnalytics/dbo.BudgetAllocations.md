@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Org-level budget allocations (department / cost center / project / category) used as the rollup target for entity-level spend analytics.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

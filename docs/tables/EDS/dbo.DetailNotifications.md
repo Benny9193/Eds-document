@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Buyer-facing notifications about line-item changes (~3M rows). When a vendor substitutes or replaces an item the system writes a row here capturing the original vs. new `ItemId`, `VendorId`, and `BidPrice` so the buyer can review.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

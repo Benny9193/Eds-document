@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_EndPOSend`
 
-_Generated on 2026-05-04T13:04:00.703Z_
+_Generated on 2026-05-04T13:04:24.358Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

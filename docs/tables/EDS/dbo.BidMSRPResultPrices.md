@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Per-tier MSRP-discount results submitted by a vendor on an MSRP-style bid (~423K rows). One row per `BidRequestPriceRange` per vendor result, with the discount-applied price.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

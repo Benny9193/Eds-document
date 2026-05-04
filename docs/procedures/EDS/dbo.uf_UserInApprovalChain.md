@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_UserInApprovalChain`
 
-_Generated on 2026-05-04T13:04:00.654Z_
+_Generated on 2026-05-04T13:04:24.335Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Per-user import-process queue assignments (~490K rows). Tracks `Requested`, `Started`, `Completed` timestamps and `Status` so background work can be parallelized and resumed.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

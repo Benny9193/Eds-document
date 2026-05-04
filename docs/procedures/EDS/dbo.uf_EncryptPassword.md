@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_EncryptPassword`
 
-_Generated on 2026-05-04T13:04:00.548Z_
+_Generated on 2026-05-04T13:04:24.257Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

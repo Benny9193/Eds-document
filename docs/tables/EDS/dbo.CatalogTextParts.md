@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Tokenized catalog text for full-text search (~17M rows). One row per text fragment per `CatalogText` entry with a `BaseOffset` so the original text can be reassembled. Rebuilt during catalog imports.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

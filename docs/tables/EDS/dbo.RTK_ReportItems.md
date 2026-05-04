@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+New Jersey Right-To-Know chemical-reporting line items (~1M rows). Joins district + site + category + item + quantity, paired with `RTK_Sites` (locations) and `RTK_Items` (chemical detail). Feeds the annual NJ RTK survey.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

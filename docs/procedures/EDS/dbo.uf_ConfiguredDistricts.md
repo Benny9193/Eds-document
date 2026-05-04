@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_ConfiguredDistricts`
 
-_Generated on 2026-05-04T13:04:00.519Z_
+_Generated on 2026-05-04T13:04:24.236Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

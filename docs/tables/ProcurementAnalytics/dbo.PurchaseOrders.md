@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+PO header — analytics flatten of EDS PO data with denormalized department / cost-center / project-code fields and lifecycle dates.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_SetupSearch`
 
-_Generated on 2026-05-04T13:04:00.649Z_
+_Generated on 2026-05-04T13:04:24.327Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

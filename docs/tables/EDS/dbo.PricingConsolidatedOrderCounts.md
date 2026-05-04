@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Demand-history counts feeding the consolidated-pricing analytics pipeline (~401K rows). One row per (`BidHeaderId`, `ItemId`) with `OrderCount` — used to weight bid evaluation by realized buying patterns.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

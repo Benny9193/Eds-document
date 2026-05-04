@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_AwardBidHeader`
 
-_Generated on 2026-05-04T13:04:00.287Z_
+_Generated on 2026-05-04T13:04:24.060Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

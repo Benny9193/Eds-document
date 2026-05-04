@@ -162,6 +162,19 @@ function tableLink(schema, table) {
       lines.push('');
     }
 
+    lines.push('## Related databases');
+    lines.push('');
+    lines.push('EDS shares a server with several adjacent databases that come up in analytics and import workflows. Per-table descriptions for these (where curated) live alongside the EDS pages under `docs/tables/<db>/`.');
+    lines.push('');
+    lines.push('| Database | What it is |');
+    lines.push('|----------|------------|');
+    lines.push('| [`Catalogs`](docs/tables/Catalogs/README.md) | Catalog import staging — `Master Catalog` (~144M rows) plus historical Grainger snapshots. |');
+    lines.push('| [`ProcurementAnalytics`](docs/tables/ProcurementAnalytics/README.md) | Clean, modern analytics flatten of EDS data — entities, vendors, contracts, spend transactions, vendor performance. Different schema conventions (PascalCase, `datetime2`). |');
+    lines.push('| [`VendorBids`](docs/tables/VendorBids/README.md) | Vendor-side bid response staging (64 tables; UAT mirror at `VendorBids_TEST`). |');
+    lines.push('| [`Documents`](docs/tables/Documents/README.md) | Document-management storage referenced by `EDS.dbo.DMSVendorBidDocuments`. |');
+    lines.push('| [`IDIQ_Platform`](docs/tables/IDIQ_Platform/README.md) | Indefinite-Delivery / Indefinite-Quantity contract platform (UAT mirror at `IDIQ_Platform_UAT`). |');
+    lines.push('| [`ContentCentral`](docs/tables/ContentCentral/README.md) | Content/CMS data — 141 tables. |');
+    lines.push('');
     lines.push('## Conventions worth knowing');
     lines.push('');
     lines.push('- **PK / FK naming.** Primary keys are usually `{Table}Id` (e.g. `VendorId`); foreign keys reuse the same column name.');

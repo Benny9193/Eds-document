@@ -1,6 +1,6 @@
 # Procedure: `dbo.dt_getobjwithprop`
 
-_Generated on 2026-05-04T13:04:00.252Z_
+_Generated on 2026-05-04T13:04:24.042Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

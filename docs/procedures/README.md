@@ -1,6 +1,6 @@
 # Procedures & Functions
 
-_Generated on 2026-05-04T13:04:00.773Z_
+_Generated on 2026-05-04T13:04:24.435Z_
 
 **Server:** `eds-sqlserver.eastus2.cloudapp.azure.com`
 
@@ -12,7 +12,7 @@ and is _not_ touched by `npm run schema`.
 
 | Database | Procedures | Functions | Encrypted |
 |----------|------------|-----------|-----------|
-| `EDS` | _error_ | _error_ | _error_ |
+| [`EDS`](EDS/README.md) | 377 | 217 | 0 |
 
 ## Source queries
 

@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+PO line detail joined back to its `PurchaseOrders` header. Holds qty, unit price, line total, UoM, and received qty for variance analysis.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

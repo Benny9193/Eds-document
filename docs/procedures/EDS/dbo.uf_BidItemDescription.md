@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_BidItemDescription`
 
-_Generated on 2026-05-04T13:04:00.504Z_
+_Generated on 2026-05-04T13:04:24.224Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

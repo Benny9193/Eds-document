@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Bridge linking an `Entity` to a `SpendTransaction` so spend can be rolled up by entity without re-traversing the PO chain.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

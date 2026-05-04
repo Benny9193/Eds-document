@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_LineCount`
 
-_Generated on 2026-05-04T13:04:00.556Z_
+_Generated on 2026-05-04T13:04:24.268Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

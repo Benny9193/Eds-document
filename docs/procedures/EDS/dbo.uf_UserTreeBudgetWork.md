@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_UserTreeBudgetWork`
 
-_Generated on 2026-05-04T13:04:00.658Z_
+_Generated on 2026-05-04T13:04:24.337Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

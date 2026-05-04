@@ -6,6 +6,10 @@ Updatable: `NO`
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Vendor-portal view listing bids visible to each vendor — the per-vendor cut of `BidHeaders` joined with award status. Drives the vendor's bid-list screen.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

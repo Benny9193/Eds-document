@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_ContinuanceAcceptance`
 
-_Generated on 2026-05-04T13:04:00.694Z_
+_Generated on 2026-05-04T13:04:24.354Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

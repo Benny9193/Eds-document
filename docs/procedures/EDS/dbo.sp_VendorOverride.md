@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_VendorOverride`
 
-_Generated on 2026-05-04T13:04:00.486Z_
+_Generated on 2026-05-04T13:04:24.207Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

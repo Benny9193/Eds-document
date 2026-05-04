@@ -1,6 +1,6 @@
 # Procedure: `dbo.usp_SetBidItemAIData`
 
-_Generated on 2026-05-04T13:04:00.753Z_
+_Generated on 2026-05-04T13:04:24.387Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

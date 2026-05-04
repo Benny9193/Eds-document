@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_UpdateShippingCode`
 
-_Generated on 2026-05-04T13:04:00.482Z_
+_Generated on 2026-05-04T13:04:24.203Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

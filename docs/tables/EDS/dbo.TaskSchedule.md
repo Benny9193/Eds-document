@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Bid-cycle / pricing-cycle work schedule (~1.5M rows). Tracks original, projected, and actual start/end dates for each task in a project, scoped by district, category, and price plan.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

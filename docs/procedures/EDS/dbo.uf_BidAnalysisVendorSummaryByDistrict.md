@@ -1,6 +1,6 @@
 # Function: inline table-valued: `dbo.uf_BidAnalysisVendorSummaryByDistrict`
 
-_Generated on 2026-05-04T13:04:00.503Z_
+_Generated on 2026-05-04T13:04:24.224Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

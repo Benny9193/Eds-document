@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Working set of items being aggregated into an OrderBook header (~492K rows). Transient — populated during OrderBook generation and emptied when the run completes.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

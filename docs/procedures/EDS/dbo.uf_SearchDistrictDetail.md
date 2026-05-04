@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.uf_SearchDistrictDetail`
 
-_Generated on 2026-05-04T13:04:00.637Z_
+_Generated on 2026-05-04T13:04:24.322Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

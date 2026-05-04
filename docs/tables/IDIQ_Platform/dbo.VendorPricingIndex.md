@@ -1,7 +1,7 @@
 # Table: `dbo.VendorPricingIndex`
 
 **Database:** `IDIQ_Platform` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 116
+**Approx rows:** 125
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

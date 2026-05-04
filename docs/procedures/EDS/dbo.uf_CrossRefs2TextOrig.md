@@ -1,6 +1,6 @@
 # Function: scalar: `dbo.uf_CrossRefs2TextOrig`
 
-_Generated on 2026-05-04T13:04:00.524Z_
+_Generated on 2026-05-04T13:04:24.239Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

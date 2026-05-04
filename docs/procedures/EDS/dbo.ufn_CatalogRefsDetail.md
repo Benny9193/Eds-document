@@ -1,6 +1,6 @@
 # Function: table-valued: `dbo.ufn_CatalogRefsDetail`
 
-_Generated on 2026-05-04T13:04:00.669Z_
+_Generated on 2026-05-04T13:04:24.342Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Customer entities (districts and other public organizations) participating in cooperative procurement — analytics-side master record. Distinct from `EDS.dbo.District` and includes additional analytics fields like `StudentCount`, `Population`, `Region`.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

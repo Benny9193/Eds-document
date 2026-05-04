@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Quantity / dollar tier definitions a bid is asking vendors to price against (~1.9M rows). Tied to a `BidHeaderId` and (optionally) a manufacturer/product-line, with a `RangeBase` floor and `RangeWeight` used to compute the weighted bid score.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

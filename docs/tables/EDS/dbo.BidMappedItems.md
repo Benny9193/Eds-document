@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Audit of item remapping decisions made during bid setup. Records the original `OrigItemId`, the chosen `NewItemId`, a `ReasonCode`, and the date — so award lineage stays explicit when a bid line is re-pointed at a different master item.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

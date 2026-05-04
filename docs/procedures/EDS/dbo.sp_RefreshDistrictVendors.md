@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_RefreshDistrictVendors`
 
-_Generated on 2026-05-04T13:04:00.437Z_
+_Generated on 2026-05-04T13:04:24.174Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

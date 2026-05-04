@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Staging table for batch-imported requisition / order detail (~5M rows). Holds raw character-typed values (`OrigType`, `OrigDistrictCode`, `OrigCometCode`, `OrigItemCode`, `OrigQuantity`) alongside their resolved IDs so the importer can report and back-out errors. `ErrorField` flags malformed rows.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

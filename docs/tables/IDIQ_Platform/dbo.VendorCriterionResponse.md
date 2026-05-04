@@ -1,7 +1,7 @@
 # Table: `dbo.VendorCriterionResponse`
 
 **Database:** `IDIQ_Platform` &nbsp;|&nbsp; **Schema:** `dbo`
-**Approx rows:** 3192
+**Approx rows:** 3300
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 

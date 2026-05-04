@@ -1,6 +1,6 @@
 # Procedure: `dbo.sp_CreateNewBidHeader`
 
-_Generated on 2026-05-04T13:04:00.342Z_
+_Generated on 2026-05-04T13:04:24.103Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

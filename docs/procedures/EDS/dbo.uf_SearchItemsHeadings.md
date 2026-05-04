@@ -1,6 +1,6 @@
 # Function: inline table-valued: `dbo.uf_SearchItemsHeadings`
 
-_Generated on 2026-05-04T13:04:00.641Z_
+_Generated on 2026-05-04T13:04:24.324Z_
 
 **Database:** `EDS` &nbsp;|&nbsp; **Schema:** `dbo`
 

@@ -5,6 +5,10 @@
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Consolidated cross-vendor master catalog used as the import target for catalog file processing (~144M rows — the largest table on the server). Read-heavy; rebuilt by the catalog-import pipeline.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

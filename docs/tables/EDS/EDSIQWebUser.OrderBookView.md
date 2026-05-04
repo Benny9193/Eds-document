@@ -6,6 +6,10 @@ Updatable: `NO`
 
 [← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
 
+## Description
+
+Reporting view over consolidated order data — top-level grain, suitable for dashboard summaries.
+
 ## Columns
 
 | # | Column | Type | Nullable | Default | PK |

@@ -1,0 +1,3 @@
+- [Azure SQL is_encrypted location](feedback_is_encrypted_column.md) — `sys.sql_modules.is_encrypted` doesn't exist on this Azure SQL instance; use `OBJECTPROPERTY(object_id, 'IsEncrypted')`.
+- [EDS routine inventory snapshot](project_eds_routine_counts.md) — As of 2026-05-04: EDS has 377 procedures, 217 functions, 0 encrypted; no cross-DB references resolved by sys.sql_expression_dependencies.
+- [Defensive null-schema filter for sys.objects](feedback_null_schema_rows.md) — Some sys.objects rows have null schema/name; filter before sorting/rendering.
