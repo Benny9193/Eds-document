@@ -12,7 +12,8 @@
     "business-rules": "node src/document-business-rules.js",
     "guide": "node src/generate-guide.js",
     "descriptions:sql": "node src/generate-ms-description-sql.js",
-    "descriptions:check": "node src/validate-descriptions.js"
+    "descriptions:check": "node src/validate-descriptions.js",
+    "docs:columns": "node src/column-inventory.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
