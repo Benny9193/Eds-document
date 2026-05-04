@@ -97,6 +97,44 @@ async function inspectDatabase(dbName) {
     GROUP BY sch.name, t.name
     ORDER BY sch.name, t.name
   `);
+  const viewMeta = await query(`
+    SELECT v.TABLE_SCHEMA, v.TABLE_NAME, v.CHECK_OPTION, v.IS_UPDATABLE,
+           m.definition AS VIEW_DEFINITION,
+           m.is_schema_bound
+    FROM [${dbName}].INFORMATION_SCHEMA.VIEWS v
+    LEFT JOIN [${dbName}].sys.objects o
+      ON o.name = v.TABLE_NAME
+     AND SCHEMA_NAME(o.schema_id) = v.TABLE_SCHEMA
+     AND o.type = 'V'
+    LEFT JOIN [${dbName}].sys.sql_modules m ON m.object_id = o.object_id
+    ORDER BY v.TABLE_SCHEMA, v.TABLE_NAME
+  `);
+  const viewDeps = await query(`
+    SELECT DISTINCT
+      SCHEMA_NAME(v_obj.schema_id) AS view_schema,
+      v_obj.name                   AS view_name,
+      d.referenced_schema_name     AS ref_schema,
+      d.referenced_entity_name     AS ref_name,
+      o_ref.type_desc              AS ref_type
+    FROM [${dbName}].sys.objects v_obj
+    JOIN [${dbName}].sys.sql_expression_dependencies d ON d.referencing_id = v_obj.object_id
+    LEFT JOIN [${dbName}].sys.objects o_ref ON o_ref.object_id = d.referenced_id
+    WHERE v_obj.type = 'V'
+    ORDER BY view_schema, view_name, ref_schema, ref_name
+  `);
+  const viewDependents = await query(`
+    SELECT DISTINCT
+      SCHEMA_NAME(v_obj.schema_id) AS view_schema,
+      v_obj.name                   AS view_name,
+      SCHEMA_NAME(d_obj.schema_id) AS dependent_schema,
+      d_obj.name                   AS dependent_name,
+      d_obj.type_desc              AS dependent_type
+    FROM [${dbName}].sys.objects v_obj
+    JOIN [${dbName}].sys.sql_expression_dependencies d ON d.referenced_id = v_obj.object_id
+    JOIN [${dbName}].sys.objects d_obj ON d_obj.object_id = d.referencing_id
+    WHERE v_obj.type = 'V'
+    ORDER BY view_schema, view_name, dependent_schema, dependent_name
+  `);
   return {
     tables: tables.recordset,
     columns: columns.recordset,
@@ -105,6 +143,9 @@ async function inspectDatabase(dbName) {
     indexes: indexes.recordset,
     procs: procs.recordset,
     rowCounts: rowCounts.recordset,
+    viewMeta: viewMeta.recordset,
+    viewDeps: viewDeps.recordset,
+    viewDependents: viewDependents.recordset,
   };
 }
 
@@ -124,15 +165,138 @@ function mkdirp(p) {
   fs.mkdirSync(p, { recursive: true });
 }
 
+function renderColumns(out, cols, pkCols) {
+  out.push('| # | Column | Type | Nullable | Default | PK |');
+  out.push('|---|--------|------|----------|---------|----|');
+  for (const c of cols) {
+    out.push(
+      `| ${c.ORDINAL_POSITION} | \`${c.COLUMN_NAME}\` | ${formatType(c)} | ${c.IS_NULLABLE} | ${
+        c.COLUMN_DEFAULT ? '`' + c.COLUMN_DEFAULT + '`' : ''
+      } | ${pkCols.has(c.COLUMN_NAME) ? 'YES' : ''} |`
+    );
+  }
+  out.push('');
+}
+
+function renderViewPage(dbName, t, info, knownTables) {
+  const schema = t.TABLE_SCHEMA;
+  const view = t.TABLE_NAME;
+  const fq = `${schema}.${view}`;
+  const meta = info.viewMeta.find(
+    (v) => v.TABLE_SCHEMA === schema && v.TABLE_NAME === view
+  );
+  const cols = info.columns.filter((c) => c.TABLE_SCHEMA === schema && c.TABLE_NAME === view);
+  const deps = info.viewDeps.filter(
+    (d) => d.view_schema === schema && d.view_name === view
+  );
+  const dependents = info.viewDependents.filter(
+    (d) => d.view_schema === schema && d.view_name === view
+  );
+  const idx = info.indexes.filter(
+    (i) => i.schema_name === schema && i.table_name === view && !i.is_primary_key
+  );
+
+  const out = [];
+  out.push(`# View: \`${fq}\``);
+  out.push('');
+  out.push(`**Database:** \`${dbName}\` &nbsp;|&nbsp; **Schema:** \`${schema}\``);
+  out.push('');
+  if (meta) {
+    const props = [];
+    props.push(`Updatable: \`${meta.IS_UPDATABLE || 'NO'}\``);
+    if (meta.CHECK_OPTION && meta.CHECK_OPTION !== 'NONE') {
+      props.push(`Check option: \`${meta.CHECK_OPTION}\``);
+    }
+    if (meta.is_schema_bound) props.push('Schema-bound');
+    if (idx.length) props.push('Indexed view');
+    out.push(props.join(' &nbsp;|&nbsp; '));
+    out.push('');
+  }
+  out.push('[← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)');
+  out.push('');
+
+  out.push('## Columns');
+  out.push('');
+  renderColumns(out, cols, new Set());
+
+  out.push('## Depends on');
+  out.push('');
+  if (deps.length === 0) {
+    out.push('_None resolved._');
+  } else {
+    out.push('| Object | Type |');
+    out.push('|--------|------|');
+    for (const d of deps) {
+      const refKey = d.ref_schema ? `${d.ref_schema}.${d.ref_name}` : d.ref_name;
+      const label = `\`${refKey}\``;
+      const linked = d.ref_schema && knownTables.has(refKey)
+        ? `[${label}](${tableLinkFromDbIndex(d.ref_schema, d.ref_name)})`
+        : label;
+      out.push(`| ${linked} | ${d.ref_type || 'unresolved'} |`);
+    }
+  }
+  out.push('');
+
+  out.push('## Used by');
+  out.push('');
+  if (dependents.length === 0) {
+    out.push('_No other objects reference this view._');
+  } else {
+    out.push('| Object | Type |');
+    out.push('|--------|------|');
+    for (const d of dependents) {
+      const fromKey = `${d.dependent_schema}.${d.dependent_name}`;
+      const label = `\`${fromKey}\``;
+      const linked = knownTables.has(fromKey)
+        ? `[${label}](${tableLinkFromDbIndex(d.dependent_schema, d.dependent_name)})`
+        : label;
+      out.push(`| ${linked} | ${d.dependent_type} |`);
+    }
+  }
+  out.push('');
+
+  if (idx.length) {
+    out.push('## Indexes');
+    out.push('');
+    const grouped = new Map();
+    for (const i of idx) {
+      if (!grouped.has(i.index_name))
+        grouped.set(i.index_name, { unique: i.is_unique, type: i.type_desc, keys: [], inc: [] });
+      const g = grouped.get(i.index_name);
+      (i.is_included_column ? g.inc : g.keys).push(i.column_name);
+    }
+    out.push('| Name | Unique | Type | Columns | Included |');
+    out.push('|------|--------|------|---------|----------|');
+    for (const [name, g] of grouped) {
+      out.push(
+        `| \`${name}\` | ${g.unique ? 'YES' : 'no'} | ${g.type} | ${g.keys.map((k) => '`' + k + '`').join(', ')} | ${g.inc.map((k) => '`' + k + '`').join(', ')} |`
+      );
+    }
+    out.push('');
+  }
+
+  out.push('## Definition');
+  out.push('');
+  if (meta && meta.VIEW_DEFINITION) {
+    out.push('```sql');
+    out.push(meta.VIEW_DEFINITION.trim());
+    out.push('```');
+  } else {
+    out.push('_Definition not available (view may be encrypted, or insufficient permissions)._');
+  }
+  out.push('');
+
+  return out.join('\n');
+}
+
 function renderTablePage(dbName, t, info, knownTables) {
   const schema = t.TABLE_SCHEMA;
   const table = t.TABLE_NAME;
   const fq = `${schema}.${table}`;
-  const kind = t.TABLE_TYPE === 'VIEW' ? 'View' : 'Table';
   const rc = info.rowCounts.find((r) => r.schema_name === schema && r.table_name === table);
 
   const out = [];
-  out.push(`# ${kind}: \`${fq}\``);
+  out.push(`# Table: \`${fq}\``);
   out.push('');
   out.push(`**Database:** \`${dbName}\` &nbsp;|&nbsp; **Schema:** \`${schema}\``);
   if (rc) out.push(`**Approx rows:** ${rc.row_count}`);
@@ -148,16 +312,7 @@ function renderTablePage(dbName, t, info, knownTables) {
       .filter((p) => p.TABLE_SCHEMA === schema && p.TABLE_NAME === table)
       .map((p) => p.COLUMN_NAME)
   );
-  out.push('| # | Column | Type | Nullable | Default | PK |');
-  out.push('|---|--------|------|----------|---------|----|');
-  for (const c of cols) {
-    out.push(
-      `| ${c.ORDINAL_POSITION} | \`${c.COLUMN_NAME}\` | ${formatType(c)} | ${c.IS_NULLABLE} | ${
-        c.COLUMN_DEFAULT ? '`' + c.COLUMN_DEFAULT + '`' : ''
-      } | ${pkCols.has(c.COLUMN_NAME) ? 'YES' : ''} |`
-    );
-  }
-  out.push('');
+  renderColumns(out, cols, pkCols);
 
   const outgoing = info.fks.filter(
     (f) => f.parent_schema === schema && f.parent_table === table
@@ -251,18 +406,36 @@ function renderDbIndex(dbName, info) {
     if (!bySchema.has(t.TABLE_SCHEMA)) bySchema.set(t.TABLE_SCHEMA, []);
     bySchema.get(t.TABLE_SCHEMA).push(t);
   }
-  for (const [schema, tables] of bySchema) {
+  for (const [schema, objects] of bySchema) {
+    const tables = objects.filter((o) => o.TABLE_TYPE === 'BASE TABLE');
+    const views = objects.filter((o) => o.TABLE_TYPE === 'VIEW');
     out.push(`## Schema: \`${schema}\``);
     out.push('');
-    out.push('| Object | Type | Rows |');
-    out.push('|--------|------|------|');
-    for (const t of tables) {
-      const rc = rcMap.get(`${schema}.${t.TABLE_NAME}`);
-      out.push(
-        `| [\`${schema}.${t.TABLE_NAME}\`](${tableLinkFromDbIndex(schema, t.TABLE_NAME)}) | ${t.TABLE_TYPE} | ${rc ?? ''} |`
-      );
+    if (tables.length) {
+      out.push('### Tables');
+      out.push('');
+      out.push('| Table | Rows |');
+      out.push('|-------|------|');
+      for (const t of tables) {
+        const rc = rcMap.get(`${schema}.${t.TABLE_NAME}`);
+        out.push(
+          `| [\`${schema}.${t.TABLE_NAME}\`](${tableLinkFromDbIndex(schema, t.TABLE_NAME)}) | ${rc ?? ''} |`
+        );
+      }
+      out.push('');
     }
-    out.push('');
+    if (views.length) {
+      out.push('### Views');
+      out.push('');
+      out.push('| View |');
+      out.push('|------|');
+      for (const v of views) {
+        out.push(
+          `| [\`${schema}.${v.TABLE_NAME}\`](${tableLinkFromDbIndex(schema, v.TABLE_NAME)}) |`
+        );
+      }
+      out.push('');
+    }
   }
   if (info.procs.length) {
     out.push('## Routines');
@@ -286,7 +459,9 @@ function writeDatabaseDocs(dbName, info) {
   const knownTables = new Set(info.tables.map((t) => `${t.TABLE_SCHEMA}.${t.TABLE_NAME}`));
 
   for (const t of info.tables) {
-    const md = renderTablePage(dbName, t, info, knownTables);
+    const md = t.TABLE_TYPE === 'VIEW'
+      ? renderViewPage(dbName, t, info, knownTables)
+      : renderTablePage(dbName, t, info, knownTables);
     fs.writeFileSync(tableFile(dbName, t.TABLE_SCHEMA, t.TABLE_NAME), md);
   }
   fs.writeFileSync(path.join(dir, 'README.md'), renderDbIndex(dbName, info));
@@ -318,9 +493,11 @@ function renderRootSchema(dbsInfo) {
       out.push('');
       continue;
     }
+    const tableCount = info.tables.filter((t) => t.TABLE_TYPE === 'BASE TABLE').length;
+    const viewCount = info.tables.filter((t) => t.TABLE_TYPE === 'VIEW').length;
     out.push(`### [\`${db}\`](docs/tables/${safeSegment(db)}/README.md)`);
     out.push('');
-    out.push(`Tables / views: **${info.tables.length}**, routines: **${info.procs.length}**`);
+    out.push(`Tables: **${tableCount}**, views: **${viewCount}**, routines: **${info.procs.length}**`);
     out.push('');
     if (info.tables.length === 0) {
       out.push('_No user tables or views._');
@@ -334,8 +511,9 @@ function renderRootSchema(dbsInfo) {
     );
     for (const t of info.tables) {
       const rc = rcMap.get(`${t.TABLE_SCHEMA}.${t.TABLE_NAME}`);
+      const typeLabel = t.TABLE_TYPE === 'VIEW' ? 'view' : 'table';
       out.push(
-        `| [\`${t.TABLE_SCHEMA}.${t.TABLE_NAME}\`](${tableLinkFromRoot(db, t.TABLE_SCHEMA, t.TABLE_NAME)}) | ${t.TABLE_TYPE} | ${rc ?? ''} |`
+        `| [\`${t.TABLE_SCHEMA}.${t.TABLE_NAME}\`](${tableLinkFromRoot(db, t.TABLE_SCHEMA, t.TABLE_NAME)}) | ${typeLabel} | ${rc ?? ''} |`
       );
     }
     out.push('');

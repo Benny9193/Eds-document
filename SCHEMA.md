@@ -11,12 +11,19 @@ The generator (`src/introspect.js`) reads connection settings from `.env` and wr
 
 - **`SCHEMA.md`** (this file) — top-level overview with one section per database, each linking out to per-table pages.
 - **`docs/tables/<dbname>/README.md`** — per-database index of tables, views, and routines.
-- **`docs/tables/<dbname>/<schema>.<table>.md`** — one Markdown page per table/view, with:
+- **`docs/tables/<dbname>/<schema>.<table>.md`** — per-table page with:
   - Columns (type, nullability, default, PK marker)
   - Outgoing foreign keys (with cross-links to referenced tables)
   - Incoming foreign keys (back-references from tables that point at this one)
   - Non-PK indexes (key + included columns, uniqueness, type)
   - Approximate row count
+- **`docs/tables/<dbname>/<schema>.<view>.md`** — per-view page with:
+  - Columns (type, nullability)
+  - Properties (updatable, check option, schema-bound, indexed view)
+  - **Depends on** — base tables and views referenced by this view, with cross-links
+  - **Used by** — other views, procedures, and functions that reference this view
+  - Indexes (for indexed views)
+  - Full `CREATE VIEW` definition
 
 The generator iterates every non-system database (skips `master`, `model`, `msdb`, `tempdb`), so you don't need to change `DB_DATABASE` to cover the full server. `docs/tables/` is wiped and rewritten on every run.
 
