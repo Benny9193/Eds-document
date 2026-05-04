@@ -1,0 +1,595 @@
+# Lookup: `dbo.PricePlans`
+
+**Database:** `EDS` &nbsp;|&nbsp; **Rows:** 585 &nbsp;|&nbsp; **Generated:** 2026-05-04
+
+[← back to index](../README.md)
+
+Named price-plan definitions (~585 rows) — controls which categories/vendors are visible to which districts at what pricing tier. Small but pivotal: changes here change what buyers see.
+
+| PricePlanId | Active | Code | Description | LastAltered | LastUpdated | stateid |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 1 | Z1 | NEW JERSEY COOPERATIVE | 2004-06-02 12:48:41 | 2002-10-28 02:39:44 | 1 |
+| 2 | 1 | Z2 | MORRIS COUNTY COMMISSION | 2003-05-02 07:36:28 | 2002-10-10 21:02:30 | 1 |
+| 3 | 1 | Z8 | SOUTHERN COOP GENERAL SUPPLIES | 2004-02-23 09:57:14 | 2002-10-10 21:10:43 | 1 |
+| 4 | 1 | ZC | COPY OF Z1 wo Blick | 2002-08-11 23:33:35 | 2002-09-18 08:47:53 |  |
+| 5 | 1 | Z5 | BERGEN COUNTY COOP | 2003-05-02 07:35:50 | 2002-10-10 21:29:15 | 1 |
+| 6 | 1 | Z6 | ESSEX, HUDSON, PASSAIC COOP | 2004-02-23 09:57:32 | 2002-10-10 21:30:51 | 1 |
+| 7 | 1 | Z4 | ISLAND COOP | 2004-06-02 11:58:35 | 2002-10-28 02:43:21 | 2 |
+| 8 | 1 | Z3 | NEW  YORK COOPERATIVE BIDS | 2004-06-02 12:00:26 | 2002-10-28 02:45:03 | 2 |
+| 9 | 1 | Z9 | NEW YORK COOPERATIVE #2 LOWER NY | 2003-05-02 07:37:18 | 2002-10-10 21:36:29 | 1 |
+| 17 | 1 | Z7 | WEST CENTRAL COOP | 2004-06-02 12:45:13 | 2002-10-10 16:49:20 | 1 |
+| 21 | 0 | ZA | NEW JERSEY CO-OP PRICING(FINE ART NET) | 2002-08-11 23:33:35 | 2002-08-27 01:30:08 |  |
+| 22 | 0 | 5Z | BERGEN COUNTY GENERAL SUPPLIES-CASCADE(NET) | 2002-08-11 23:33:35 | 2002-09-18 09:13:47 |  |
+| 23 | 1 | T1 | TEXTBOOKS | 2002-08-14 12:11:11 | 2002-08-14 12:19:10 |  |
+| 24 | 0 | 3Z | NEW  YORK COOPERATIVE BIDS W/O GENERAL | 2002-08-11 23:33:35 | 2002-08-27 01:31:41 |  |
+| 25 | 1 | ZB | NEW YORK COOPERATIVE | 2004-05-05 11:17:01 |  | 2 |
+| 26 | 1 | ZD | COPY OF Z6 | 2003-04-09 11:59:38 |  |  |
+| 27 | 1 | ZE | COPY OF Z8 | 2003-09-15 09:47:56 |  |  |
+| 28 | 1 | CW | CALDWELL PRICE PLAN | 2002-12-31 06:54:16 |  | 1 |
+| 29 | 1 | ZF | NEW JERSEY NORTH - COPY DUP | 2004-04-26 12:52:44 |  | 1 |
+| 30 | 1 | ZG | NEW JERSEY SOUTH - COPY DUP | 2004-04-26 14:13:10 |  | 1 |
+| 31 | 1 | D8 | PATCHOGUE-MEDFORD | 2004-05-04 19:04:12 |  | 1 |
+| 32 | 1 | NW | NEWBURGH PRICE PLAN |  |  | 2 |
+| 34 | 1 | CL | CLARKSTOWN | 2003-12-01 13:39:24 |  | 2 |
+| 35 | 1 | 2Z | MORRIS COUNTY 2004-2005 |  |  |  |
+| 36 | 1 | ZZ | ALL GENERAL DISTRICTS |  |  |  |
+| 37 | 1 | P9 | SOUTH HUNTINGTON CUSTODIAL |  |  |  |
+| 38 | 1 | ZH | NEW JERSEY ADDENDUMS |  |  | 1 |
+| 39 | 1 | ZI | NEW YORK ADDENDUMS |  |  | 2 |
+| 40 | 1 | ZJ | NEW YORK - COPY DUP |  |  | 2 |
+| 41 | 1 | A1 | BRICK TOWNSHIP H.S. ATHLETIC |  |  | 1 |
+| 42 | 1 | ZK | NJ COOP ATHLETIC/CUSTODIAL BID OF 1/22/26 | 2004-06-02 12:58:24 |  | 1 |
+| 43 | 1 | ZL | NJ COOP ATHLETIC/CUSTODIAL BID OF 2/10/26 | 2004-06-02 14:03:10 |  | 1 |
+| 44 | 1 | ZM | NY COOP ATHLETIC BID OF 1/27/26 | 2004-06-02 15:20:50 |  | 2 |
+| 45 | 1 | ZN | NJ COOP ATHLETIC BID OF 3/3/26 | 2004-06-02 14:28:48 |  | 1 |
+| 46 | 1 | ZO | NY COOP  ATHLETIC/CUSTODIAL BID DUE 2/28/08 | 2004-06-02 08:48:18 |  | 2 |
+| 47 | 1 | ZP | NJ COOP ATHLETIC/CUSTODIAL BID OF 3/24/26 |  |  | 1 |
+| 48 | 1 | YH | HALF HOLLOW HILLS |  |  | 2 |
+| 49 | 1 | JX | HUNTINGTON UFSD |  |  | 2 |
+| 50 | 1 | GY | BETHPAGE ATHLETIC |  |  | 2 |
+| 51 | 1 | ZQ | NEW YORK ATHLETIC/CUSTODIAL BID DUE 4/1/04 | 2004-06-02 11:48:51 |  | 2 |
+| 52 | 1 | ZR | NJ COOP ATHLETIC/CUSTODIAL BID OF 7/10/14 |  |  | 1 |
+| 53 | 1 | ZS | NY COOP ATHLETIC/CUSTODIAL BID OF 2/24/26 | 2004-06-02 12:14:13 |  | 2 |
+| 54 | 1 | ZT | NJ COOP ATHLETIC/CUSTODIAL BID OF 7/10/25 |  |  | 1 |
+| 55 | 1 | ZU | NY COOP ATHLETIC BID OF 3/17/26 | 2004-06-02 12:32:44 |  | 2 |
+| 56 | 1 | ZV | NJ COOP ATHLETIC/CUSTODIAL BID OF 5/25/23 |  |  | 1 |
+| 57 | 1 | ZW | ADDENDA ITEMS - OLD COMET ZC |  |  |  |
+| 58 | 1 | ZX | NEW JERSEY ATHLETIC/CUSTODIAL-PREBID |  |  | 1 |
+| 60 | 1 | CY | CAPE MAY VO-TECH |  |  | 1 |
+| 61 | 1 | AV | OCEAN COUNTY VO TECH |  |  | 1 |
+| 62 | 1 | PK | PCTI |  |  | 1 |
+| 63 | 1 | ZA | SOUTHERN COOPERATIVE (2) GENERAL SUPPLIES | 2004-02-23 09:56:28 |  |  |
+| 64 | 1 | XP | LINDENHURST |  |  | 2 |
+| 65 | 1 | OA | MONMOUTH COUNTY VO-TECH |  |  | 1 |
+| 66 | 1 | W~ | WARREN COUNTY VO-TECH |  |  |  |
+| 67 | 1 | WV | BOCES |  |  | 2 |
+| 68 | 1 | DC | EAST MEADOW |  |  | 2 |
+| 69 | 1 | ZY | HEALTH BID FOR PATCHAQUE |  |  |  |
+| 70 | 1 | M! | MADISON ATHLETICS |  |  | 1 |
+| 71 | 1 | WK | WEST MORRIS CENTRAL HIGH SCHOOL |  |  |  |
+| 72 | 1 | FW | FAIRLAWN ATHLETIC |  |  |  |
+| 73 | 1 | SY | SARATOGA SPRINGS |  |  | 2 |
+| 74 | 1 | Z^ | ELECTRICAL SUPPLIES NJ ... |  |  |  |
+| 75 | 1 | #1 | NEW JERSEY PHOTOGRAPHY-SUPPLEMENTAL |  |  | 1 |
+| 76 | 1 | #2 | MIDDLE COUNTRY | 2004-06-02 12:16:34 |  |  |
+| 77 | 1 | #3 | SUPPLEMENTAL FINE ART NJ |  |  | 1 |
+| 78 | 1 | #4 | SUPPLEMENTAL SCIENCE-ARLINGTON |  |  | 1 |
+| 79 | 1 | CN | CLIFTON |  |  | 1 |
+| 80 | 1 | #5 | SOUTH PLAINFIELD TECHNOLOGY |  |  |  |
+| 81 | 1 | #6 | NEW JERSEY LUMBER NORTH |  |  | 1 |
+| 82 | 1 | #7 | NEW JERSEY LUMBER SOUTH | 2004-05-17 10:13:17 |  | 1 |
+| 83 | 1 | XC | CLIFTON BID ALONE(DUPLICATE) |  |  |  |
+| 84 | 1 | #8 | ISLAND LUMBER | 2004-06-02 11:59:03 |  | 2 |
+| 85 | 1 | #9 | NEW YORK LUMBER | 2004-06-02 11:59:13 |  | 2 |
+| 86 | 1 | OW | WESTWOOD - Z1 WITH SCHOOL HEALTH |  |  | 1 |
+| 87 | 1 | 3E | AUBURN TEXTBOOKS |  |  | 2 |
+| 88 | 1 | SH | SOUTH PLAINFIELD |  |  |  |
+| 89 | 1 | GS | GALLOWAY-TEXTBOOKS |  |  | 1 |
+| 90 | 1 | 3A | NEW YORK ATHLETIC/CUSTODIAL BID OF 4/19/17 | 2004-06-02 12:36:15 |  | 2 |
+| 91 | 1 | 3B | NEW JERSEY ATHLETIC/CUSTODIAL DUE 4/28/11 |  |  | 1 |
+| 92 | 1 | U8 | LENAPE REGIONAL ATHLETIC-SENECA H.S. |  |  | 1 |
+| 93 | 1 | 3C | NEW JERSEY ATHLETIC/CUSTODIAL DUE 5/7/04 |  |  | 1 |
+| 94 | 1 | 3D | NEW YORK ATHLETIC BID OF 5/10/17 | 2004-06-02 12:38:39 |  | 2 |
+| 95 | 1 | 3F | NEW JERSEY ATHLETIC/CUSTODIAL DUE 2/3/11 |  |  | 1 |
+| 96 | 1 | 3G | NEW YORK ATHLETIC BID OF 4/7/26 |  |  | 2 |
+| 97 | 1 | 3H | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 2/27/13 |  |  | 1 |
+| 98 | 1 | 3J | SUSSEX TECH |  |  | 1 |
+| 99 | 1 | #0 | PATCHOGUE MEDFORD MUSIC BID |  |  |  |
+| 100 | 1 | 3I | NEW YORK ATHLETIC/CUSTODIAL BID OF 6/17/15 |  |  | 2 |
+| 101 | 1 | 4H | NEW JERSEY ATHLETIC  BID OF 8/11/11 |  |  | 1 |
+| 102 | 1 | 3K | NEW YORK ATHLETIC BID OF 5/19/26 |  |  | 2 |
+| 103 | 1 | 3L | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 4/14/26 |  |  | 1 |
+| 105 | 1 | WT | LAWRENCE TWP ATHLETIC/CUSTODIAL |  |  | 1 |
+| 106 | 1 | U# | LENAPE REGIONAL HSD LUMBER |  |  |  |
+| 107 | 1 | 3M | NEW YORK ATHLETIC BID OF 4/30/26 |  |  | 2 |
+| 108 | 1 | BA | BECTON REGIONAL |  |  | 1 |
+| 109 | 1 | 3N | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 5/5/26 |  |  | 1 |
+| 110 | 1 | 3O | NEW JERSEY MUSIC BID OF  05/19/11 |  |  | 1 |
+| 111 | 1 | 3P | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 6/2/16 |  |  | 1 |
+| 112 | 1 | 3Q | NEW YORK ATHLETIC BID OF 7/8/04 |  |  | 2 |
+| 113 | 1 | #H | HEALTH SUPPLEMENTAL FOR NO BID ITEMS |  |  |  |
+| 114 | 1 | M4 | MINEOLA MUSIC |  |  | 2 |
+| 115 | 1 | 3R | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 5/28/26 |  |  | 1 |
+| 116 | 1 | MC | MONMOUTH CTY. ADDENDAS |  |  |  |
+| 117 | 1 | NX | NEWBURGH MUSIC |  |  | 2 |
+| 118 | 1 | MM | MOUNTAINSIDE |  |  | 1 |
+| 119 | 1 | H3 | MASSAPEQUA |  |  | 2 |
+| 120 | 1 | TR | NEW ROCHELLE |  |  | 2 |
+| 121 | 1 | 52 | NEW JERSEY MUSIC BID DUE  8/17/04 |  |  | 1 |
+| 123 | 1 | 53 | NJ COOPERATIVE Y & C BID OF 8/20/04 |  |  | 1 |
+| 124 | 1 | 54 | NEW JERSEY ATHLETIC/CUSTODIAL  DUE 8/27/04 |  |  | 1 |
+| 125 | 1 | L5 | LITTLE SILVER CUSTODIAL |  |  | 1 |
+| 126 | 1 | 55 | NEW JERSEY ATHLETIC/CUSTODIAL 9/3/04 |  |  | 1 |
+| 127 | 1 | 56 | NY ATHLETIC CUSTODIAL DUE 9/2/04 |  |  | 2 |
+| 128 | 1 | 99 | VO-TECH ADDENDA LUMBER |  |  |  |
+| 129 | 1 | 98 | MONMOUTH REGIONAL |  |  |  |
+| 130 | 1 | FO | FORT LEE CUSTODIAL |  |  | 1 |
+| 131 | 1 | W1 | WESTFIELD |  |  | 1 |
+| 132 | 1 | 75 | NEW YORK CUSTODIAL-BID OF 6/9/05 |  |  | 2 |
+| 133 | 1 | A2 | BRICK ATHLETIC-BRICK MEMORIAL H.S. |  |  |  |
+| 134 | 1 | XG | MILLBURN |  |  | 1 |
+| 135 | 1 | 9! | WEST PATERSON LUMBER QUOTE 111204 |  |  |  |
+| 136 | 1 | R1 | RUTHERFORD |  |  | 1 |
+| 137 | 1 | 57 | FAIR LAWN ATHLETIC DUE 12/8/04 |  |  |  |
+| 138 | 1 | 58 | OAKLAND MUSIC |  |  |  |
+| 139 | 1 | 40 | ATHLETIC/CUSTODIAL-NEW JERSEY-DUE 1/7/05 |  |  |  |
+| 140 | 1 | #A | ATLANTIC CITY |  |  | 1 |
+| 141 | 1 | 59 | NEW YORK ATHLETIC BID OF 07/18/13 |  |  | 2 |
+| 142 | 1 | *N | TECHNOLOGY ADDENDAS - NORTHERN HIGHLANDS |  |  |  |
+| 143 | 1 | 60 | EDISON-HOOVER MIDDLE SCHOOL |  |  |  |
+| 144 | 1 | L8 | LYNBROOK |  |  |  |
+| 145 | 1 | 20 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 4/23/08 |  |  | 1 |
+| 146 | 1 | 30 | NEW YORK ATHLETIC/CUSTODIAL BID OF 1/29/14 |  |  | 2 |
+| 147 | 1 | 61 | BOCES OCC. ED 021405 |  |  |  |
+| 148 | 1 | 62 | CAPE MAY OCC ED/COSMETOLOGY 030105 |  |  |  |
+| 149 | 1 | 63 | BRICK MEMORIAL HS-ATHLETIC |  |  |  |
+| 150 | 1 | 21 | NJ COOP ATHLETIC/CUSTODIAL BID OF 6/6/12 |  |  | 1 |
+| 151 | 1 | VH | CUSTODIAL |  |  |  |
+| 152 | 1 | M8 | MORRIS COUNTY VOCATIONAL |  |  | 1 |
+| 153 | 1 | 31 | NEW YORK ATHLETIC BID OF 7/13/21 |  |  | 2 |
+| 154 | 1 | 22 | NJ COOP ATHLETIC BID OF 8/6/15 |  |  | 1 |
+| 155 | 1 | 32 | NEW YORK ATHLETIC BID OF 7/8/25 |  |  | 2 |
+| 156 | 1 | 23 | NJ COOP ATHLETIC/CUSTODIAL BID OF 7/31/14 |  |  | 1 |
+| 157 | 1 | PC | PCVT - PHYS-ED SUPPLEMENTAL |  |  |  |
+| 158 | 1 | 33 | NEW YORK ATHLETIC BID OF 6/17/25 |  |  | 2 |
+| 159 | 1 | 24 | NEW JERSEY COOP ATHLETIC BID OF 8/21/14 |  |  | 1 |
+| 160 | 1 | 34 | NEW YORK-ATHLETIC/CUSTODIAL-BID OF 4/14/05 |  |  | 2 |
+| 161 | 1 | 34 |  |  |  |  |
+| 162 | 1 | 35 | NEW YORK ATHLETIC BID OF 5/24/12 |  |  | 2 |
+| 163 | 1 | 25 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/2/08 |  |  | 1 |
+| 164 | 1 | 36 | NEW YORK ATHLETIC BID OF 7/27/16 |  |  | 2 |
+| 165 | 1 | 26 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/16/08 |  |  | 1 |
+| 166 | 1 | L8 | LYNBROOK-PHYS ED ADDENDA |  |  |  |
+| 167 | 1 | 37 | NEW YORK ATHLETIC/CUSTODIAL BID OF 2/9/11 |  |  | 2 |
+| 168 | 1 | JI | SUFFERN CSD |  |  | 2 |
+| 169 | 1 | GR | GARDEN CITY ATHLETIC |  |  | 2 |
+| 170 | 1 | JA | JACKSON TWP |  |  | 1 |
+| 171 | 1 | 38 | NEW YORK ATHLETIC/CUSTODIAL BID OF 3/2/11 |  |  | 2 |
+| 172 | 1 | 27 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/30/08 |  |  | 1 |
+| 173 | 1 | 39 | NEW YORK ATHLETIC/CUSTODIAL BID OF 3/23/11 |  |  | 2 |
+| 174 | 1 | 28 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 8/13/08 |  |  | 1 |
+| 175 | 1 | 70 | NEW YORK ATHLETIC/CUSTODIAL-BID OF 6/14/07 |  |  | 2 |
+| 176 | 1 | 29 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 5/26/06 |  |  | 1 |
+| 177 | 1 | BJ | BURLINGTON CITY |  |  | 1 |
+| 178 | 1 | 71 | NEW YORK ATHLETIC BID OF 2/14/13 |  |  | 2 |
+| 179 | 1 | 80 | NEW JERSEY ATHLETIC BID OF 5/27/05 |  |  | 1 |
+| 180 | 1 | 81 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 6/3/05 |  |  | 1 |
+| 181 | 1 | 82 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 6/10/05 |  |  | 1 |
+| 182 | 1 | 72 | NEW YORK ATHLETIC/CUSTODIAL BID OF 3/14/13 |  |  | 2 |
+| 183 | 1 | 83 | NEW JERSEY ATHLETIC/CUSTODIAL-BID OF 6/17/05 |  |  | 1 |
+| 184 | 1 | 73 | NEW YORK ATHLETIC/CUSTODIAL BID |  |  | 2 |
+| 185 | 1 | 84 | NEW JERSEY ATHLETIC/CUSTODIAL-BID OF 6/24/05 |  |  | 1 |
+| 186 | 1 | HT | BERKELEY HEIGHTS |  |  | 1 |
+| 187 | 1 | ML | MCVS LUMBER ADDENDAS |  |  |  |
+| 188 | 1 | ML | MCVS LUMBER ADDENDAS |  |  |  |
+| 189 | 1 | ML | MCVS LUMBER ADDENDAS |  |  |  |
+| 190 | 1 | UI | HICKSVILLE |  |  | 2 |
+| 191 | 1 | 64 | BRICK ATHLETIC 060205 |  |  |  |
+| 192 | 1 | 74 | NEW YORK ATHLETIC BID OF 7/7/05 |  |  | 2 |
+| 193 | 1 | 85 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/8/05 |  |  | 1 |
+| 194 | 1 | 86 | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/15/05 |  |  | 1 |
+| 195 | 1 | BL | BLOOMFIELD CUSTODIAL |  |  | 1 |
+| 196 | 1 | 76 | NEW YORK ATHLETIC BID OF 6/6/13 |  |  | 2 |
+| 197 | 1 | V& | PASCACK VALLEY |  |  | 1 |
+| 198 | 1 | RB | ROSELLE PARK MUSIC |  |  | 1 |
+| 199 | 1 | RR | SAYREVILLE |  |  | 1 |
+| 200 | 1 | 87 | NEW JERSEY ATHLETIC BID OF 7/22/05 |  |  | 1 |
+| 201 | 1 | 77 | NEW YORK ATHLETIC/CUSTODIAL BID OF 7/7/13 |  |  | 2 |
+| 202 | 1 | MO | MONTCLAIR |  |  | 1 |
+| 203 | 1 | 78 | NEW YORK ATHLETIC/CUSTODIAL-BID OF 1/22/09 |  |  | 2 |
+| 204 | 1 | R2 | ROSLYN |  |  | 2 |
+| 205 | 1 | 88 | ATLANTIC COUNTY SPECIAL SERVICES |  |  |  |
+| 206 | 1 | 79 | NEW YORK ATHLETIC/CUSTODIAL-BID OF 8/4/05 |  |  | 2 |
+| 207 | 1 | 89 | NEW JERSEY CUSTODIAL BID OF 8/5/05 |  |  | 1 |
+| 208 | 1 | 65 | NEW YORK ATHLETIC-BID OF 8/11/05 |  |  | 2 |
+| 209 | 1 | 66 | NEW JERSEY ATHLETIC-BID OF 8/12/05 |  |  | 1 |
+| 210 | 1 | HA | HAWTHORNE |  |  | 1 |
+| 211 | 1 | 67 | NEW YORK ATHLETIC BID OF 8/18/05 |  |  | 2 |
+| 212 | 1 | B8 | PORT JEFFERSON ATHLETIC |  |  | 2 |
+| 213 | 1 | 68 | NEW JERSEY CUSTODIAL-BID OF 8/19/05 |  |  | 1 |
+| 214 | 1 | V$ | HILLSIDE |  |  | 1 |
+| 215 | 1 | 51 | NY COOP ATHLETIC/CUSTODIAL BID OF 7/26/12 |  |  | 2 |
+| 216 | 1 | H4 | HAWTHORNE TEXTBOOKS-SUPPLEMENTAL |  |  |  |
+| 217 | 1 | EO | EAST ORANGE |  |  | 1 |
+| 218 | 1 | C* | CLARKSTOWN TEXTBOOKS |  |  |  |
+| 219 | 1 | 8* | NEW JERSEY ATHLETIC BID OF 9/2/05 |  |  | 1 |
+| 220 | 1 | L4 | CRESSKILL TEXTBOOKS |  |  | 1 |
+| 221 | 1 | V~ | PASCACK VALLEY PHOTOGRAPHY SUPPLEMENTAL |  |  |  |
+| 222 | 1 | OR | HOLMDEL HIGH SCHOOL |  |  | 1 |
+| 223 | 1 | XH | MILLBURN ATHLETICS |  |  |  |
+| 224 | 1 | L9 | LAKEWOOD ATHLETICS |  |  | 1 |
+| 225 | 1 | H5 | HAWTHORNE TEXTBOOKS-SUPPLEMENTAL #2 |  |  |  |
+| 226 | 1 | BV | BELLEVILLE-CUSTODIAL |  |  | 1 |
+| 227 | 1 | KQ | KINGSWAY CUSTODIAL |  |  | 1 |
+| 228 | 1 | II | CEDAR GROVE ATHLETIC |  |  | 1 |
+| 229 | 1 | 40 | NEW YORK PRE-BID |  |  | 2 |
+| 230 | 1 | 42 | NEW YORK ATHLETIC/CUSTODIAL PRE BID DUE 10/21/2005 |  |  | 2 |
+| 231 | 1 | 43 | ISLAND ATHLETIC/CUSTODIAL PRE BID DUE 10/21/2005 |  |  |  |
+| 232 | 1 | &4 | WALDWICK ATHLETIC |  |  | 1 |
+| 233 | 1 | VY | DEPTFORD TWP. |  |  | 1 |
+| 234 | 1 | FX | FAIR LAWN ATHLETICS |  |  |  |
+| 235 | 1 | S+ | SPOTSWOOD CUSTODIAL |  |  | 1 |
+| 236 | 1 | JA | SCIENCE EQUIPMENT |  |  |  |
+| 237 | 1 | P2 | POINT PLEASANT BEACH LUMBER |  |  | 1 |
+| 238 | 1 | VN | VERNON TOWNSHIP |  |  | 1 |
+| 239 | 1 | #B | NEW JERSEY NORTH #1 COPY DUPLICATOR |  |  | 1 |
+| 240 | 1 | #C | NEW JERSEY NORTH #2 COPY DUPLICATOR |  |  | 1 |
+| 241 | 1 | #D | NEW JERSEY SOUTH #1 COPY DUPLICATOR |  |  | 1 |
+| 242 | 1 | #E | NEW JERSEY SOUTH #2 COPY DUPLICATOR |  |  | 1 |
+| 243 | 1 | #F | NEW YORK UPSTATE COPY DUPLICATOR |  |  | 2 |
+| 244 | 1 | #G | NEW YORK COPY DUPLICATOR. |  |  | 2 |
+| 245 | 1 | #I | ISLAND COPY DUPLICATOR |  |  | 2 |
+| 246 | 1 | YT | YORKTOWN |  |  | 2 |
+| 247 | 1 | LV | LEVITTOWN PHOTOGRAPHY |  |  | 2 |
+| 248 | 1 | MI | MIDDLETOWN TWP |  |  | 1 |
+| 249 | 1 | #S | SOMERDALE TEXTBOOKS |  |  |  |
+| 250 | 1 | C0 | CANANDAIGUA CUSTODIAL |  |  | 2 |
+| 251 | 1 | GI | GLEN ROCK CUSTODIAL |  |  | 1 |
+| 252 | 1 | 90 | NEW JERSEY MUSIC-SUPPLEMENTAL |  |  | 1 |
+| 253 | 1 | 2A | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 6/2/06 |  |  | 1 |
+| 254 | 1 | 2B | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 6/9/06 |  |  | 1 |
+| 255 | 1 | 2C | NEW JERSEY ATHLETIC BID OF 6/16/06 |  |  | 1 |
+| 256 | 1 | 2D | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 6/23/06 |  |  | 1 |
+| 257 | 1 | VT | MANVILLE ATHLETIC |  |  | 1 |
+| 258 | 1 | SU | SOMERS ATHLETIC |  |  | 2 |
+| 259 | 1 | 2E | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/7/06 |  |  | 1 |
+| 260 | 1 | U5 | LOCUST VALLEY MUSIC |  |  | 2 |
+| 261 | 1 | 2F | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/14/06 |  |  | 1 |
+| 262 | 1 | NY | RYE CITY ATHLETIC |  |  | 2 |
+| 263 | 1 | 2G | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/21/06 |  |  | 1 |
+| 264 | 1 | 2H | NEW JERSEY ATHLETIC BID OF 7/28/06 |  |  | 1 |
+| 265 | 1 | 2I | NEW JERSEY ATHLETIC BID OF 8/4/06 |  |  | 1 |
+| 266 | 1 | KM | ESSEX HEALTH |  |  | 1 |
+| 267 | 1 | 2J | NEW JERSEY CUSTODIAL BID OF 8/25/06 |  |  | 1 |
+| 268 | 1 | ER | EAST RAMAPO |  |  | 2 |
+| 269 | 1 | EA | EAST ORANGE TEXTBOOKS |  |  |  |
+| 270 | 1 | WR | EAST WINDSOR ATHLETICS |  |  | 1 |
+| 271 | 1 | EG | EAST ORANGE TEXTBOOKS |  |  |  |
+| 272 | 1 | MK | ESSEX HEALTH ADDENDA |  |  |  |
+| 273 | 1 | H4 | MASSAPEQUA-MUSICAL INSTRUMENTS |  |  |  |
+| 274 | 1 | H2 | MUSICAL INSTRUMENT REPAIR-NEW JERSEY |  |  |  |
+| 275 | 1 | CP | CLIFFSIDE PARK |  |  | 1 |
+| 276 | 1 | QW | BERNARDS TOWNSHIP |  |  | 1 |
+| 277 | 1 | ST | SOUTH ORANGETOWN |  |  | 2 |
+| 278 | 1 | PQ | PLAINEDGE ATHLETICS-BID |  |  |  |
+| 279 | 1 | PP | PLAINEDGE |  |  | 2 |
+| 280 | 1 | &6 | HIGHLAND REGIONAL H.S. (BLACK HORSE PIKE) |  |  |  |
+| 281 | 1 | H1 | MUSICAL INSTRUMENT REPAIR |  |  |  |
+| 282 | 1 | W2 | WILLINGBORO TWP. |  |  | 1 |
+| 283 | 1 | HZ | HAZLET-MUSIC |  |  | 1 |
+| 284 | 1 | GC | IRVINGTON-MUSIC |  |  | 1 |
+| 285 | 1 | OL | MORRIS TOWNSHIP |  |  | 1 |
+| 286 | 1 | XK | OAKLAND-MUSIC |  |  | 1 |
+| 287 | 1 | PI | POINT PLEASANT BORO-MUSIC |  |  | 1 |
+| 288 | 1 | UA | RIVERSIDE TWP |  |  | 1 |
+| 289 | 1 | TL | TENAFLY-MUSIC |  |  | 1 |
+| 290 | 1 | SG | SOUTH PLAINFIELD-MUSIC |  |  | 1 |
+| 291 | 1 | LI | LONG BEACH CITY MUSIC |  |  | 2 |
+| 292 | 1 | !~ | DEMO PRICE PLAN |  |  | 2 |
+| 293 | 1 | P5 | PAWLING ATHLETIC |  |  | 2 |
+| 294 | 1 | E# | EVESHAM CUSTODIAL |  |  | 1 |
+| 295 | 1 | PR | PLAINEDGE CUSTODIAL |  |  |  |
+| 296 | 1 | TS | NEW ROCHELLE |  |  |  |
+| 297 | 1 | YD | HARRINGTON PARK TEXTBOOKS |  |  | 1 |
+| 298 | 1 | HH | HASBROUCK HEIGHTS ATHLETIC |  |  | 1 |
+| 299 | 1 | IK | NEW MILFORD ATHLETIC |  |  | 1 |
+| 300 | 1 | DS | EDISON ATHLETICS-J.P. STEVENS |  |  |  |
+| 301 | 1 | ED | EDISON H.S. ATHLETICS |  |  | 1 |
+| 302 | 1 | R5 | RANDOLPH |  |  | 1 |
+| 303 | 1 | M1 | MIDDLETOWN |  |  |  |
+| 304 | 1 | 3S | NEW YORK ATHLETIC BID OF 7/11/18 |  |  | 2 |
+| 305 | 1 | ND | NORTH ARLINGTON CUSTODIAL |  |  | 1 |
+| 306 | 1 | XA | MAHWAH |  |  | 1 |
+| 307 | 1 | K# | KITTATINNY ATHLETICS |  |  | 1 |
+| 308 | 1 | IX | BEDFORD ATHLETICS |  |  | 2 |
+| 309 | 1 | KE | KEARNY |  |  | 1 |
+| 310 | 1 | L7 | CENTER MORICHES-STATIONERY |  |  | 2 |
+| 311 | 1 | #U | HADDONFIELD |  |  | 1 |
+| 312 | 1 | UP | HADDON TWP ELECTRICAL |  |  | 1 |
+| 313 | 1 | AD | RIVER DELL ATHLETIC |  |  | 1 |
+| 314 | 1 | C1 | CAMDEN CITY SCHOOL DISTRICT |  |  | 1 |
+| 315 | 1 | O1 | MONMOUTH COUNTY VO-TECH |  |  |  |
+| 316 | 1 | 3T | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 7/27/17 |  |  | 1 |
+| 317 | 1 | A2. | ASBURY PARK |  |  |  |
+| 318 | 1 | GW | NORTH SHORE |  |  | 2 |
+| 319 | 1 | MV | MONTVILLE |  |  | 1 |
+| 320 | 1 | P~ | PLAINFIELD |  |  | 1 |
+| 321 | 1 | LS | MOUNT LAUREL |  |  | 1 |
+| 322 | 1 | EJ | EASTERN CAMDEN PHOTO/GRAPHIC ARTS |  |  | 1 |
+| 323 | 1 | NH | MT PLEASANT-WESTLAKE HS |  |  | 2 |
+| 324 | 1 | NI | MT PLEASANT-WESTLAKE MS |  |  |  |
+| 325 | 1 | KB | LENAPE VALLEY REGIONAL |  |  | 1 |
+| 326 | 1 | KF | KEARNY |  |  |  |
+| 327 | 1 | FT | FRANKLIN TOWNSHIP |  |  | 1 |
+| 328 | 1 | A3 | BRICK ATHLETIC-LAKE RIVIERA |  |  |  |
+| 329 | 1 | A4 | BRICK ATHLETIC-VETERAN'S MEMORIAL |  |  |  |
+| 330 | 1 | U6 | LENAPE REGIONAL HIGH SCHOOL |  |  |  |
+| 331 | 1 | U7 | LENAPE REGIONAL ATHLETIC-CHEROKEE H.S. |  |  |  |
+| 332 | 1 | U9 | LENAPE REGIONAL ATHLETIC-SHAWNEE H.S. |  |  |  |
+| 333 | 1 | E4 | ESSEX COUNTY VOTECH |  |  | 1 |
+| 334 | 1 | WG | ISLAND TREES PHOTOGRAPHY |  |  | 2 |
+| 335 | 1 | IT | HENDRICK HUDSON CUSTODIAL |  |  | 2 |
+| 336 | 1 | PT | PARSIPPANY-TROY HILLS MUSIC |  |  | 1 |
+| 337 | 1 | BQ | BRIARCLIFF MANOR MUSIC |  |  | 2 |
+| 338 | 1 | C8 | CLEARVIEW REGIONAL ATHLETICS |  |  | 1 |
+| 339 | 1 | W8 | WESTBURY UNION FREE SCHOOL DISTRICT |  |  | 2 |
+| 340 | 1 | KN | CARTERET |  |  | 1 |
+| 341 | 1 | OS | HOLMDEL-SATZ INTERMEDIATE SCHOOL |  |  |  |
+| 342 | 1 | B3 | BARNEGAT |  |  | 1 |
+| 343 | 1 | #N | VOORHEES HIGH SCHOOL  (HUNTERDON COUNTY) |  |  |  |
+| 344 | 1 | N# | NORTH HUNTERDON REGIONAL H.S. |  |  | 2 |
+| 345 | 1 | BH | OLD BRIDGE |  |  | 1 |
+| 346 | 1 | PW | NYACK |  |  | 2 |
+| 347 | 1 | HC | HILLSBOROUGH |  |  | 1 |
+| 348 | 1 | A5 | DELSEA REGIONAL |  |  | 1 |
+| 349 | 1 | F1 | COLTS NECK HIGH SCHOOL |  |  |  |
+| 350 | 1 | F2 | MANALAPAN HIGH SCHOOL |  |  |  |
+| 351 | 1 | F3 | HOWELL HIGH SCHOOL |  |  | 1 |
+| 352 | 1 | F4 | FREEHOLD TWP HIGH SCHOOL |  |  | 1 |
+| 353 | 1 | FK | FREEHOLD REGIONAL HIGH SCHOOL |  |  | 1 |
+| 354 | 1 | F5 | FREEHOLD REGIONAL HSD-MARLBORO HS |  |  | 1 |
+| 355 | 1 | JL | MATAWAN-ABERDEEN CUSTODIAL |  |  | 1 |
+| 356 | 1 | M6 | MIDLAND PARK |  |  | 1 |
+| 357 | 1 | B1 | BUENA REGIONAL |  |  |  |
+| 358 | 1 | A6 | DELSEA REGIONAL ATHLETIC |  |  |  |
+| 359 | 1 | A# | ATLANTIC CITY |  |  |  |
+| 360 | 1 | FC | BERGENFIELD |  |  | 1 |
+| 361 | 1 | X3 | TEST FOR BID PROGRAM |  |  |  |
+| 362 | 1 | 6A | ARGYLE |  |  |  |
+| 363 | 1 | CH | CHERRY HILL |  |  | 1 |
+| 364 | 1 | C2 | CHERRY HILL WEST-ATHLETICS |  |  |  |
+| 365 | 1 | C3 | BECK MS (CHERRY HILL) |  |  |  |
+| 366 | 1 | C4 | ROSA INTERNATIONAL  (CHERRY HILL) |  |  |  |
+| 367 | 1 | M9 | MORRIS-UNION JOINTURE COMMISSION |  |  | 1 |
+| 368 | 1 | #Q | PLEASANTVILLE |  |  | 1 |
+| 369 | 1 | LB | LONG BRANCH |  |  | 1 |
+| 370 | 1 | G2 | GARDEN CITY MIDDLE SCHOOL-ATHLETIC |  |  |  |
+| 371 | 1 | FG | FT EDWARD |  |  |  |
+| 372 | 1 | HU | HARRISON |  |  | 1 |
+| 373 | 1 | S1 | SALEM COUNTY VO-TECH |  |  | 1 |
+| 374 | 1 | G3 | GLASSBORO |  |  |  |
+| 375 | 1 | G4 | GLASSBORO |  |  |  |
+| 376 | 1 | JB | JACKSON |  |  |  |
+| 377 | 1 | CU | CLARK |  |  | 1 |
+| 378 | 1 | QN | RAMAPO-INDIAN HILLS REGIONAL HSD |  |  | 1 |
+| 379 | 1 | G9 | OYSTER BAY-EAST NORWICH |  |  | 2 |
+| 380 | 1 | FY | FREEPORT |  |  | 2 |
+| 381 | 1 | EC | EAST HAMPTON |  |  | 2 |
+| 382 | 1 | JC | GOETZ MIDDLE SCHOOL-JACKSON |  |  |  |
+| 383 | 1 | JD | CHRISTA MCAULIFFE MIDDLE SCHOOL-JACKSON |  |  |  |
+| 384 | 1 | Q1 | INDIAN HILLS HIGH SCHOOL ATHLETIC |  |  |  |
+| 385 | 1 | B4 | SALK MIDDLE SCHOOL ATHLETIC-OLD BRIDGE |  |  |  |
+| 386 | 1 | B5 | SANDBURG M.S.  ATHLETIC-OLD BRIDGE |  |  |  |
+| 388 | 1 | RM | RIDGEFIELD PARK |  |  | 1 |
+| 389 | 1 | GC | IRVINGTON |  |  | 1 |
+| 390 | 1 | WH | WASHINGTON TOWNSHIP (GLOUCESTER) |  |  | 1 |
+| 391 | 1 | SP | SCOTCH PLAINS/FANWOOD ATHLETIC |  |  | 1 |
+| 392 | 1 | C9 | CAMDEN HIGH SCHOOL |  |  | 1 |
+| 393 | 1 | KJ | KENILWORTH |  |  | 1 |
+| 394 | 1 | SN | SOMERVILLE ATHLETICS |  |  | 1 |
+| 395 | 1 | E5 | ESSEX COUNTY VO-TECH LPN |  |  |  |
+| 396 | 1 | FJ | LIVINGSTON |  |  | 1 |
+| 397 | 1 | F6 | HERITAGE M.S. (LIVINGSTON) |  |  |  |
+| 398 | 1 | &1 | TIMBER CREEK HS (BLACK HORSE PIKE) |  |  |  |
+| 399 | 1 | &2 | TRITON REGIONAL HS (BLACK HORSE PIKE) |  |  |  |
+| 400 | 1 | IN | NORTHERN VALLEY-OLD TAPPAN |  |  |  |
+| 401 | 1 | IM | NORTHERN VALLEY-DEMAREST |  |  | 1 |
+| 403 | 1 | UJ | HICKSVILLE MIDDLE SCHOOL ATHLETICS |  |  |  |
+| 404 | 1 | F7 | JOHN W DODD JR HS  (FREEPORT) |  |  |  |
+| 405 | 1 | C5 | GREAT NECK NORTH H.S. |  |  |  |
+| 406 | 1 | C6 | GREAT NECK NORTH M.S. |  |  |  |
+| 407 | 1 | C7 | GREAT NECK SOUTH M.S. |  |  |  |
+| 408 | 1 | CE | GREAT NECK SOUTH H.S. |  |  | 2 |
+| 409 | 1 | S5 | SHOREHAM-WADING RIVER H.S. |  |  | 2 |
+| 410 | 1 | S6 | ALBERT G. PRODELL M.S (SHOREHAM-WADING RIVER) |  |  |  |
+| 411 | 1 | MJ | MOUNT HOLLY |  |  | 1 |
+| 412 | 1 | CI | CARUSI MS ATHLETICS (CHERRY HILL) |  |  |  |
+| 413 | 1 | 3U | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 6/12/25 |  |  | 1 |
+| 414 | 1 | CZ | GREAT NECK-PHIPPS |  |  |  |
+| 415 | 1 | MZ | MOORESTOWN |  |  | 1 |
+| 416 | 1 | W9 | HEWLETT-WOODMERE |  |  | 2 |
+| 417 | 1 | RY | RAMSEY |  |  | 1 |
+| 418 | 1 | NT | NORTH BRUNSWICK |  |  | 1 |
+| 419 | 1 | W3 | ROBBINSVILLE SCHOOL DISTRICT |  |  | 1 |
+| 420 | 1 | 4J | NEW JERSEY ATHLETIC/CUSTODIAL BID OF 8/14/13 |  |  | 1 |
+| 421 | 1 | KG | EDGEMONT ATHLETICS |  |  | 2 |
+| 422 | 1 | SB | SADDLE RIVER |  |  | 1 |
+| 423 | 1 | P4 | PITTSGROVE |  |  | 1 |
+| 424 | 1 | PX | PARAMUS |  |  | 1 |
+| 425 | 1 | US | SOUTHERN REGIONAL MIDDLE SCHOOL |  |  | 1 |
+| 426 | 1 | UT | SOUTHERN REGIONAL HIGH SCHOOL |  |  |  |
+| 427 | 1 | X8 | NEW YORK TIME & MATERIALS/FURNITURE/ANCILLARY |  |  | 2 |
+| 428 | 1 | X1 | NJ COOP MSRP Furniture,Whiteboards,T/M |  |  | 1 |
+| 429 | 1 | JU | LAKELAND REGIONAL H.S. |  |  | 1 |
+| 430 | 1 | Y1 | MANASQUAN |  |  | 1 |
+| 431 | 1 | WM | WEST MORRIS MENDHAM HIGH SCHOOL |  |  | 1 |
+| 432 | 1 | ME | MIDDLESEX  VOCATIONAL-EAST BRUNSWICK |  |  | 1 |
+| 434 | 1 | M2 | MIDDLESEX  VOCATIONAL-PISCATAWAY |  |  |  |
+| 435 | 1 | M3 | MIDDLESEX  VOCATIONAL-PERTH AMBOY |  |  |  |
+| 436 | 1 | M5 | MIDDLESEX  VOCATIONAL-WOODBRIDGE |  |  |  |
+| 437 | 1 | M7 | MIDDLESEX  VOCATIONAL-ACADEMY |  |  | 1 |
+| 438 | 1 | EW | EAST WILLISTON PHOTOGRAPHY |  |  | 2 |
+| 439 | 1 | KU | HASTINGS ON HUDSON PHOTOGRAPHY |  |  | 2 |
+| 440 | 1 | EV | EWING TOWNSHIP |  |  | 1 |
+| 441 | 1 | ^8 | HOBOKEN |  |  | 1 |
+| 442 | 1 | L6 | LEAP ACADEMY |  |  | 1 |
+| 443 | 1 | R8 | ROCKAWAY TWP. |  |  | 1 |
+| 444 | 1 | +1 | NEW JERSEY COOPERATIVE |  |  | 1 |
+| 445 | 1 | +3 | NEW  YORK COOPERATIVE BIDS |  |  | 2 |
+| 446 | 1 | +2 | MORRIS COUNTY COMMISSION |  |  | 1 |
+| 447 | 1 | +8 | SOUTHERN COOP GENERAL SUPPLIES |  |  | 1 |
+| 448 | 1 | +5 | BERGEN COUNTY COOP |  |  | 1 |
+| 449 | 1 | +6 | ESSEX, HUDSON, PASSAIC COOP |  |  | 1 |
+| 450 | 1 | +4 | ISLAND COOP |  |  | 2 |
+| 451 | 1 | +7 | WEST CENTRAL COOP |  |  | 1 |
+| 452 | 1 | +B | NEW YORK COOPERATIVE - GENERAL |  |  | 2 |
+| 453 | 1 | HX | HUDSON COUNTY SCHOOLS OF TECHNOLOGY |  |  | 1 |
+| 454 | 1 | TV | TINTON FALLS |  |  | 1 |
+| 455 | 1 | IA | PHILLIPSBURG |  |  | 1 |
+| 456 | 1 | M0 | MIDDLESEX COUNTY VO-TECH |  |  |  |
+| 457 | 1 | XZ | DEMO INTERNET BID PRICE PLAN |  |  |  |
+| 458 | 1 | H6 | HILLSBOROUGH MIDDLE SCHOOL ATHLETIC |  |  |  |
+| 459 | 1 | UY | UNION COUNTY ED SERVICES COMMISSION |  |  | 1 |
+| 460 | 1 | HV | HOPEWELL VALLEY |  |  | 1 |
+| 461 | 1 | LR | LOPATCONG |  |  |  |
+| 462 | 1 | MF | MONROE TOWSHIP |  |  | 1 |
+| 463 | 1 | MP | MEDFORD TWP-MUSIC |  |  | 1 |
+| 464 | 1 | M@ | MARLBORO  CSD ATHLETIC |  |  | 2 |
+| 465 | 1 | WW | WEST WINDSOR-PLAINSBORO HS-NORTH |  |  | 1 |
+| 466 | 1 | GU | HARRISON |  |  | 2 |
+| 467 | 1 | E5 | EAST GREENWICH |  |  | 1 |
+| 468 | 1 | E6 | EAST GREENWICH |  |  |  |
+| 469 | 1 | +C | ALTERNATE NEW YORK BUDGETARY |  |  |  |
+| 470 | 1 | NP | NEW PROVIDENCE ATHLETIC |  |  | 1 |
+| 471 | 1 | NN | TEST DISTRICT NN |  |  |  |
+| 472 | 1 | MG | MORRIS HILLS REGIONAL H.S.D. |  |  | 1 |
+| 473 | 1 | M# | MORRIS KNOLLS HIGH SCHOOL ATHLETIC |  |  | 1 |
+| 474 | 1 | PN | PENNSAUKEN |  |  | 1 |
+| 475 | 1 | P3 | PHIFER MIDDLE SCHOOL |  |  |  |
+| 476 | 1 | X5 | SMART BOARD AND ACCESSORIES NORTH |  |  |  |
+| 477 | 1 | X6 | SMART BOARD AND ACCESSORIES SOUTH |  |  |  |
+| 478 | 1 | X7 | GLENS FALLS COOPERATIVE BID OF 4/20/12 |  |  |  |
+| 479 | 1 | Z~ | NEW JERSEY MSRP |  |  | 1 |
+| 480 | 1 | Z! | NEW YORK MSRP |  |  | 2 |
+| 481 | 1 | Z@ | LONG ISLAND MSRP |  |  | 2 |
+| 482 | 1 | ^7 | GARFIELD-LUMBER-SEPTEMBER DELIVERY #1 |  |  | 1 |
+| 483 | 1 | ^5 | ROBERT MURPHY JR HS (THREE VILLAGES) |  |  | 1 |
+| 484 | 1 | ^6 | GARFIELD-LUMBER-NOVEMBER DELIVERY #2 |  |  | 1 |
+| 485 | 1 | RK | RANCOCAS VALLEY ATHLETIC |  |  | 1 |
+| 486 | 1 | AC | ATLANTIC COUNTY VO-TECH |  |  | 1 |
+| 487 | 1 | P6 | PARSIPPANY-BROOKLAWN  M.S. |  |  |  |
+| 488 | 1 | P1 | PARSIPPANY HIGH SCHOOL |  |  |  |
+| 489 | 1 | P7 | PARSIPPANY HILLS HIGH SCHOOL |  |  |  |
+| 490 | 1 | P8 | PARSIPPANY-CENTRAL M.S. |  |  |  |
+| 491 | 1 | WN | WEST BABYLON SUPPLEMENTAL PHYS ED./SCIENCE |  |  | 2 |
+| 492 | 1 | VB | VALLEY STREAM CENTRAL HIGH SCHOOL |  |  | 2 |
+| 493 | 1 | V1 | VALLEY STREAM SOUTH |  |  |  |
+| 494 | 1 | V2 | VALLEY STREAM NORTH |  |  |  |
+| 495 | 1 | N1 | NORTH BRUNSWICK MIDDLE SCHOOL |  |  |  |
+| 496 | 1 | 6B | EDISON-JEFFERSON MIDDLE SCHOOL |  |  |  |
+| 497 | 1 | OM | FRELINGHUYSEN MIDDLE SCHOOL (MORRIS TWP) |  |  |  |
+| 498 | 1 | W4 | WEST WINDSOR-PLAINSBORO HS-SOUTH |  |  |  |
+| 499 | 1 | PV | PINE BUSH |  |  | 2 |
+| 500 | 1 | XE | EAST BRUNSWICK |  |  | 1 |
+| 501 | 1 | FS | FRANKLIN TOWNSHIP  (GLOUCESTER) |  |  | 1 |
+| 502 | 1 | B9 | BELLMORE-MERRICK CSD |  |  | 2 |
+| 503 | 1 | B2 | CALHOUN HIGH SCHOOL (BELLMORE-MERRICK) |  |  |  |
+| 504 | 1 | B6 | GRAND AVENUE MS  (BELLMORE-MERRICK). |  |  |  |
+| 505 | 1 | B7 | JOHN F. KENNEDY HS (BELLMORE-MERRICK) |  |  |  |
+| 506 | 1 | B& | BALDWIN UFSD |  |  |  |
+| 507 | 1 | HO | Science Grade Level Materials LIst |  |  |  |
+| 508 | 1 | AX | ENGLEWOOD CLIFFS |  |  | 1 |
+| 509 | 1 | KS | HACKENSACK |  |  | 1 |
+| 510 | 1 | YP | PEMBERTON TWP. |  |  | 1 |
+| 511 | 1 | AE | ATLANTIC COUNTY SPECIAL SERVICES |  |  | 1 |
+| 512 | 1 | ^6 | ELWOOD |  |  | 2 |
+| 513 | 1 | ^E | NEPTUNE TWP. |  |  | 1 |
+| 514 | 1 | DZ | MAHOPAC CSD |  |  | 2 |
+| 515 | 1 | ^U | WARREN TOWNSHIP |  |  | 1 |
+| 516 | 1 | ^E | NEPTUNE MUSIC |  |  | 1 |
+| 517 | 1 | MU | MINISINK VALLEY CSD |  |  | 2 |
+| 518 | 1 | TW | WINSLOW TWP HS |  |  | 1 |
+| 519 | 1 | T2 | WINSLOW TWP MS |  |  |  |
+| 520 | 1 | H9 | HERRICKS |  |  | 2 |
+| 522 | 1 | E1 | WOODROW WILSON MIDDLE SCHOOL  (EDISON TWP) |  |  |  |
+| 523 | 1 | E2 | JOHN ADAMS MIDDLE SCHOOL  (EDISON TWP) |  |  |  |
+| 524 | 1 | N2 | NORTH SALEM ATHLETIC UNIFORMS |  |  |  |
+| 525 | 1 | MA | Middlesex Public School |  |  | 1 |
+| 526 | 1 | ^U | WARREN TOWNSHIP |  |  | 1 |
+| 527 | 1 | #M | MONMOUTH REGIONAL HIGH SCHOOL |  |  | 1 |
+| 528 | 1 | V8 | OAKCREST HIGH SCHOOL |  |  |  |
+| 529 | 1 | V7 | CEDAR CREEK HIGH SCHOOL |  |  |  |
+| 530 | 1 | V6 | ABSEGAMI HIGH SCHOOL |  |  |  |
+| 531 | 1 | Y2 | HELEN FORT MS (PEMBERTON TWP) |  |  |  |
+| 532 | 1 | U1 | UNION TOWNSHIP |  |  |  |
+| 533 | 1 | V5 | GREATER EGG HARBOR-CUSTODIAL |  |  |  |
+| 534 | 1 | P! | PASSAIC VALLEY ATHLETIC |  |  |  |
+| 535 | 1 | Y5 | NOTTINGHAM HIGH SCHOOL  (HAMILTON TOWNSHIP) |  |  |  |
+| 536 | 1 | SS | SAG HARBOR |  |  | 2 |
+| 537 | 1 | ^4 | COMSEWOGUE |  |  | 2 |
+| 538 | 1 | TB | PEQUANNOCK ATHLETIC/UNIFORMS |  |  | 1 |
+| 539 | 1 | Q4 | JEFFERSON TOWNSHIP |  |  | 1 |
+| 540 | 1 | WQ | WATCHUNG HILLS |  |  | 1 |
+| 541 | 1 | &H | CARLE PLACE |  |  | 2 |
+| 542 | 1 | O3 | OSSINING UFSD |  |  | 2 |
+| 543 | 1 | O4 | MOUNT VERNON |  |  | 2 |
+| 544 | 1 | Y3 | STEINERT HIGH SCHOOL (HAMILTON TOWNSHIP) |  |  |  |
+| 545 | 1 | OC | OCEANSIDE UFSD |  |  | 2 |
+| 546 | 1 | OD | OCEANSIDE MIDDLE SCHOOL |  |  |  |
+| 547 | 1 | TA | ESC of MORRIS COUNTY |  |  | 1 |
+| 548 | 1 | #T | BERKELEY TOWNSHIP |  |  |  |
+| 549 | 1 | G6 | GATEWAY REGIONAL |  |  |  |
+| 550 | 1 | WO | WEST ORANGE |  |  |  |
+| 551 | 1 | !1 | MSRP New Jersey |  |  | 1 |
+| 552 | 1 | !3 | MSRP New York |  |  | 2 |
+| 553 | 1 | !4 | MSRP Island |  |  | 2 |
+| 554 | 1 | !8 | MSRP New York X8 |  |  | 1 |
+| 555 | 1 | !B | MSRP New York Exclude Island |  |  | 2 |
+| 556 | 1 | QR | SAUGERITES ATHLETIC |  |  |  |
+| 557 | 1 | SK | SHORE REGIONAL HIGH SCHOOL |  |  |  |
+| 46556 | 1 | RX | ROXBURY SCHOOL DISTRICT |  |  |  |
+| 1102556 | 1 | JS | ARDSLEY |  |  |  |
+| 1102557 | 1 | XY | STAFFORD TWP. |  |  |  |
+| 1102558 | 1 | E3 | EGG HARBOR TOWNSHIP |  |  |  |
+| 1102559 | 1 | EH | EASTCHESTER |  |  |  |
+| 1102560 | 1 | YW | WAYNE HILLS-ATHLETIC |  |  |  |
+| 1102561 | 1 | YZ | WAYNE HILLS-ATHLETIC 1 |  |  |  |
+| 1102562 | 1 | BB | BOUND BROOK |  |  |  |
+| 1102563 | 1 | N7 | NUTLEY |  |  |  |
+| 1104564 | 1 | M+ | MATTITUCK-CUTCHOGUE |  |  |  |
+| 1104565 | 1 | W6 | WAYNE VALLEY HIGH SCHOOL |  |  |  |
+| 1104566 | 1 | MB | MONROE-WOODBURY CSD |  |  |  |
+| 1104567 | 1 | KX | MANALAPAN-ENGLISHTOWN RSD |  |  |  |
+| 1104568 | 1 | N4 | MAMARONECK UFSD |  |  |  |
+| 1104569 | 1 | &9 | CENTRAL ISLIP |  |  |  |
+| 1104570 | 1 | J5 | SOUTH COLONIE CSD |  |  |  |
+| 1104571 | 1 | L~ | Lakeland Central School District |  |  |  |
+| 1104572 | 1 | ^3 | WARD MELVILLE HIGH SCHOOL |  |  |  |
+| 1104573 | 1 | ^9 | GELINAS JR HS (THREE VILLAGES) |  |  |  |
+| 1104574 | 1 | RZ | SCARSDALE |  |  |  |
+| 1104575 | 1 | N& | NANUET |  |  |  |
+| 1104576 | 1 | W= | WALL TOWNSHIP |  |  |  |
+| 1104577 | 1 | NK | METUCHEN |  |  |  |
+| 1104578 | 1 | L1 | LODI |  |  |  |
+| 1104579 | 1 | 4A | WEST NEW YORK |  |  |  |
+| 1104580 | 1 | SV | SUMMIT ATHLETIC SUPPLIES |  |  |  |
+| 1236564 | 1 | L+ | LINDEN |  |  |  |
+| 1280564 | 1 | Z$ | Upstate New York - Copy of ZB with Z4 General |  |  |  |
+| 1280565 | 1 | T+ | GREENWOOD LAKE UFSD |  |  |  |
+| 1280566 | 1 | CL | CLARKSTOWN TEXTBOOKS |  |  |  |
+| 1280567 | 1 | CL | CLARKSTOWN TEXTBOOKS. |  |  |  |
+| 1284568 | 1 | WZ | WEST HEMPSTEAD |  |  |  |
+| 1290568 | 1 | ^C | CLIFTON CUSTODIAL SUPPLIES |  |  |  |
+| 1290569 | 1 | &F | MOUNT OLIVE |  |  |  |
+| 1290570 | 1 | 9B | ORCHARD PARK |  |  |  |
+| 1292571 | 1 | HR | BYRAM HILLS |  |  |  |
+| 1292572 | 1 | PU | POMPTON LAKES |  |  |  |
+| 1292573 | 1 | WX | COMMUNITY MIDDLE SCHOOL - WEST WINDSOR-PLAINSBORO |  |  |  |
+| 1380571 | 1 | TE | TEANECK |  |  |  |
+| 1380572 | 1 | 9Q | MERCER COUNTY TECHNICAL SCHOOLS |  |  |  |
+| 1380573 | 1 | NB | NORTH BERGEN |  |  |  |
+| 1380574 | 1 | Z0 | NJ Fine Art Without Blick |  |  | 1 |
+| 1380575 | 1 | Z# | NJ Fine Art Bid All Vendors |  |  | 1 |
+| 1380576 | 1 | PB | WEST DEPTFORD ATHLETIC |  |  |  |
+| 1380577 | 1 | 9v | middletown lumber |  |  |  |
+| 1380578 | 1 | CD | CENTRAL REGIONAL |  |  |  |
