@@ -1,6 +1,6 @@
 # Cross-database inbound references: `ProcurementAnalytics`
 
-_Generated on 2026-05-04T13:15:40.567Z_
+_Generated on 2026-05-04T14:51:40.426Z_
 
 **Target database:** `ProcurementAnalytics`
 

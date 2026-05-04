@@ -1,6 +1,6 @@
 # Cross-database inbound references: `Catalogs`
 
-_Generated on 2026-05-04T13:15:40.543Z_
+_Generated on 2026-05-04T14:51:40.411Z_
 
 **Target database:** `Catalogs`
 

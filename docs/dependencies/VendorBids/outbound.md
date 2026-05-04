@@ -1,6 +1,6 @@
 # Cross-database outbound references: `VendorBids`
 
-_Generated on 2026-05-04T13:15:40.560Z_
+_Generated on 2026-05-04T14:51:40.422Z_
 
 **Source database:** `VendorBids`
 
