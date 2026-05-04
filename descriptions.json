@@ -1,9 +1,9 @@
 {
   "_meta": {
     "purpose": "Curated business descriptions for EDS objects. Consumed by src/introspect.js (injects into per-table pages), src/generate-guide.js (curated guide), and src/generate-ms-description-sql.js (extended properties).",
-    "format": "Two key shapes: (1) `<db>.<schema>.<object>` for tables/views, (2) `<db>.<schema>.<object>.<column>` for columns. Each value is a 1-3 sentence description in plain English. Cross-DB keys allowed.",
-    "scope": "Curated set of the most load-bearing tables in the EDS production catalog. Add entries as needed; missing entries simply skip injection.",
-    "validation": "Run `npm run descriptions:check` before regenerating — every key must reference a real DB / schema / object / column."
+    "format": "Three key shapes: (1) `<db>.<schema>.<object>` for tables, views, procedures, or functions; (2) `<db>.<schema>.<object>.<column>` for columns on tables/views; (3) cross-DB keys allowed in any shape. Each value is a 1-3 sentence description in plain English. 3-segment keys are resolved against tables/views first, then against procedures/functions; ambiguous names (a table and a routine sharing schema.name) are not supported.",
+    "scope": "Curated set of the most load-bearing tables, views, and routines in the EDS production catalog. Add entries as needed; missing entries simply skip injection.",
+    "validation": "Run `npm run descriptions:check` before regenerating — every key must reference a real DB / schema / object / column / routine."
   },
 
   "EDS.dbo.Requisitions": "Header record for every purchase request created in EDS. One row per requisition; line items live in `Detail`. Drives the approval workflow that ultimately produces a PO. Belongs to a District and originating User.",

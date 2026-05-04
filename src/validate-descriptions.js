@@ -1,6 +1,6 @@
 // Validate descriptions.json: every key must reference a real DB / schema /
-// table-or-view (and, for column keys, a real column on the parent object).
-// Fails with a non-zero exit code if any key is unresolved or malformed.
+// table-or-view-or-routine (and, for column keys, a real column on the parent
+// object). Fails with a non-zero exit code if any key is unresolved or malformed.
 //
 // Run with: node src/validate-descriptions.js
 //   or: npm run descriptions:check
@@ -13,8 +13,9 @@ const ROOT = path.join(__dirname, '..');
 const DESCRIPTIONS_PATH = path.join(ROOT, 'descriptions.json');
 
 // Key formats:
-//   "<db>.<schema>.<table>"          → table or view
-//   "<db>.<schema>.<table>.<column>" → column on a table or view
+//   "<db>.<schema>.<object>"          → table, view, procedure, or function
+//   "<db>.<schema>.<object>.<column>" → column on a table or view
+// 3-segment keys are resolved against tables/views first, then routines.
 function parseKey(k) {
   const parts = k.split('.');
   if (parts.length === 3) return { db: parts[0], schema: parts[1], name: parts[2], kind: 'object' };
@@ -70,6 +71,20 @@ async function fetchColumnSet(db) {
   return m;
 }
 
+async function fetchRoutineSet(db) {
+  // Returns Map<schema.name, { type: 'PROCEDURE' | 'FUNCTION' }>
+  const r = await query(`
+    SELECT ROUTINE_SCHEMA, ROUTINE_NAME, ROUTINE_TYPE
+    FROM [${db}].INFORMATION_SCHEMA.ROUTINES
+    WHERE ROUTINE_TYPE IN ('PROCEDURE', 'FUNCTION')
+  `);
+  const m = new Map();
+  for (const row of r.recordset) {
+    m.set(`${row.ROUTINE_SCHEMA}.${row.ROUTINE_NAME}`, { type: row.ROUTINE_TYPE });
+  }
+  return m;
+}
+
 (async () => {
   let exitCode = 0;
   try {
@@ -90,10 +105,11 @@ async function fetchColumnSet(db) {
     const errors = entries.filter((e) => e.error);
 
     for (const [db, dbEntries] of byDb) {
-      let objects, columns;
+      let objects, columns, routines;
       try {
         objects = await fetchObjectSet(db);
         columns = await fetchColumnSet(db);
+        routines = await fetchRoutineSet(db);
       } catch (e) {
         for (const en of dbEntries) {
           errors.push({ key: en.key, error: `cannot connect to or read database \`${db}\`: ${e.message}` });
@@ -103,23 +119,33 @@ async function fetchColumnSet(db) {
 
       for (const en of dbEntries) {
         const objKey = `${en.schema}.${en.name}`;
-        const obj = objects.get(objKey);
-        if (!obj) {
-          errors.push({ key: en.key, error: `object \`${db}.${objKey}\` not found (table or view)` });
+        if (en.kind === 'object') {
+          if (objects.has(objKey)) {
+            en.resolved = 'table_or_view';
+          } else if (routines.has(objKey)) {
+            en.resolved = 'routine';
+          } else {
+            errors.push({ key: en.key, error: `object \`${db}.${objKey}\` not found (table, view, procedure, or function)` });
+          }
           continue;
         }
-        if (en.kind === 'column') {
-          const cols = columns.get(objKey);
-          if (!cols || !cols.has(en.column)) {
-            errors.push({ key: en.key, error: `column \`${en.column}\` not found on \`${db}.${objKey}\`` });
-          }
+        // column key — must reference a table or view, not a routine
+        if (!objects.has(objKey)) {
+          const hint = routines.has(objKey) ? ' (matches a procedure/function; column keys only apply to tables and views)' : '';
+          errors.push({ key: en.key, error: `parent object \`${db}.${objKey}\` not found as table or view${hint}` });
+          continue;
+        }
+        const cols = columns.get(objKey);
+        if (!cols || !cols.has(en.column)) {
+          errors.push({ key: en.key, error: `column \`${en.column}\` not found on \`${db}.${objKey}\`` });
         }
       }
     }
 
-    const tableCount = entries.filter((e) => !e.error && e.kind === 'object').length;
+    const tableCount = entries.filter((e) => !e.error && e.kind === 'object' && e.resolved === 'table_or_view').length;
+    const routineCount = entries.filter((e) => !e.error && e.kind === 'object' && e.resolved === 'routine').length;
     const columnCount = entries.filter((e) => !e.error && e.kind === 'column').length;
-    console.log(`Validated ${entries.length} entries (${tableCount} object, ${columnCount} column).`);
+    console.log(`Validated ${entries.length} entries (${tableCount} table/view, ${routineCount} routine, ${columnCount} column).`);
 
     if (errors.length) {
       exitCode = 1;
