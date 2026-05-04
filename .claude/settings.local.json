@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm run *)",
       "Bash(node *)",
-      "mcp__azure-devops__repo_list_repos_by_project"
+      "mcp__azure-devops__repo_list_repos_by_project",
+      "mcp__azure-devops__repo_list_directory",
+      "mcp__azure-devops__repo_get_file_content"
     ]
   },
   "enabledMcpjsonServers": [
