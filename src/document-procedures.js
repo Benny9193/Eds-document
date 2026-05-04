@@ -5,6 +5,38 @@ const { query, close } = require('./db');
 
 const ROOT = path.join(__dirname, '..');
 const PROCS_DIR = path.join(ROOT, 'docs', 'procedures');
+const DESCRIPTIONS_PATH = path.join(ROOT, 'descriptions.json');
+
+// Load curated descriptions. 3-segment keys (`<db>.<schema>.<name>`) cover
+// tables, views, procedures, and functions interchangeably — this generator
+// only consumes the routine subset, but the storage format is shared with
+// src/introspect.js.
+function loadDescriptions() {
+  if (!fs.existsSync(DESCRIPTIONS_PATH)) return { objects: new Map(), size: 0 };
+  const raw = JSON.parse(fs.readFileSync(DESCRIPTIONS_PATH, 'utf8'));
+  const objects = new Map(); // "db.schema.name" -> description
+  let total = 0;
+  for (const [k, v] of Object.entries(raw)) {
+    if (k.startsWith('_')) continue;
+    if (typeof v !== 'string' || !v.trim()) continue;
+    const parts = k.split('.');
+    if (parts.length === 3) {
+      objects.set(k, v.trim());
+      total++;
+    }
+  }
+  return { objects, size: total };
+}
+
+function descriptionFor(descriptions, dbName, schema, name) {
+  return descriptions.objects.get(`${dbName}.${schema}.${name}`) || null;
+}
+
+function shortDesc(d) {
+  if (!d) return '';
+  const oneLine = d.replace(/\s+/g, ' ').trim();
+  return oneLine.length > 160 ? oneLine.slice(0, 157) + '…' : oneLine;
+}
 
 // Databases to document. Adding more is a one-liner; each is validated against
 // sys.databases before being bracketed into cross-DB queries.
@@ -220,7 +252,7 @@ function renderParamsTable(out, routineParams, defaultsByOrdinal) {
   out.push('');
 }
 
-function renderRoutinePage(dbName, mod, info) {
+function renderRoutinePage(dbName, mod, info, descriptions) {
   const schema = mod.schema;
   const name = mod.name;
   const fq = `${schema}.${name}`;
@@ -248,6 +280,14 @@ function renderRoutinePage(dbName, mod, info) {
   out.push('');
   out.push('[← back to database index](README.md) &nbsp;|&nbsp; [← back to procedures index](../README.md)');
   out.push('');
+
+  const desc = descriptionFor(descriptions, dbName, schema, name);
+  if (desc) {
+    out.push('## Description');
+    out.push('');
+    out.push(desc);
+    out.push('');
+  }
 
   out.push('## Summary');
   out.push('');
@@ -328,7 +368,7 @@ function paramCount(info, schema, name) {
   ).length;
 }
 
-function renderDbIndex(dbName, info) {
+function renderDbIndex(dbName, info, descriptions) {
   const procs = info.modules.filter((m) => (m.type_code || '').trim() === 'P');
   const funcs = info.modules.filter((m) => ['FN', 'IF', 'TF'].includes((m.type_code || '').trim()));
 
@@ -351,9 +391,11 @@ function renderDbIndex(dbName, info) {
   out.push('## Summary');
   out.push('');
   const encryptedCount = info.modules.filter((m) => m.is_encrypted).length;
+  const describedCount = info.modules.filter((m) => descriptionFor(descriptions, dbName, m.schema, m.name)).length;
   out.push(`- Procedures: **${procs.length}**`);
   out.push(`- Functions: **${funcs.length}**`);
   out.push(`- Encrypted: **${encryptedCount}**`);
+  out.push(`- Described (curated): **${describedCount}**`);
   out.push('');
 
   out.push('## Procedures');
@@ -362,11 +404,12 @@ function renderDbIndex(dbName, info) {
     out.push('None.');
     out.push('');
   } else {
-    out.push('| Name | Parameters | Created | Modified | Encrypted |');
-    out.push('|------|------------|---------|----------|-----------|');
+    out.push('| Name | Parameters | Created | Modified | Encrypted | Description |');
+    out.push('|------|------------|---------|----------|-----------|-------------|');
     for (const p of procs) {
+      const desc = shortDesc(descriptionFor(descriptions, dbName, p.schema, p.name));
       out.push(
-        `| [\`${p.schema}.${p.name}\`](${objectLinkFromDbIndex(p.schema, p.name)}) | ${paramCount(info, p.schema, p.name)} | ${isoDate(p.create_date)} | ${isoDate(p.modify_date)} | ${p.is_encrypted ? 'YES' : 'no'} |`
+        `| [\`${p.schema}.${p.name}\`](${objectLinkFromDbIndex(p.schema, p.name)}) | ${paramCount(info, p.schema, p.name)} | ${isoDate(p.create_date)} | ${isoDate(p.modify_date)} | ${p.is_encrypted ? 'YES' : 'no'} | ${desc} |`
       );
     }
     out.push('');
@@ -378,12 +421,13 @@ function renderDbIndex(dbName, info) {
     out.push('None.');
     out.push('');
   } else {
-    out.push('| Name | Kind | Parameters | Created | Modified | Encrypted |');
-    out.push('|------|------|------------|---------|----------|-----------|');
+    out.push('| Name | Kind | Parameters | Created | Modified | Encrypted | Description |');
+    out.push('|------|------|------------|---------|----------|-----------|-------------|');
     for (const f of funcs) {
       const kind = classifyKind(f.type_code).label;
+      const desc = shortDesc(descriptionFor(descriptions, dbName, f.schema, f.name));
       out.push(
-        `| [\`${f.schema}.${f.name}\`](${objectLinkFromDbIndex(f.schema, f.name)}) | ${kind} | ${paramCount(info, f.schema, f.name)} | ${isoDate(f.create_date)} | ${isoDate(f.modify_date)} | ${f.is_encrypted ? 'YES' : 'no'} |`
+        `| [\`${f.schema}.${f.name}\`](${objectLinkFromDbIndex(f.schema, f.name)}) | ${kind} | ${paramCount(info, f.schema, f.name)} | ${isoDate(f.create_date)} | ${isoDate(f.modify_date)} | ${f.is_encrypted ? 'YES' : 'no'} | ${desc} |`
       );
     }
     out.push('');
@@ -448,6 +492,9 @@ function renderTopIndex(dbsRendered) {
 // ---------- main ----------
 (async () => {
   try {
+    const descriptions = loadDescriptions();
+    console.log(`Loaded ${descriptions.size} curated description(s) from descriptions.json`);
+
     const allDbs = await listUserDatabases();
     console.log(`Found ${allDbs.length} user database(s): ${allDbs.join(', ') || '(none)'}`);
 
@@ -474,6 +521,7 @@ function renderTopIndex(dbsRendered) {
         let procCount = 0;
         let funcCount = 0;
         let encCount = 0;
+        let describedCount = 0;
         // Defensive: skip rows with no schema or name (shouldn't happen on Azure SQL,
         // but sys.objects can occasionally surface oddities like orphaned system rows).
         info.modules = info.modules.filter((m) => m.schema && m.name);
@@ -482,15 +530,16 @@ function renderTopIndex(dbsRendered) {
           if (t === 'P') procCount++;
           else if (['FN', 'IF', 'TF'].includes(t)) funcCount++;
           if (mod.is_encrypted) encCount++;
+          if (descriptionFor(descriptions, db, mod.schema, mod.name)) describedCount++;
           fs.writeFileSync(
             objectFile(db, mod.schema, mod.name),
-            renderRoutinePage(db, mod, info)
+            renderRoutinePage(db, mod, info, descriptions)
           );
         }
-        fs.writeFileSync(path.join(dbDir, 'README.md'), renderDbIndex(db, info));
+        fs.writeFileSync(path.join(dbDir, 'README.md'), renderDbIndex(db, info, descriptions));
         dbsRendered.push({ db, info });
         console.log(
-          `  ${db}: ${procCount} procedures, ${funcCount} functions, ${encCount} encrypted`
+          `  ${db}: ${procCount} procedures, ${funcCount} functions, ${encCount} encrypted, ${describedCount} described`
         );
       } catch (e) {
         dbsRendered.push({ db, error: e.message });
