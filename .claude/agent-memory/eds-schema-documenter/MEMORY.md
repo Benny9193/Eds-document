@@ -6,3 +6,4 @@
 - [SED unreliable for cross-DB](feedback_sed_unreliable_for_cross_db.md) — sys.sql_expression_dependencies misses 385 edges and over-reports 163; combine with text-grep, and filter SED by literal db name (DB_NAME() returns the connection DB, not the target).
 - [Catalogs is an EDS sidecar](project_catalogs_is_eds_sidecar.md) — Catalogs->EDS 198 edges collapses to 65 canonical (13 procs, 13 EDS objects); all sp_PostCatalog* / sp_*Catalog* variants posting into master EDS tables.
 - [Canonicalize cross-DB edges before counting](feedback_canonicalize_cross_db_edges.md) — Raw scanner edge counts include alias/JOIN noise; canonical (resolved against target sys.objects) counts are smaller and better for impact analysis.
+- [Business logic layer 2026-05-04](project_business_logic_layer.md) — 8 files under docs/business-logic/; key procedure findings: status codes, approval rules, catalog post pipeline, VendorBids encryption, session pattern, Active flag conventions.
