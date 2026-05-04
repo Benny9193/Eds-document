@@ -4,5 +4,6 @@
       "Bash(npm run *)",
       "Bash(node *)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": ["azure-devops"]
 }
