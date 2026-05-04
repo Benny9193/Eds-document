@@ -1,0 +1,42 @@
+# View: `dbo.vw_ScanDocLookups`
+
+**Database:** `EDS_Test` &nbsp;|&nbsp; **Schema:** `dbo`
+
+Updatable: `NO`
+
+[← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Columns
+
+| # | Column | Type | Nullable | Default | PK |
+|---|--------|------|----------|---------|----|
+| 1 | `ScanJobId` | int | NO |  |  |
+| 2 | `DocTypeFieldExternalLookupId` | uniqueidentifier | NO |  |  |
+| 3 | `ExternalTableName` | nvarchar(128) | NO |  |  |
+| 4 | `ItemOrder` | int | NO |  |  |
+
+## Depends on
+
+| Object | Type |
+|--------|------|
+| [`dbo.Catalog`](dbo.Catalog.md) | unresolved |
+| `dbo.DocType` | unresolved |
+| `dbo.DocTypeFieldExternalLookup` | unresolved |
+| [`dbo.ScanJobs`](dbo.ScanJobs.md) | USER_TABLE |
+
+## Used by
+
+_No other objects reference this view._
+
+## Definition
+
+```sql
+CREATE   view [dbo].[vw_ScanDocLookups] as
+select sj.ScanJobId, DocTypeFieldExternalLookup.Id DocTypeFieldExternalLookupId, DocTypeFieldExternalLookup.ExternalTableName, DocTypeFieldExternalLookup.ItemOrder
+  from ContentCentral.dbo.DocType DocType
+  join ContentCentral.dbo.DocTypeFieldExternalLookup DocTypeFieldExternalLookup on DocTypeFieldExternalLookup.DocTypeId = DocType.Id
+  join ContentCentral.dbo.Catalog Catalog on Catalog.Id = DocType.CatalogId
+  join dbo.ScanJobs sj on sj.CatalogName = Catalog.Name
+                          and sj.CabinetName = DocType.Name
+ where DocTypeFieldExternalLookup.Enabled = 1
+```

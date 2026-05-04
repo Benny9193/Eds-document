@@ -1,0 +1,42 @@
+# View: `dbo.Cortex_Metrics_0_latest`
+
+**Database:** `SolarWindsOrion` &nbsp;|&nbsp; **Schema:** `dbo`
+
+Updatable: `NO`
+
+[← back to database index](README.md) &nbsp;|&nbsp; [← back to top](../../../SCHEMA.md)
+
+## Columns
+
+| # | Column | Type | Nullable | Default | PK |
+|---|--------|------|----------|---------|----|
+| 1 | `ElementId` | bigint | NO |  |  |
+| 2 | `MetricId` | int | NO |  |  |
+| 3 | `Time` | datetime2 | NO |  |  |
+| 4 | `Value` | float | NO |  |  |
+| 5 | `Weight` | int | NO |  |  |
+| 6 | `AvgValue` | float | NO |  |  |
+| 7 | `MinValue` | float | NO |  |  |
+| 8 | `MaxValue` | float | NO |  |  |
+| 9 | `Count` | int | NO |  |  |
+
+## Depends on
+
+| Object | Type |
+|--------|------|
+| `Cortex_Metrics_NodeStatistics_0_LATEST` | VIEW |
+| `Cortex_Metrics_PcuStatistics_0_LATEST` | VIEW |
+
+## Used by
+
+_No other objects reference this view._
+
+## Definition
+
+```sql
+CREATE VIEW [dbo].[Cortex_Metrics_0_latest] AS
+	
+		SELECT * FROM Cortex_Metrics_PcuStatistics_0_LATEST 
+		UNION ALL
+		SELECT * FROM Cortex_Metrics_NodeStatistics_0_LATEST
+```
