@@ -2,8 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(npm run *)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "mcp__azure-devops__repo_list_repos_by_project"
     ]
   },
-  "enabledMcpjsonServers": ["azure-devops"]
+  "enabledMcpjsonServers": [
+    "azure-devops"
+  ]
 }
