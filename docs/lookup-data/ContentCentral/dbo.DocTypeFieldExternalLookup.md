@@ -1,0 +1,19 @@
+# Lookup: `dbo.DocTypeFieldExternalLookup`
+
+**Database:** `ContentCentral` &nbsp;|&nbsp; **Rows:** 11 &nbsp;|&nbsp; **Generated:** 2026-05-04
+
+[← back to index](../README.md)
+
+| Id | ExternalDataSourceId | ExternalTableSchema | ExternalTableName | Enabled | ItemOrder | DocTypeId | OverwriteFieldData | MaxResults | WorkflowOnly |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ADB93550-2448-49FE-82EF-006A196EE923 | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | BidDocumentTypes | true | 2 | 22BB1A0D-BA7E-4534-A7A5-6F2E12A64EC7 | false | 1 | false |
+| D4A410A6-7C3E-428F-999F-0A25F2F77182 | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | District | true | 1 | 8D64D4E6-1DDB-487A-93E8-BAFED1638CE4 | false | 1 | false |
+| B7307208-8101-4774-AD08-0A9B48BE54A5 | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | vw_Vendors | true | 1 | 1C6124D1-1526-4B72-81FB-C73BCCDB2F48 | false | 1 | false |
+| 0BAF1448-C371-4E3B-8A4C-204D1E72EC2D | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | vw_DocumentTypes | true | 4 | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | false | 1 | false |
+| 537B70BC-807B-40A5-B5C0-464C84CEB397 | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | vw_DocumentTypes | true | 2 | 5BBFD790-222C-48F7-BD48-3675F8F7FD4A | false | 1 | false |
+| 8582FEE8-4590-4D58-A24D-50A94A9EAD55 | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | Vendors | true | 1 | 22BB1A0D-BA7E-4534-A7A5-6F2E12A64EC7 | false | 1 | false |
+| 8EEE3CAD-8727-4197-AFFC-534DA874E759 | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | vw_Vendors | true | 3 | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | false | 1 | false |
+| 1D8343D2-6BCE-4269-A552-754DF2F27B45 | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | vw_Vendors | true | 1 | F6FFF8B6-79AA-495A-8196-E9F0EFA6A7D8 | false | 1 | false |
+| 1A187F3F-E5C1-402E-84A9-8B1A561A2DDA | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | bidinfolookup | true | 1 | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | false | 1 | false |
+| 9140D254-22E9-444A-A487-94988B693591 | AFB9B8C7-6A86-4E33-A129-6846CDA43963 | dbo | bidinfolookup | true | 1 | 5BBFD790-222C-48F7-BD48-3675F8F7FD4A | false | 1 | false |
+| 5F3243E1-33B9-4004-A381-E4004EFB8543 | 27DE45A5-8FDA-4299-A565-C3E1A015B4D5 | dbo | VendorBidLookup | false | 2 | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | false | 1 | false |

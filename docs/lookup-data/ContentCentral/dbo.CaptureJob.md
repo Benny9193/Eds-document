@@ -1,0 +1,35 @@
+# Lookup: `dbo.CaptureJob`
+
+**Database:** `ContentCentral` &nbsp;|&nbsp; **Rows:** 25 &nbsp;|&nbsp; **Generated:** 2026-05-04
+
+[← back to index](../README.md)
+
+> 5 columns omitted (table has 35 renderable columns; showing first 30).
+
+| Id | Name | InputSource | DescriptorType | ProcessingType | Folder | LastImportTimeUtc | Description | NoDescriptorSkipCodingQueue | DocTypeId | Enabled | EmailServerHostName | EmailServerUsername | EmailServerPassword | EmailServerPort | EmailServerPop3UseSpa | EmailServerEncryption | EmailFromDocTypeFieldId | EmailFromAddressDocTypeFieldId | EmailFromNameDocTypeFieldId | EmailToDocTypeFieldId | EmailToAddressDocTypeFieldId | EmailToNameDocTypeFieldId | EmailCcDocTypeFieldId | EmailCcAddressDocTypeFieldId | EmailCcNameDocTypeFieldId | EmailSubjectDocTypeFieldId | EmailDateTimeDocTypeFieldId | EmailBodyDocTypeFieldId | EmailBodyPreferredFormat |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| B1753EEF-429C-457E-A65E-264613F0B9A2 | Bid Documents XML Pickup | Folder | Xml |  | C:\Scanned Images\Bid Documents\XML\ |  | Pickup XML coded Bid Documents | false | 5BBFD790-222C-48F7-BD48-3675F8F7FD4A | false |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| A1189ECB-E3C2-4B6B-AA70-281F5FB7B804 |  | Database | Zonal | Image |  |  |  | false | 22BB1A0D-BA7E-4534-A7A5-6F2E12A64EC7 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 153BE54F-68B6-4B84-AC5D-2A8B8575DE63 | Bid Document Pickup | Folder | Zonal | Image | C:\Scanned Images\Bid Documents\ |  | Pickup Bid Documents for Auto Processing | false | 5BBFD790-222C-48F7-BD48-3675F8F7FD4A | false |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 8CE1B656-CD44-4AF5-8829-2B1E9B5A9447 |  | Database | QCard | Image |  | 2015-06-10 07:52:26 |  | false | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 3505E588-7EFB-40A8-88CD-2F6D78B9BC29 |  | Database | QCard | Image |  | 2014-06-13 13:15:12 |  | false | 6446721D-1A95-4E22-A8E9-AC366CEA03B7 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 30706B8F-5CA5-4503-9A0D-3B5CDF25D85B |  | Database | QCard | Image |  |  |  | false | 55E987E5-2589-46C6-ABD4-485E497F096B | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 367C9FF2-4EC4-4328-9A6D-4486F68E524F | MSDS Manual Code | Folder | None | Image | C:\Scanned Images\MSDS Manual Code\ | 2015-02-23 08:27:28 |  | false | 6446721D-1A95-4E22-A8E9-AC366CEA03B7 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 47FB642F-DB4F-400C-B936-55309A8E5CCE |  | Database | Zonal | Image |  |  |  | false | F6FFF8B6-79AA-495A-8196-E9F0EFA6A7D8 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 6EE6CD09-F678-4A43-8F8E-610F41095258 | XML MSDS Import | Folder | Xml |  | C:\Scanned Images\MSDS\XML\ | 2015-02-23 08:27:33 | XML MSDS Import | false | 6446721D-1A95-4E22-A8E9-AC366CEA03B7 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| BBA3EA3F-1D68-4F77-9D2E-6B1F31F59F7B |  | Database | Zonal | Image |  | 2011-10-19 21:34:04 |  | false | 5BBFD790-222C-48F7-BD48-3675F8F7FD4A | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| A9ED386D-95DE-4791-AB8D-70E1130EE1D1 | TEST | Folder | Zonal | Image | C:\Users\CCSupport\Desktop\Test\ |  |  | true | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | false |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| DC31E17A-F965-41F4-8C8B-7A03C906DB5E | MSDS Capture | Folder | Zonal | Image | C:\Scanned Images\MSDS\ | 2015-02-23 08:27:24 | MSDS Capture | false | 6446721D-1A95-4E22-A8E9-AC366CEA03B7 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 3037926D-4761-45DC-9BCB-7DDBF8D1DD4D |  | Database | Zonal | Image |  |  |  | false | 1C6124D1-1526-4B72-81FB-C73BCCDB2F48 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 34483606-3DB7-4069-AADC-885DDE2C432E |  | Database | QCard | Image |  | 2015-06-10 07:52:25 |  | false | 5BBFD790-222C-48F7-BD48-3675F8F7FD4A | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 6B8D920A-A8F4-4B0B-94F9-9DD620709BAC |  | Database | QCard | Image |  | 2014-06-16 16:56:59 |  | false | 1C6124D1-1526-4B72-81FB-C73BCCDB2F48 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 9CAF88AD-3CA6-48D5-8A39-A44F9644A530 |  | Database | Zonal | Image |  | 2011-10-19 21:34:04 |  | false | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 477912A5-0A4E-4003-B8BF-B03BA8D51FEA |  | Database | Zonal | Image |  |  |  | false | 55E987E5-2589-46C6-ABD4-485E497F096B | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 5887D6A3-B8C6-4E52-9D8F-D192AFD9D7F7 | Vendor Bid XML Pickup | Folder | Xml |  | C:\Scanned Images\Vendor Bid Documents\Split\ |  | Vendor Bid Documents XML Pickup | false | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | false |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 17A76E1F-DBCB-4EDA-A824-D33DF24EAB16 |  | Database | Zonal | Image |  | 2011-10-19 21:34:04 |  | false | 6446721D-1A95-4E22-A8E9-AC366CEA03B7 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 91A01E15-F93B-46EC-81F5-D6DAC7A7305B |  | Database | QCard | Image |  |  |  | false | F6FFF8B6-79AA-495A-8196-E9F0EFA6A7D8 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 36B9131D-5442-4EEE-A51C-DD92A6B2B57C |  | Database | QCard | Image |  |  |  | false | 8D64D4E6-1DDB-487A-93E8-BAFED1638CE4 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 04E3EC1D-5443-4B4F-BDD9-E41E719A72DA |  | Database | Zonal | Image |  |  |  | false | 8D64D4E6-1DDB-487A-93E8-BAFED1638CE4 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| F6D409A7-34E7-4DB0-B05F-EFD2CB2B2A8A |  | Database | QCard | Image |  |  |  | false | 22BB1A0D-BA7E-4534-A7A5-6F2E12A64EC7 | true |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 1143AE44-2163-4C88-83EE-FD4CC4CDB69B | Vendor Bid Document Pickup | Folder | Zonal | Image | C:\Scanned Images\Vendor Bid Documents\ |  | Vendor Specific Bid Document Pickup | false | 5C09ABF0-7002-4FF7-A536-38E74BCDBCA2 | false |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |
+| 9EC22CBC-2F46-4435-8EBF-FF3FCAFE7DD1 | Barcode Split XML Bid Documents | Folder | Xml |  | C:\Scanned Images\Bid Documents\Split\ |  | Barcode Split XML Bid Documents | false | 5BBFD790-222C-48F7-BD48-3675F8F7FD4A | false |  |  |  | 0 | false | None |  |  |  |  |  |  |  |  |  |  |  |  | PlainText |

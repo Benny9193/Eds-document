@@ -1,12 +1,14 @@
-// No database connection needed — compares SCHEMA.md on disk against git HEAD.
-// Run after `npm run schema` to see what changed since the last committed snapshot.
+// No database connection needed — compares generated outputs against git HEAD.
+// Run after `npm run schema` + `npm run business-rules` (or `npm run docs:all`)
+// to see what changed since the last committed snapshot.
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..');
-const SCHEMA_PATH = path.join(ROOT, 'SCHEMA.md');
-const OUT_PATH = path.join(ROOT, 'docs', 'CHANGELOG.md');
+const ROOT             = path.join(__dirname, '..');
+const SCHEMA_PATH      = path.join(ROOT, 'SCHEMA.md');
+const RULES_DIR        = path.join(ROOT, 'docs', 'business-rules');
+const OUT_PATH         = path.join(ROOT, 'docs', 'CHANGELOG.md');
 
 function mkdirp(p) { fs.mkdirSync(p, { recursive: true }); }
 
@@ -18,6 +20,8 @@ function git(cmd) {
     return null;
   }
 }
+
+// ── SCHEMA.md parsing ─────────────────────────────────────────────────────────
 
 // Parse SCHEMA.md into a Map<dbName, [{schema, name, type, rows}]>.
 // Relies on the fixed format emitted by renderRootSchema in introspect.js:
@@ -34,8 +38,6 @@ function parseSchema(content) {
       continue;
     }
     if (!currentDb) continue;
-    // Matches: | [`schema.table`](link) | table | 1234 |
-    // Schema/table name may not contain backticks (valid SQL identifiers).
     const rowMatch = line.match(/^\| \[`([^.`]+)\.([^`]+)`\]\([^)]*\) \| (table|view) \| (\d*) \|/);
     if (rowMatch) {
       dbs.get(currentDb).push({
@@ -47,13 +49,6 @@ function parseSchema(content) {
     }
   }
   return dbs;
-}
-
-// Return sorted list of docs/tables/** files that differ from HEAD.
-function changedTableFiles() {
-  const out = git('git diff HEAD --name-only -- docs/tables/');
-  if (!out) return [];
-  return out.trim().split('\n').filter(Boolean).sort();
 }
 
 // Diff two parsed schema Maps. Returns a flat list of change objects.
@@ -69,7 +64,7 @@ function diffSchemas(oldMap, newMap) {
 
   for (const [db, newObjs] of newMap.entries()) {
     const oldObjs = oldMap.get(db);
-    if (!oldObjs) continue; // already recorded as new-db
+    if (!oldObjs) continue;
 
     const oldSet = new Map(oldObjs.map((o) => [`${o.schema}.${o.name}`, o]));
     const newSet = new Map(newObjs.map((o) => [`${o.schema}.${o.name}`, o]));
@@ -98,17 +93,65 @@ function diffSchemas(oldMap, newMap) {
   return changes;
 }
 
+// ── docs/tables/ file diff ────────────────────────────────────────────────────
+
+function changedTableFiles() {
+  const out = git('git diff HEAD --name-only -- docs/tables/');
+  if (!out) return [];
+  return out.trim().split('\n').filter(Boolean).sort();
+}
+
+// ── docs/business-rules/ diff ─────────────────────────────────────────────────
+
+// Changed files inside docs/business-rules/ since HEAD.
+function changedBusinessRulesFiles() {
+  const out = git('git diff HEAD --name-only -- docs/business-rules/');
+  if (!out) return [];
+  return out.trim().split('\n').filter(Boolean).sort();
+}
+
+// New vs dropped database directories in docs/business-rules/ vs git HEAD.
+// git ls-files gives committed paths; fs.readdir gives current paths.
+function diffBusinessRulesDbs() {
+  // Databases currently on disk
+  const currentDbs = new Set();
+  if (fs.existsSync(RULES_DIR)) {
+    for (const entry of fs.readdirSync(RULES_DIR, { withFileTypes: true })) {
+      if (entry.isDirectory()) currentDbs.add(entry.name);
+    }
+  }
+
+  // Databases that were committed (extract <db> from docs/business-rules/<db>/*)
+  const lsOutput = git('git ls-files docs/business-rules/');
+  const committedDbs = new Set();
+  if (lsOutput) {
+    for (const f of lsOutput.trim().split('\n').filter(Boolean)) {
+      const parts = f.replace(/\\/g, '/').split('/');
+      // Expected: docs / business-rules / <db> / README.md
+      if (parts.length >= 4) committedDbs.add(parts[2]);
+    }
+  }
+
+  return {
+    newDbs:     [...currentDbs].filter((d) => !committedDbs.has(d)).sort(),
+    droppedDbs: [...committedDbs].filter((d) => !currentDbs.has(d)).sort(),
+  };
+}
+
+// ── Rendering ─────────────────────────────────────────────────────────────────
+
 function sign(n) { return n >= 0 ? `+${n.toLocaleString()}` : `${n.toLocaleString()}`; }
 
-function render(commitRef, oldMap, newMap, changes, tableFileChanges) {
+function render(commitRef, changes, tableFileChanges, brDiff, brFileChanges) {
   const out = [];
-  const ts = new Date().toISOString();
   out.push('# Schema Changelog');
   out.push('');
-  out.push(`_Generated on ${ts}_`);
+  out.push(`_Generated on ${new Date().toISOString()}_`);
   out.push('');
-  out.push(`Comparing **current SCHEMA.md** (on disk) against **\`${commitRef}\`** (last committed snapshot).`);
-  out.push('Run `npm run schema` then `npm run docs:changes` to refresh this file.');
+  out.push(
+    `Comparing **current generated outputs** (on disk) against **\`${commitRef}\`** (last committed snapshot). ` +
+    'Run `npm run schema && npm run business-rules && npm run docs:changes` (or `npm run docs:all`) to refresh.'
+  );
   out.push('');
 
   const newDbs      = changes.filter((c) => c.kind === 'new-db');
@@ -117,39 +160,55 @@ function render(commitRef, oldMap, newMap, changes, tableFileChanges) {
   const droppedObjs = changes.filter((c) => c.kind === 'dropped-object');
   const rowChanges  = changes.filter((c) => c.kind === 'row-count');
 
-  if (changes.length === 0 && tableFileChanges.length === 0) {
-    out.push('> **No changes detected.** SCHEMA.md matches the last committed snapshot.');
+  const hasAnyChange =
+    changes.length > 0 ||
+    tableFileChanges.length > 0 ||
+    brDiff.newDbs.length > 0 ||
+    brDiff.droppedDbs.length > 0 ||
+    brFileChanges.length > 0;
+
+  if (!hasAnyChange) {
+    out.push('> **No changes detected.** All generated outputs match the last committed snapshot.');
     out.push('');
     return out.join('\n');
   }
 
-  // Summary
+  // One-line summary
   const parts = [];
-  if (newDbs.length)      parts.push(`${newDbs.length} new database${newDbs.length !== 1 ? 's' : ''}`);
-  if (droppedDbs.length)  parts.push(`${droppedDbs.length} dropped database${droppedDbs.length !== 1 ? 's' : ''}`);
-  if (newObjs.length)     parts.push(`${newObjs.length} new object${newObjs.length !== 1 ? 's' : ''}`);
-  if (droppedObjs.length) parts.push(`${droppedObjs.length} dropped object${droppedObjs.length !== 1 ? 's' : ''}`);
-  if (rowChanges.length)  parts.push(`${rowChanges.length} significant row-count change${rowChanges.length !== 1 ? 's' : ''}`);
-  if (tableFileChanges.length) parts.push(`${tableFileChanges.length} modified table file${tableFileChanges.length !== 1 ? 's' : ''}`);
+  if (newDbs.length)          parts.push(`${newDbs.length} new DB`);
+  if (droppedDbs.length)      parts.push(`${droppedDbs.length} dropped DB`);
+  if (newObjs.length)         parts.push(`${newObjs.length} new object${newObjs.length !== 1 ? 's' : ''}`);
+  if (droppedObjs.length)     parts.push(`${droppedObjs.length} dropped object${droppedObjs.length !== 1 ? 's' : ''}`);
+  if (rowChanges.length)      parts.push(`${rowChanges.length} row-count shift${rowChanges.length !== 1 ? 's' : ''}`);
+  if (tableFileChanges.length) parts.push(`${tableFileChanges.length} table file${tableFileChanges.length !== 1 ? 's' : ''} changed`);
+  if (brDiff.newDbs.length)   parts.push(`${brDiff.newDbs.length} new BR DB`);
+  if (brDiff.droppedDbs.length) parts.push(`${brDiff.droppedDbs.length} dropped BR DB`);
+  if (brFileChanges.length)   parts.push(`${brFileChanges.length} business-rules file${brFileChanges.length !== 1 ? 's' : ''} changed`);
   out.push(`**${parts.join(' · ')}**`);
   out.push('');
 
+  // ── Schema changes ────────────────────────────────────────────────────────
+  if (newDbs.length || droppedDbs.length || newObjs.length || droppedObjs.length || rowChanges.length || tableFileChanges.length) {
+    out.push('## Schema changes (`SCHEMA.md` + `docs/tables/`)');
+    out.push('');
+  }
+
   if (newDbs.length) {
-    out.push('## New databases');
+    out.push('### New databases');
     out.push('');
     for (const c of newDbs) out.push(`- \`${c.db}\``);
     out.push('');
   }
 
   if (droppedDbs.length) {
-    out.push('## Dropped databases');
+    out.push('### Dropped databases');
     out.push('');
     for (const c of droppedDbs) out.push(`- \`${c.db}\``);
     out.push('');
   }
 
   if (newObjs.length) {
-    out.push('## New tables / views');
+    out.push('### New tables / views');
     out.push('');
     out.push('| Database | Object | Type |');
     out.push('|----------|--------|------|');
@@ -160,7 +219,7 @@ function render(commitRef, oldMap, newMap, changes, tableFileChanges) {
   }
 
   if (droppedObjs.length) {
-    out.push('## Dropped tables / views');
+    out.push('### Dropped tables / views');
     out.push('');
     out.push('| Database | Object | Type |');
     out.push('|----------|--------|------|');
@@ -171,7 +230,7 @@ function render(commitRef, oldMap, newMap, changes, tableFileChanges) {
   }
 
   if (rowChanges.length) {
-    out.push('## Significant row-count changes');
+    out.push('### Significant row-count changes');
     out.push('');
     out.push('_Threshold: ≥1 000 row delta or ≥10 % change from previous count._');
     out.push('');
@@ -186,19 +245,49 @@ function render(commitRef, oldMap, newMap, changes, tableFileChanges) {
   }
 
   if (tableFileChanges.length) {
-    out.push('## Modified table / view files');
+    out.push('### Modified table / view files');
     out.push('');
-    out.push('These per-table markdown files differ from HEAD (column-level or metadata changes). Open each link for a detailed diff.');
+    out.push('Column-level or metadata changes in per-table docs. Run `git diff HEAD docs/tables/` for the full diff.');
     out.push('');
     for (const f of tableFileChanges) out.push(`- \`${f}\``);
+    out.push('');
+  }
+
+  // ── Business-rules changes ────────────────────────────────────────────────
+  if (brDiff.newDbs.length || brDiff.droppedDbs.length || brFileChanges.length) {
+    out.push('## Business-rules changes (`docs/business-rules/`)');
+    out.push('');
+  }
+
+  if (brDiff.newDbs.length) {
+    out.push('### New databases in business-rules');
+    out.push('');
+    for (const db of brDiff.newDbs) out.push(`- \`${db}\``);
+    out.push('');
+  }
+
+  if (brDiff.droppedDbs.length) {
+    out.push('### Dropped databases in business-rules');
+    out.push('');
+    for (const db of brDiff.droppedDbs) out.push(`- \`${db}\``);
+    out.push('');
+  }
+
+  if (brFileChanges.length) {
+    out.push('### Modified business-rules files');
+    out.push('');
+    out.push('Trigger, constraint, or computed-column definitions changed. Run `git diff HEAD docs/business-rules/` for details.');
+    out.push('');
+    for (const f of brFileChanges) out.push(`- \`${f}\``);
     out.push('');
   }
 
   return out.join('\n');
 }
 
+// ── Main ──────────────────────────────────────────────────────────────────────
+
 (async () => {
-  // Verify git is available
   const gitVersion = git('git --version');
   if (!gitVersion) {
     console.error('git not found. npm run docs:changes requires git.');
@@ -206,18 +295,19 @@ function render(commitRef, oldMap, newMap, changes, tableFileChanges) {
     return;
   }
 
-  // Read current SCHEMA.md
   if (!fs.existsSync(SCHEMA_PATH)) {
     console.error(`${SCHEMA_PATH} not found. Run npm run schema first.`);
     process.exitCode = 1;
     return;
   }
+
+  const commitRef = 'HEAD';
+
+  // SCHEMA.md diff
   const currentContent = fs.readFileSync(SCHEMA_PATH, 'utf8');
   const currentMap = parseSchema(currentContent);
   console.log(`Current SCHEMA.md: ${currentMap.size} database(s)`);
 
-  // Fetch previous committed version
-  const commitRef = 'HEAD';
   const previousContent = git(`git show ${commitRef}:SCHEMA.md`);
   if (!previousContent) {
     console.warn('SCHEMA.md has never been committed or git show failed — treating previous state as empty.');
@@ -227,10 +317,15 @@ function render(commitRef, oldMap, newMap, changes, tableFileChanges) {
 
   const changes = diffSchemas(previousMap, currentMap);
   const tableFileChanges = changedTableFiles();
-  console.log(`Changes: ${changes.length} schema-level, ${tableFileChanges.length} table-file diffs`);
+  console.log(`Schema: ${changes.length} object-level change(s), ${tableFileChanges.length} file diff(s)`);
+
+  // Business-rules diff
+  const brDiff = diffBusinessRulesDbs();
+  const brFileChanges = changedBusinessRulesFiles();
+  console.log(`Business-rules: ${brDiff.newDbs.length} new DB(s), ${brDiff.droppedDbs.length} dropped DB(s), ${brFileChanges.length} file diff(s)`);
 
   mkdirp(path.join(ROOT, 'docs'));
-  const md = render(commitRef, previousMap, currentMap, changes, tableFileChanges);
+  const md = render(commitRef, changes, tableFileChanges, brDiff, brFileChanges);
   fs.writeFileSync(OUT_PATH, md);
   console.log(`\nWrote ${OUT_PATH}`);
 })();

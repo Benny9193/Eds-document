@@ -10,6 +10,7 @@
     "procs": "node src/document-procedures.js",
     "deps": "node src/document-dependencies.js",
     "business-rules": "node src/document-business-rules.js",
+    "triggers": "node src/document-triggers.js",
     "guide": "node src/generate-guide.js",
     "descriptions:sql": "node src/generate-ms-description-sql.js",
     "descriptions:check": "node src/validate-descriptions.js",
@@ -20,7 +21,8 @@
     "docs:orphans": "node src/document-orphans.js",
     "docs:changes": "node src/document-changes.js",
     "docs:search": "node src/document-search-index.js",
-    "docs:erd": "node src/document-erd.js"
+    "docs:erd": "node src/document-erd.js",
+    "docs:all": "node src/docs-all.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

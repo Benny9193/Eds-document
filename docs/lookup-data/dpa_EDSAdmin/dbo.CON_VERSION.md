@@ -1,0 +1,14 @@
+# Lookup: `dbo.CON_VERSION`
+
+**Database:** `dpa_EDSAdmin` &nbsp;|&nbsp; **Rows:** 6 &nbsp;|&nbsp; **Generated:** 2026-05-04
+
+[← back to index](../README.md)
+
+| ARTIFACT | VERSION | LASTCHANGE |
+| --- | --- | --- |
+| CLIENTVERSION | 200000 | 2024-06-25 10:24:24 |
+| CONWAITCATVERSION | 2 | 2024-06-25 14:24:41 |
+| PRODUCTVERSION | 202540 | 2026-04-16 03:22:57 |
+| REPOVERSION | 20254002 | 2026-01-28 18:32:23 |
+| STOREDPROCVERSION | 50 | 2024-06-25 10:24:24 |
+| WEBCLIENTVERSION | 10000 | 2024-06-25 10:24:24 |
