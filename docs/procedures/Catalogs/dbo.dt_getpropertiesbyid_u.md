@@ -1,0 +1,59 @@
+# Procedure: `dbo.dt_getpropertiesbyid_u`
+
+_Generated on 2026-05-04T14:49:08.544Z_
+
+**Database:** `Catalogs` &nbsp;|&nbsp; **Schema:** `dbo`
+
+[← back to database index](README.md) &nbsp;|&nbsp; [← back to procedures index](../README.md)
+
+## Summary
+
+| Property | Value |
+|----------|-------|
+| Schema | `dbo` |
+| Name | `dt_getpropertiesbyid_u` |
+| Kind | Procedure |
+| sys.objects.type | `P` (SQL_STORED_PROCEDURE) |
+| Created | 2003-07-19 15:20:41 |
+| Modified | 2003-07-19 15:20:41 |
+| Encrypted | no |
+
+## Parameters
+
+| # | Name | Mode | Type | Default |
+|---|------|------|------|---------|
+| 1 | `@id` | IN | int |  |
+| 2 | `@property` | IN | varchar(64) |  |
+
+## Depends on
+
+_None resolved._
+
+## Called by
+
+_No other objects in this database reference it._
+
+## Definition
+
+```sql
+/*
+**	Retrieve properties by id's
+**
+**	dt_getproperties objid, null or '' -- retrieve all properties of the object itself
+**	dt_getproperties objid, property -- retrieve the property specified
+*/
+create procedure dbo.dt_getpropertiesbyid_u
+	@id int,
+	@property varchar(64)
+as
+	set nocount on
+
+	if (@property is null) or (@property = '')
+		select property, version, uvalue, lvalue
+			from dbo.dtproperties
+			where  @id=objectid
+	else
+		select property, version, uvalue, lvalue
+			from dbo.dtproperties
+			where  @id=objectid and @property=property
+```
